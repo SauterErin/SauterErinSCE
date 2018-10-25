@@ -4,12 +4,19 @@ import java.awt.*;
 public class Floor extends GameObject{
 
 	List list;
+
+	int testx = 0;
+	int testy = 0;
 	
 	public Floor (int x, int y, GameCalendar calen, List list, InteractionPanel inter)
 	{
 		super(x, y, calen ,inter);
 		move = true;
 		this.list = list;
+	}
+	public void setTest(int newX, int newY){
+		testx = newX*50+110;
+		testy = newY*50+110;
 	}
 
 	public void interacteObject() 

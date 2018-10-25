@@ -4,6 +4,9 @@ import java.awt.*;
 public class Cabinet extends GameObject
 {
 	Inventory items;
+
+	int testx = 0;
+	int testy = 0;
 	
 	public Cabinet (int x, int y, GameCalendar calen, Inventory items, InteractionPanel inter)
 	{
@@ -33,6 +36,11 @@ public class Cabinet extends GameObject
 		
 		inter.changeDialogue(dialogue);
 	
+	}
+	
+	public void setTest(int newX, int newY){
+		testx = newX*50+110;
+		testy = newY*50+110;
 	}
 	
 	public void paintComponent(Graphics g)

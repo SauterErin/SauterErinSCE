@@ -4,12 +4,20 @@ import java.awt.*;
 public class Chest extends GameObject
 {
 	Inventory items;
+
+	int testx = 0;
+	int testy = 0;
 	
 	public Chest (int x, int y, GameCalendar calen, Inventory items, InteractionPanel inter)
 	{
 		super(x, y, calen, inter);
 		move = false;
 		this.items = items;
+	}
+	
+	public void setTest(int newX, int newY){
+		testx = newX*50+110;
+		testy = newY*50+110;
 	}
 	
 	public void interacteObject()

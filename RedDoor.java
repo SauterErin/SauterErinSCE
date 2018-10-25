@@ -6,6 +6,9 @@ public class RedDoor extends GameObject {
 
 	Inventory items;
 	GameSprite sprite;
+
+	int testx = 0;
+	int testy = 0;
 	Countdown clock;
 	
 	public RedDoor(int x, int y, GameCalendar calen, Inventory items, 
@@ -16,6 +19,11 @@ public class RedDoor extends GameObject {
 		this.items = items;
 		this.sprite = sprite;
 		this.clock = clock;
+	}
+	
+	public void setTest(int newX, int newY){
+		testx = newX*50+110;
+		testy = newY*50+110;
 	}
 			
 	public void interacteObject()

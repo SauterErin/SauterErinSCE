@@ -6,6 +6,9 @@ public class IronDoor extends GameObject {
 	Inventory items;
 	GameSprite sprite;
 	Countdown clock;
+
+	int testx = 0;
+	int testy = 0;
 	
 	public IronDoor(int x, int y, GameCalendar calen, Inventory items, 
 			GameSprite sprite, Countdown clock, InteractionPanel inter)
@@ -15,6 +18,11 @@ public class IronDoor extends GameObject {
 		this.items = items;
 		this.sprite = sprite;
 		this.clock = clock;
+	}
+	
+	public void setTest(int newX, int newY){
+		testx = newX*50+110;
+		testy = newY*50+110;
 	}
 			
 	public void interacteObject()

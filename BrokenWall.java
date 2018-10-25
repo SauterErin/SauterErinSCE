@@ -4,6 +4,8 @@ import java.awt.*;
 public class BrokenWall extends GameObject{
 	
 	Inventory items;
+	int testx = 0;
+	int testy = 0;
 
 	public BrokenWall (int x, int y, GameCalendar calen, Inventory items, InteractionPanel inter)
 	{
@@ -32,6 +34,12 @@ public class BrokenWall extends GameObject{
 		increaseCounter();
 		inter.changeDialogue(dialogue);
 	}
+	
+	public void setTest(int newX, int newY){
+		testx = newX*50+110;
+		testy = newY*50+110;
+	}
+		
 	
 	public void paintComponent(Graphics g)
 	{
