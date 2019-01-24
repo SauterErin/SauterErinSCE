@@ -4,12 +4,11 @@ import java.awt.*;
 public class BrokenWall extends GameObject{
 	
 	Inventory items;
-	int testx = 0;
-	int testy = 0;
 
-	public BrokenWall (int x, int y, GameCalendar calen, Inventory items, InteractionPanel inter)
+
+	public BrokenWall (int RelativeX, int RelativeY, int AbsoluteX, int AbsoluteY, GameCalendar calen, Inventory items, InteractionPanel inter, GameSprite sprite)
 	{
-		super(x, y, calen, inter);
+		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
 		move = false;
 		this.items = items;
 	}
@@ -34,11 +33,6 @@ public class BrokenWall extends GameObject{
 		increaseCounter();
 		inter.changeDialogue(dialogue);
 	}
-	
-	public void setTest(int newX, int newY){
-		testx = newX*50+110;
-		testy = newY*50+110;
-	}
 		
 	
 	public void paintComponent(Graphics g)
@@ -47,10 +41,16 @@ public class BrokenWall extends GameObject{
 		
 		g.setColor(Color.DARK_GRAY);
 		
-		g.fillRect(x, y, 50, 50);
+		g.fillRect(RelativeX*110+50, RelativeY*110+50, 50, 50);
 		
 		g.setColor(Color.yellow);
-		g.drawLine(x, y+25, x+25, y+42);
-		g.drawLine(x+10, y+32, x+40, y+27);
+		g.drawLine(RelativeX*110+50, RelativeY*110+50+25, RelativeX*110+50+25, RelativeY*110+50+42);
+		g.drawLine(RelativeX*110+50+10, RelativeY*110+50+32, RelativeX*110+50+40, RelativeY*110+50+27);
+	}
+
+	@Override
+	void setTest(int a, int b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

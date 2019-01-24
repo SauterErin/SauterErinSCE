@@ -4,20 +4,12 @@ import java.awt.*;
 public class Wall extends GameObject{
 
 	List list;
-
-	int testx = 0;
-	int testy = 0;
 	
-	public Wall (int x, int y, GameCalendar calen, List list, InteractionPanel inter)
+	public Wall ( int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
 	{
-		super(x, y, calen, inter);
+		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
 		move = false;
 		this.list = list;
-	}
-	
-	public void setTest(int newX, int newY){
-		testx = newX*50+110;
-		testy = newY*50+110;
 	}
 	
 	public void interacteObject()
@@ -60,6 +52,12 @@ public class Wall extends GameObject{
 		{
 			g.setColor(Color.darkGray);
 		}
-		g.fillRect(x, y, 50, 50);
+		g.fillRect(RelativeX*50+110, RelativeY*50+110, 50, 50);
+	}
+
+	@Override
+	void setTest(int a, int b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

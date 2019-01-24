@@ -8,24 +8,19 @@ public class PinkDoor extends GameObject {
 	Inventory items;
 	GameSprite sprite;
 
-	int testx = 0;
-	int testy = 0;
+	
 	Countdown clock;
 
-	public PinkDoor(int x, int y, GameCalendar calen, Inventory items, 
+	public PinkDoor(int AbsoluteX, int AbsoluteY, GameCalendar calen, Inventory items, 
 			GameSprite sprite, Countdown clock, InteractionPanel inter)
 	{
-		super(x, y, calen, inter);
+		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
 		move = false;
 		this.items = items;
 		this.sprite = sprite;
 		this.clock = clock;
 	}
-	
-	public void setTest(int newX, int newY){
-		testx = newX*50+110;
-		testy = newY*50+110;
-	}
+
 	
 	public void interacteObject()
 	{
@@ -78,6 +73,13 @@ public class PinkDoor extends GameObject {
 		super.paintComponent(g);
 		
 		g.setColor(Color.pink);
-		g.fillRect (x, y, 50, 50);
+		g.fillRect (RelativeX*50+110, RelativeY*50+110, 50, 50);
+	}
+
+
+	@Override
+	void setTest(int a, int b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

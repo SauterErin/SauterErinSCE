@@ -1,54 +1,109 @@
 package choice;
 import javax.swing.*;
+
 import java.awt.*;
 
 public class GameScreen extends JPanel {
 	
-	public GameObject [][][][] room = new GameObject [1][1][20][20];
+	public GameObject [][][][] room = new GameObject [2][3][20][20];
 	
 	GameCalendar calen;
+	String dialogue;
 	Inventory items;
 	List list;
 	InteractionPanel inter;
 	public GameSprite sprite;
 	Countdown clock;
 	
-	int Xsprite = 2;
-	int Ysprite = 3;
+	int Xsprite;
+	int Ysprite;
 	
-	public GameScreen (GameCalendar calen, InteractionPanel interact, Countdown clock)
+	public GameScreen (GameCalendar calen, Countdown clock)
 	{	
 		setBackground(Color.black);
 		this.calen = calen;
+		dialogue = "";
 		items = new Inventory();
 		list = new List();
-		inter = interact;
+		inter = new InteractionPanel();
 		this.clock = clock;
-		sprite = new GameSprite (110+50*2, 110+3*50);
-		
-		for(int i = 0; i < 20; i++){
-			for(int j = 0; j < 20; j++){
-				if(j == 0 || j == 19){
-					room[0][0][i][j] = new Boundary(i, j, calen, list, inter);
-				}
-				
-				if(j > 0 && j < 19){
-					room[0][0][i][j] = new RedTestFloor(i,j,calen,list, inter);
-				}
-				
-				if(j > 10 && j < 19){
-					room[0][0][i][j] = new BlueTestFloor(i,j,calen,list, inter);
-				}
-				
-				if(i == 0 || i == 19)
-				{
-					room[0][0][i][j] = new Boundary(i,j,calen,list,inter);
-				}
-			
+		sprite = new GameSprite (5, 5);
+		Xsprite = 5;
+		Ysprite = 5;
+		for (int k = 0; k < 2; k++){	
+			for(int i = 0; i < 20; i++){
+					for(int j = 0; j < 20; j++){
+						if(j == 0 || j == 19){
+							room[0][k][i][j] = new Boundary(i, j, calen, list, inter, sprite);
+						}
+						
+						if(j > 0 && j < 19){
+							room[0][k][i][j] = new RedTestFloor(i,j,calen,list, inter, sprite);
+						}
+						
+						if(j > 10 && j < 19){
+							room[0][k][i][j] = new BlueTestFloor(i,j,calen,list, inter, sprite);
+						}
+						
+						if(i == 0 || i == 19)
+						{
+							room[0][k][i][j] = new Boundary(i,j,calen,list,inter, sprite);
+						}
+					
+					}
+	
 			}
-
-		
 		}
+		
+		for(int l=0; l < 6; l++)
+		{
+			for (int m=0; m <6; m++)
+			{
+				room [0][2][l][m] = new WoodFloor(l,m, calen, list, inter, sprite);
+			}
+		}
+		
+		room[0][1][15][0] = new DoorTest(15,0,calen, list, inter, sprite);
+		room[0][0][4][19] = new DoorTest(4,19,calen,list,inter,sprite);
+		room[0][1][3][4] = new Window(3,4, calen, list, inter, sprite);
+		room[0][0][3][4] = new Bed1(3,4, calen, list, inter, sprite);
+		room[0][0][3][5] = new Bed2(3,5, calen, list, inter, sprite);
+		
+		room[0][2][1][0] = new BrickWall(1,0, calen, list, inter, sprite);
+		room[0][2][2][0] = new BrickWall(2,0, calen, list, inter, sprite);
+		room[0][2][3][0] = new BrickWall(3,0, calen, list, inter, sprite);
+		room[0][2][4][0] = new Window(4,0, calen, list, inter, sprite);
+		room[0][2][5][0] = new BrickWall(5,0, calen, list, inter, sprite);
+		room[0][2][6][0] = new BrickWall(6,0, calen, list, inter, sprite);
+		room[0][2][0][0] = new BrickWall(0,0, calen, list, inter, sprite);
+		
+
+		room[0][2][0][1] = new BrickWall(0,1, calen, list, inter, sprite);
+		room[0][2][0][2] = new BrickWall(0,2, calen, list, inter, sprite);
+		room[0][2][0][3] = new BrickWall(0,3, calen, list, inter, sprite);
+		room[0][2][0][4] = new BrickWall(0,4, calen, list, inter, sprite);
+		room[0][2][0][5] = new BrickWall(0,5, calen, list, inter, sprite);
+		
+
+		room[0][2][6][1] = new BrickWall(6,1, calen, list, inter, sprite);
+		room[0][2][6][2] = new WallHole(6,2, calen, list, inter, sprite);
+		room[0][2][6][3] = new BrickWall(6,3, calen, list, inter, sprite);
+		room[0][2][6][4] = new BrickWall(6,4, calen, list, inter, sprite);
+		room[0][2][6][5] = new BrickWall(6,5, calen, list, inter, sprite);
+
+		room[0][2][1][6] = new BrickWall(1,6, calen, list, inter, sprite);
+		room[0][2][2][6] = new BrickWall(2,6, calen, list, inter, sprite);
+		room[0][2][3][6] = new BrickWall(3,6, calen, list, inter, sprite);
+		room[0][2][4][6] = new PurpleDoor(4,6, calen, list, inter, sprite);
+		room[0][2][5][6] = new BrickWall(5,6, calen, list, inter, sprite);
+		room[0][2][6][6] = new BrickWall(6,6, calen, list, inter, sprite);
+		room[0][2][0][6] = new BrickWall(0,6, calen, list, inter, sprite);
+		
+		room[0][2][1][2] = new Bed1(1,2, calen, list, inter, sprite);
+		room[0][2][1][3] = new Bed2(1,3, calen, list, inter, sprite);
+
+		room[0][2][3][3] = new TrapDoor(3,3, calen, list, inter, sprite);
+
 		
 		/*room [0][0][0][0] = new Wall (0, 0, calen, list, inter);
 		room [0][0][0][1] = new Wall (0, 1, calen, list, inter);
@@ -232,8 +287,6 @@ public class GameScreen extends JPanel {
 		
 		else
 		{	
-			inter.paintComponent(g);
-			calen.paintComponent(g);
 			clock.paintComponent(g);	
 				
 			if (calen.getGameDay()== -1)
@@ -245,43 +298,50 @@ public class GameScreen extends JPanel {
 			
 			if (calen.getGameDay() != -1 && calen.getGameDay() != 357)
 			{
-				int Xhigh = 4;
-				int Xlow = 0;
-				int Yhigh =4;
-				int Ylow = 0;
-				if((Xsprite - 4) >= 0)
-				{
-					Xlow = Xsprite - 4;
-				}
-				
-				if((Xsprite + 4) <= 20)
-				{
-					Xhigh = Xsprite + 4;
-				}
-				if((Ysprite - 4) >= 0)
-				{
-					Ylow = Ysprite - 4;
-				}
-				
-				if((Ysprite + 4) <= 20)
-				{
-					Yhigh = Ysprite + 4;
-				}				
 				
 				
-				for (int i = Xlow; i < Xhigh; i++)
+				
+				for (int i = 0; i < 20; i++)
 				{
-					for (int j = Ylow = 0; j < Yhigh; j++)
+					for (int j = 0; j < 20; j++)
 					{
 						if (room[calen.getGameDay()][calen.getRoom()][i][j] != null)
 						{	
-							room[calen.getGameDay()][calen.getRoom()][i][j].setTest(i,j);
-							room[calen.getGameDay()][calen.getRoom()][i][j].paintComponent(g);
+							room[calen.getGameDay()][calen.getRoom()][i][j].setRelative();
+						
+								room[calen.getGameDay()][calen.getRoom()][i][j].paintComponent(g);
+													
 						}
 					}
 				}	
 			
 			sprite.paintComponent(g);
+			
+				if(calen.checkDialogue() == true)
+				{
+					inter.paintComponent(g);
+				}
+				
+				if(calen.checkMenu() == true)
+				{
+					g.setColor(Color.CYAN);
+					g.fillRect(100,100,200,500);
+					g.setColor(Color.green);
+					g.drawString("INVENTORY", 140, 150);
+					g.drawString("EXIT", 140, 300);
+					g.setColor(Color.MAGENTA);
+					
+					calen.paintComponent(g);
+
+
+					if(calen.getMenuCursor() == 0)
+					{
+						g.fillRect(120,150, 25,25);
+					}
+					
+					else
+						g.fillRect(120,300,25,25);
+				}	
 			}
 			
 					

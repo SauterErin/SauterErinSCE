@@ -5,12 +5,9 @@ public class Cabinet extends GameObject
 {
 	Inventory items;
 
-	int testx = 0;
-	int testy = 0;
-	
-	public Cabinet (int x, int y, GameCalendar calen, Inventory items, InteractionPanel inter)
+	public Cabinet (int AbsoluteX, int AbsoluteY, GameCalendar calen, Inventory items, InteractionPanel inter, GameSprite sprite)
 	{
-		super(x, y, calen, inter);
+		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
 		move = false;
 		this.items = items;
 	}
@@ -38,16 +35,17 @@ public class Cabinet extends GameObject
 	
 	}
 	
-	public void setTest(int newX, int newY){
-		testx = newX*50+110;
-		testy = newY*50+110;
-	}
-	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		
 		g.setColor(Color.orange);
-		g.fillRect(x,y,50,50);
+		g.fillRect(RelativeX*+110,RelativeY*50+110,50,50);
+	}
+
+	@Override
+	void setTest(int a, int b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

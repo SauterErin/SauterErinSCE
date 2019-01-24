@@ -8,8 +8,15 @@ public class GameCalendar extends JPanel {
 	int gameyearpast;
 	int gameyearpresent;
 	int room;
+	int menucursor;
+	int inventorycursor;
+	int totalinventory;
 	boolean dialogue;
 	boolean tutorial;
+	boolean menu;
+	boolean inventorymenu;
+	boolean red;
+	boolean blue;
 	
 	public GameCalendar () 
 	{
@@ -17,8 +24,15 @@ public class GameCalendar extends JPanel {
 		gameyearpast = 2042;
 		gameyearpresent = 2052;
 		room = 0;
+		menucursor = 0;
+		inventorycursor = 0;
+		totalinventory = 0;
 		dialogue = false;
+		menu = false;
+		inventorymenu = false;
 		tutorial = true;
+		red = false;
+		blue = false;
 	}
 	
 	public void completeDay()
@@ -66,6 +80,46 @@ public class GameCalendar extends JPanel {
 		dialogue = false;
 	}
 	
+	public boolean checkMenu()
+	{
+		return menu;
+	}
+	
+	public void startMenu()
+	{
+		menu = true;
+	}
+	
+	public void endMenu()
+	{
+		menu = false;
+	}
+	
+	public int getMenuCursor()
+	{
+		return menucursor;
+	}
+	
+	public void setMenuCursor(int newposition)
+	{
+		menucursor = newposition;
+	}
+	
+	public boolean checkInventoryMenu()
+	{
+		return inventorymenu;
+	}
+	
+	public void startInventoryMenu()
+	{
+		inventorymenu = true;
+	}
+	
+	public void endInventoryMenu()
+	{
+		inventorymenu = false;
+	}
+	
 	public boolean checkTutorial()
 	{
 		return tutorial;
@@ -74,6 +128,29 @@ public class GameCalendar extends JPanel {
 	public void endTutorial()
 	{
 		tutorial = false;
+	}
+	
+	public void ModeRed()
+	{
+		red = true;
+		blue = false;
+	}
+	
+	public boolean getRed()
+	{
+		return red;
+	}
+	
+	public void ModeBlue()
+	{
+		blue = true;
+		red = false;
+	}
+	
+	public void DefaultMode()
+	{
+		blue = false;
+		red = false;
 	}
 	
 	public void paintComponent(Graphics calendar)
@@ -90,21 +167,21 @@ public class GameCalendar extends JPanel {
 		
 		else
 		{
-			calendar.drawString("Day: " + (gameday+1), 100, 20);
+			calendar.drawString("Day: " + (gameday+1), 140, 320);
 			
 			if (gameday == 0)
 			{
-			calendar.drawString("Year: " + gameyearpast, 100, 40);
+			calendar.drawString("Year: " + gameyearpast, 140, 350);
 			}
 			
 			if (gameday == 1)
 			{
-				calendar.drawString("Year: " +gameyearpresent, 100, 40);
+				calendar.drawString("Year: " +gameyearpresent, 140, 350);
 			}
 			
 			if (gameday == 357)
 			{
-				calendar.drawString("Year: 2053", 100, 40);
+				calendar.drawString("Year: 2053", 140, 350);
 			}
 		}
 	}

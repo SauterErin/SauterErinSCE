@@ -21,9 +21,8 @@ public class GameFrame extends JFrame {
 		setFocusTraversalKeysEnabled(false);
 		
 		calen = new GameCalendar();
-		interact = new InteractionPanel();
 		clock = new Countdown(calen);
-		screen = new GameScreen (calen, interact, clock);
+		screen = new GameScreen (calen, clock);
 		
 		int delay = 1000;
 		
@@ -56,16 +55,60 @@ public class GameFrame extends JFrame {
 					
 					if (calen.checkDialogue() == true)
 			    	{	
+						
+						
 						if(e.getKeyCode() == 16)
 						{	
-							interact.changeDialogue("");
+							screen.inter.changeDialogue("");
 							calen.endDialgoue();
 							wait = 2;
 						}
 					}
 					
-					if (calen.checkDialogue() == false && wait == 1)
+					if(calen.checkMenu() == true)
 					{
+						if(e.getKeyCode() == KeyEvent.VK_DOWN)
+						{
+							if(calen.getMenuCursor() == 0)
+								calen.setMenuCursor(1);
+							else
+								calen.setMenuCursor(0);
+						}
+						
+						if(e.getKeyCode() == KeyEvent.VK_UP)
+						{
+							if(calen.getMenuCursor() == 0)
+								calen.setMenuCursor(1);
+							else
+								calen.setMenuCursor(0);
+						}
+						
+						
+						if(e.getKeyCode() == 16)
+						{
+							if(calen.getMenuCursor() == 0)
+							{
+								calen.startInventoryMenu();
+								calen.endMenu();
+							}
+							else
+								calen.endMenu();
+						}
+
+					}
+					
+					if(calen.checkInventoryMenu() == true)
+					{
+						
+					}
+					
+					if (calen.checkDialogue() == false && calen.checkMenu() == false && calen.checkInventoryMenu() == false && wait == 1)
+					{
+						if(e.getKeyCode() == 81)
+						{
+							calen.startMenu();
+						}
+						
 						if(e.getKeyCode() == KeyEvent.VK_LEFT)
 						{
 							if (screen.sprite.checkDirection() != 'a')
@@ -77,7 +120,7 @@ public class GameFrame extends JFrame {
 							{
 								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].checkMove()==true)
 								{
-									screen.sprite.changeX(-50);
+									screen.sprite.changeX(-1);
 									screen.changeX(-1);
 
 								}
@@ -95,7 +138,7 @@ public class GameFrame extends JFrame {
 							{
 								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].checkMove()==true)
 								{
-									screen.sprite.changeY(-50);
+									screen.sprite.changeY(-1);
 									screen.changeY(-1);
 
 								}
@@ -113,7 +156,7 @@ public class GameFrame extends JFrame {
 							{
 								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].checkMove() ==true)
 								{
-									screen.sprite.changeY(50);
+									screen.sprite.changeY(+1);
 									screen.changeY(+1);
 								}
 							}
@@ -130,7 +173,7 @@ public class GameFrame extends JFrame {
 							{
 								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].checkMove() == true)
 								{
-									screen.sprite.changeX(50);
+									screen.sprite.changeX(+1);
 									screen.changeX(+1);
 
 								}

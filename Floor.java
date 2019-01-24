@@ -5,18 +5,11 @@ public class Floor extends GameObject{
 
 	List list;
 
-	int testx = 0;
-	int testy = 0;
-	
-	public Floor (int x, int y, GameCalendar calen, List list, InteractionPanel inter)
+	public Floor (int AbsoluteX, int AbsoluteY,GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
 	{
-		super(x, y, calen ,inter);
+		super(AbsoluteX, AbsoluteY, calen ,inter, sprite);
 		move = true;
 		this.list = list;
-	}
-	public void setTest(int newX, int newY){
-		testx = newX*50+110;
-		testy = newY*50+110;
 	}
 
 	public void interacteObject() 
@@ -54,6 +47,12 @@ public class Floor extends GameObject{
 	{
 		super.paintComponent(g);
 		g.setColor(Color.YELLOW);
-		g.fillRect(x, y, 50, 50);
+		g.fillRect(RelativeX*50+110, RelativeY*50+110, 50, 50);
+	}
+
+	@Override
+	void setTest(int a, int b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

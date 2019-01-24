@@ -7,6 +7,8 @@ public class GameSprite extends JPanel {
 	int x;
 	int y;
 	char direction;
+	int RelativeX = 0+110;
+	int RelativeY = 0+110;
 
 	public GameSprite(int x, int y)
 	{
@@ -17,7 +19,7 @@ public class GameSprite extends JPanel {
 	
 	public int getX()
 	{
-		return (x-110)/50;
+		return x;
 	}	
 	
 	public void changeX(int moveX)
@@ -27,7 +29,7 @@ public class GameSprite extends JPanel {
 	
 	public int getY()
 	{
-		return (y-110)/50;
+		return y;
 	}
 	
 	public void changeY(int moveY)
@@ -47,8 +49,8 @@ public class GameSprite extends JPanel {
 	
 	public void setGameSprite(int newX, int newY, char newDirection)
 	{
-		x = 110+newX*50;
-		y = 110+newY*50;
+		x = newX;
+		y = newY;
 		direction = newDirection;
 	}
 	
@@ -59,33 +61,33 @@ public class GameSprite extends JPanel {
 		if (direction == 'w')
 		{
 			g.setColor(Color.BLUE);
-			g.fillRect(x,y,50,10);
+			g.fillRect(RelativeX,RelativeY,50,10);
 			g.setColor(Color.GREEN);
-			g.fillRect(x, y+10, 50, 40);
+			g.fillRect(RelativeX, RelativeY+10, 50, 40);
 		}
 		
 		if (direction == 'd')
 		{
 			g.setColor(Color.BLUE);
-			g.fillRect(x+40,y,10,50);
+			g.fillRect(RelativeX+40,RelativeY,10,50);
 			g.setColor(Color.GREEN);
-			g.fillRect(x, y, 40, 50);
+			g.fillRect(RelativeX, RelativeY, 40, 50);
 		}
 		
 		if (direction == 's')
 		{
 			g.setColor(Color.BLUE);
-			g.fillRect(x,y+40,50,10);
+			g.fillRect(RelativeX,RelativeY+40,50,10);
 			g.setColor(Color.GREEN);
-			g.fillRect(x, y, 50, 40);
+			g.fillRect(RelativeX, RelativeY, 50, 40);
 		}
 		
 		if (direction == 'a')
 		{
 			g.setColor(Color.BLUE);
-			g.fillRect(x, y, 10,50);
+			g.fillRect(RelativeX, RelativeY, 10,50);
 			g.setColor(Color.GREEN);
-			g.fillRect(x+10, y, 40, 50);
+			g.fillRect(RelativeX+10, RelativeY, 40, 50);
 		}
 	}
 }

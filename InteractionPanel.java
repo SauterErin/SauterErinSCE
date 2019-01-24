@@ -20,7 +20,9 @@ public class InteractionPanel extends JPanel {
 	public void paintComponent(Graphics g)
 	{	
 		super.paintComponent(g);
+		g.setColor(Color.gray);
+		g.fillRect(100,100,200,200);
 		g.setColor(Color.white);
-		g.drawString(dialogue, 140, 500);
+		g.drawString(dialogue, 140, 150);
 	}
 }

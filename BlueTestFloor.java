@@ -6,12 +6,10 @@ import java.awt.Graphics;
 public class BlueTestFloor extends GameObject {
 
 List list;
-int testx = 0;
-int testy = 0;
 	
-	public BlueTestFloor (int x, int y, GameCalendar calen, List list, InteractionPanel inter)
+	public BlueTestFloor (int x, int y, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
 	{
-		super(x, y, calen ,inter);
+		super(x, y, calen ,inter, sprite);
 		move = true;
 		this.list = list;
 	}
@@ -19,16 +17,16 @@ int testy = 0;
 	public void interacteObject() 
 	{
 	}
-	
-	public void setTest(int newX, int newY){
-		testx = newX*50+110;
-		testy = newY*50+110;
-	}
-	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		g.setColor(Color.blue);
-		g.fillRect(x, y, 50, 50);
+		g.fillRect(RelativeX, RelativeY, 50, 50);
+	}
+
+	@Override
+	void setTest(int a, int b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

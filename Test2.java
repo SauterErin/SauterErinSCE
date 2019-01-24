@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class Boundary extends GameObject{
+public class Test2 extends GameObject{
 
 	List list;
 	
-	public Boundary (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
+	public Test2 (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
 		move = false;
@@ -19,10 +19,10 @@ public class Boundary extends GameObject{
 	{
 		super.paintComponent(g);
 		
-		g.setColor(Color.getHSBColor(235, 99, 23));
+		g.setColor(Color.getHSBColor(235, 150, 23));
 		
 		if(calen.getRed() == true)
-			g.setColor(Color.getHSBColor(100,92,145));
+			g.setColor(Color.getHSBColor(235, 29, 70));
 			
 		
 		g.fillRect(RelativeX, RelativeY, 50, 50);
