@@ -4,15 +4,17 @@ public class Bed2 extends GameObject{
 
 	List list;
 	
-	public Bed2 (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
+	public Bed2 (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
 		this.list = list;
 	}
 	
 	public void interacteObject()
 	{
+		System.out.println("Interacting");
+		log.readDialogue(0);
 	}
 	
 	public void paintComponent(Graphics g)

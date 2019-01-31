@@ -1,10 +1,11 @@
 package choice;
 import java.awt.*;
+
 import javax.swing.*;
 
 public class InteractionPanel extends JPanel {
 	
-	public String dialogue;
+	String dialogue;
 
 	
 	public InteractionPanel ()
@@ -14,6 +15,7 @@ public class InteractionPanel extends JPanel {
 	
 	public void changeDialogue (String wantedDialogue)
 	{
+		System.out.println("Testing");
 		dialogue = wantedDialogue;
 	}
 	

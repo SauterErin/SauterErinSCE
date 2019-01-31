@@ -4,12 +4,14 @@ import java.awt.*;
 public class Floor extends GameObject{
 
 	List list;
+	InteractionPanel inter;
 
-	public Floor (int AbsoluteX, int AbsoluteY,GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
+	public Floor (int AbsoluteX, int AbsoluteY,GameCalendar calen, List list, InteractionPanel inter, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen ,inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen ,log, sprite);
 		move = true;
 		this.list = list;
+		this.inter = inter;
 	}
 
 	public void interacteObject() 

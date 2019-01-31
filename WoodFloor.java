@@ -4,9 +4,9 @@ public class WoodFloor extends GameObject{
 
 	List list;
 	
-	public WoodFloor (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
+	public WoodFloor (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = true;
 		this.list = list;
 	}
@@ -18,53 +18,25 @@ public class WoodFloor extends GameObject{
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
+
+		g.setColor(new Color(96,45, 6));	
+		if(calen.returnYear() == calen.gameyearpast)
+			g.setColor(new Color(121,94, 32));
+			
+		
+		
+		g.fillRect(RelativeX, RelativeY+1, 50,16 );
+		g.fillRect(RelativeX, RelativeY+18, 50,16 );
+		g.fillRect(RelativeX, RelativeY+34, 50,16 );
+		
+
 		g.setColor(Color.black);
 		g.drawLine(RelativeX, RelativeY, RelativeX+50, RelativeY);
 		g.drawLine(RelativeX, RelativeY+50, RelativeX+50, RelativeY+50);
-		g.drawLine(RelativeX+50, RelativeY, RelativeX+50, RelativeY+50);
-		g.drawLine(RelativeX, RelativeY, RelativeX, RelativeY+50);
 		
-		g.drawLine(RelativeX, RelativeY+10, RelativeX+50, RelativeY+10);
-		g.drawLine(RelativeX, RelativeY+20, RelativeX+50, RelativeY+20);
-		g.drawLine(RelativeX, RelativeY+30, RelativeX+50, RelativeY+30);
-		g.drawLine(RelativeX, RelativeY+40, RelativeX+50, RelativeY+40);
-		
-		g.drawLine(RelativeX+15, RelativeY, RelativeX+15, RelativeY+10);
-		g.drawLine(RelativeX+30, RelativeY, RelativeX+30, RelativeY+10);
-		g.drawLine(RelativeX+20, RelativeY+10, RelativeX+20, RelativeY+20);
-		g.drawLine(RelativeX+40, RelativeY+10, RelativeX+40, RelativeY+20);
-		g.drawLine(RelativeX+15, RelativeY+20, RelativeX+15, RelativeY+30);
-		g.drawLine(RelativeX+30, RelativeY+20, RelativeX+30, RelativeY+30);
-		g.drawLine(RelativeX+20, RelativeY+30, RelativeX+20, RelativeY+40);
-		g.drawLine(RelativeX+40, RelativeY+30, RelativeX+40, RelativeY+40);
-		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+50);
-		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+50);
-
-		g.setColor(Color.getHSBColor(120,100,100));	
-		if(calen.getRed() == true)
-			g.setColor(Color.getHSBColor(150, 33, 33));
-			
-		
-		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
-		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
-		g.fillRect(RelativeX+1, RelativeY+41, 14,8 );
-		
-		g.fillRect(RelativeX+16, RelativeY+1, 14,9);
-		g.fillRect(RelativeX+16, RelativeY+21, 14,9);
-		g.fillRect(RelativeX+16, RelativeY+41, 14,8);
-		
-		g.fillRect(RelativeX+31, RelativeY+1, 18, 9 );
-		g.fillRect(RelativeX+31, RelativeY+21, 18,9 );
-		g.fillRect(RelativeX+31, RelativeY+41, 18,8 );
-
-		g.fillRect(RelativeX+1, RelativeY+11, 19,9);
-		g.fillRect(RelativeX+1, RelativeY+31, 19,9);
-
-		g.fillRect(RelativeX+21, RelativeY+11, 19,9);
-		g.fillRect(RelativeX+21, RelativeY+31, 19,9);
-
-		g.fillRect(RelativeX+41, RelativeY+11, 8,9);
-		g.fillRect(RelativeX+41, RelativeY+31, 8,9);		
+		g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
+		g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
+				
 
 	}
 

@@ -2,7 +2,7 @@ package choice;
 
 public class List {
 	
-	boolean wall1;
+	boolean Note1;
 	boolean wall2;
 	boolean floor1;
 	boolean floor2;
@@ -10,15 +10,16 @@ public class List {
 	public List ()
 	
 	{
-		wall1 = false;
+		Note1 = false;
 		wall2 = false;
 		floor1 = false;
 		floor2 = false;
 	}
 	
-	public void actWall1()
+	public void actNote1()
 	{
-		wall1 = true;
+		Note1 = true;
+
 	}
 	
 	public void actWall2()
@@ -36,9 +37,9 @@ public class List {
 		floor2 = true;
 	}
 	
-	public boolean checkWall1()
+	public boolean checkNote1()
 	{
-		return wall1;
+		return Note1;
 	}
 	
 	public boolean checkWall2()

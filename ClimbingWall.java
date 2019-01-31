@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class BrickWall extends GameObject{
+public class ClimbingWall extends GameObject{
 
 	List list;
 	
-	public BrickWall (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public ClimbingWall (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
@@ -38,9 +38,9 @@ public class BrickWall extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.getHSBColor(245, 140, 133));	
+		g.setColor(Color.getHSBColor(245, 34, 133));	
 		if(calen.getRed() == true)
-			g.setColor(Color.getHSBColor(87, 89, 70));
+			g.setColor(Color.getHSBColor(87, 34, 70));
 			
 		
 		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );

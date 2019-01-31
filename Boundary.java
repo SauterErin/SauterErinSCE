@@ -4,9 +4,9 @@ public class Boundary extends GameObject{
 
 	List list;
 	
-	public Boundary (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
+	public Boundary (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
 		this.list = list;
 	}

@@ -6,9 +6,9 @@ public class BrokenWall extends GameObject{
 	Inventory items;
 
 
-	public BrokenWall (int RelativeX, int RelativeY, int AbsoluteX, int AbsoluteY, GameCalendar calen, Inventory items, InteractionPanel inter, GameSprite sprite)
+	public BrokenWall (int RelativeX, int RelativeY, int AbsoluteX, int AbsoluteY, GameCalendar calen, Inventory items, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
 		this.items = items;
 	}
@@ -31,7 +31,7 @@ public class BrokenWall extends GameObject{
 		}
 		
 		increaseCounter();
-		inter.changeDialogue(dialogue);
+		//inter.changeDialogue(dialogue);
 	}
 		
 	

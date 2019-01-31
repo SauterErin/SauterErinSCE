@@ -10,13 +10,14 @@ public class GameCalendar extends JPanel {
 	int room;
 	int menucursor;
 	int inventorycursor;
-	int totalinventory;
+	int inventorytotal;
 	boolean dialogue;
 	boolean tutorial;
 	boolean menu;
 	boolean inventorymenu;
 	boolean red;
 	boolean blue;
+	int currentyear;
 	
 	public GameCalendar () 
 	{
@@ -26,13 +27,14 @@ public class GameCalendar extends JPanel {
 		room = 0;
 		menucursor = 0;
 		inventorycursor = 0;
-		totalinventory = 0;
+		inventorytotal = 0;
 		dialogue = false;
 		menu = false;
 		inventorymenu = false;
 		tutorial = true;
 		red = false;
 		blue = false;
+		currentyear = gameyearpast;
 	}
 	
 	public void completeDay()
@@ -43,6 +45,11 @@ public class GameCalendar extends JPanel {
 	public void completeGame()
 	{
 		gameday = 357;
+	}
+	
+	public int returnYear()
+	{
+		return currentyear;
 	}
 	
 	public int getGameDay()
@@ -112,6 +119,7 @@ public class GameCalendar extends JPanel {
 	
 	public void startInventoryMenu()
 	{
+		System.out.println("Inven - start");
 		inventorymenu = true;
 	}
 	
@@ -119,6 +127,32 @@ public class GameCalendar extends JPanel {
 	{
 		inventorymenu = false;
 	}
+	
+	public int getInventoryTotal()
+	{
+		return inventorytotal;
+	}
+	
+	public void increaseInventoryTotal()
+	{
+		inventorytotal = inventorytotal +1;
+	}
+	
+	public int getInventoryCursor()
+	{
+		return inventorycursor;
+	}
+	
+	public void resetInventoryCursor()
+	{
+		inventorycursor = 0;
+	}
+	
+	public void changeInventoryCursor( int change)
+	{
+		inventorycursor = inventorycursor + change;
+	}
+	
 	
 	public boolean checkTutorial()
 	{

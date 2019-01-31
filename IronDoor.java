@@ -7,9 +7,9 @@ public class IronDoor extends GameObject {
 	GameSprite sprite;
 	Countdown clock;
 	public IronDoor(int AbsoluteX, int AbsoluteY,GameCalendar calen, Inventory items, 
-			GameSprite sprite, Countdown clock, InteractionPanel inter)
+			GameSprite sprite, Countdown clock, Dialogue log)
 	{
-		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
 		this.items = items;
 		this.sprite = sprite;
@@ -48,7 +48,7 @@ public class IronDoor extends GameObject {
 			}
 			
 		increaseCounter();
-		inter.changeDialogue(dialogue);
+		//inter.changeDialogue(dialogue);
 	}
 				
 	public void paintComponent(Graphics g)

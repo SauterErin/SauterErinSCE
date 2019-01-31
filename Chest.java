@@ -6,9 +6,9 @@ public class Chest extends GameObject
 	Inventory items;
 
 	
-	public Chest (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite, Inventory items)
+	public Chest (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite, Inventory items)
 	{
-		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
 		this.items = items;
 	}
@@ -42,7 +42,7 @@ public class Chest extends GameObject
 		
 		increaseCounter();
 		
-		inter.changeDialogue(dialogue);
+		//inter.changeDialogue(dialogue);
 	}
 	
 	public boolean checkMove()

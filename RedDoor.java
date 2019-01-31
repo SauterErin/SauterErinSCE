@@ -8,9 +8,9 @@ public class RedDoor extends GameObject {
 	GameSprite sprite;
 	Countdown clock;
 	
-	public RedDoor(int AbsoluteX, int AbsoluteY, GameCalendar calen, GameSprite sprite, Inventory items, Countdown clock, InteractionPanel inter)
+	public RedDoor(int AbsoluteX, int AbsoluteY, GameCalendar calen, Dialogue log, GameSprite sprite, Inventory items, Countdown clock)
 	{
-		super(AbsoluteX, AbsoluteY, calen, inter, sprite);
+		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
 		this.items = items;
 		this.sprite = sprite;
@@ -61,15 +61,30 @@ public class RedDoor extends GameObject {
 		
 		increaseCounter();
 		
-		inter.changeDialogue(dialogue);
+		//inter.changeDialogue(dialogue);
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-					
+		
+		
+		g.setColor(Color.gray);	
+		
+		g.fillRect(RelativeX, RelativeY, 10,50 );
+		g.fillRect(RelativeX+40, RelativeY, 10,50 );
+		
 		g.setColor(Color.red);
-		g.fillRect (RelativeX*50+110, RelativeY*50+110, 50, 50);
+		g.fillRect(RelativeX+10, RelativeY, 30,50);
+		
+		g.setColor(Color.black);
+		g.drawLine(RelativeX, RelativeY, RelativeX+49, RelativeY);
+		g.drawLine(RelativeX, RelativeY+49, RelativeX+49, RelativeY+49);
+		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
+		g.drawLine(RelativeX, RelativeY+49, RelativeX, RelativeY+49);
+		
+		g.drawLine(RelativeX+10, RelativeY, RelativeX+10, RelativeY+49);
+		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
 	}
 
 	@Override

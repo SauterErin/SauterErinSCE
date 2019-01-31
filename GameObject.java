@@ -10,11 +10,11 @@ abstract class GameObject extends JPanel {
 	protected boolean move;
 	protected int counterday1;
 	protected int counterday2;
-	protected GameCalendar calen;
-	protected InteractionPanel inter;
+	public GameCalendar calen;
+	protected Dialogue log;
 	protected GameSprite sprite;
 	
-	public GameObject (int x, int y, GameCalendar calen, InteractionPanel inter, GameSprite sprite)
+	public GameObject (int x, int y, GameCalendar calen, Dialogue log, GameSprite sprite)
 	{
 		this.x = x;
 		this.y = y;
@@ -24,7 +24,7 @@ abstract class GameObject extends JPanel {
 		int counterday1 = 0;
 		int counterday2 = 0;
 		this.calen = calen;
-		this.inter = inter;
+		this.log = log;
 		this.sprite = sprite;
 	}
 	

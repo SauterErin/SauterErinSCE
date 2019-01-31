@@ -61,33 +61,66 @@ public class GameSprite extends JPanel {
 		if (direction == 'w')
 		{
 			g.setColor(Color.BLUE);
-			g.fillRect(RelativeX,RelativeY,50,10);
+			g.fillRect(RelativeX+12,RelativeY+12,26,8);
 			g.setColor(Color.GREEN);
-			g.fillRect(RelativeX, RelativeY+10, 50, 40);
+			g.fillRect(RelativeX+12, RelativeY+17, 26, 18);
 		}
 		
 		if (direction == 'd')
 		{
 			g.setColor(Color.BLUE);
-			g.fillRect(RelativeX+40,RelativeY,10,50);
+			g.fillRect(RelativeX+31,RelativeY+12,8,26);
 			g.setColor(Color.GREEN);
-			g.fillRect(RelativeX, RelativeY, 40, 50);
+			g.fillRect(RelativeX+17, RelativeY+12, 18, 26);
 		}
 		
 		if (direction == 's')
 		{
-			g.setColor(Color.BLUE);
-			g.fillRect(RelativeX,RelativeY+40,50,10);
-			g.setColor(Color.GREEN);
-			g.fillRect(RelativeX, RelativeY, 50, 40);
+			g.setColor(Color.blue);
+			g.fillRect(RelativeX+12,RelativeY+31,26,8);
+			g.setColor(Color.green);
+			g.fillRect(RelativeX+12, RelativeY+15, 26, 18);
 		}
 		
 		if (direction == 'a')
 		{
 			g.setColor(Color.BLUE);
-			g.fillRect(RelativeX, RelativeY, 10,50);
+			g.fillRect(RelativeX, RelativeY, 8,26 );
 			g.setColor(Color.GREEN);
-			g.fillRect(RelativeX+10, RelativeY, 40, 50);
+			g.fillRect(RelativeX+10, RelativeY, 18, 26);
 		}
+		/*
+		if (direction == 'w')
+		{
+			g.setColor(Color.white);
+			g.fillRect(RelativeX+10,RelativeY+10,30,10);
+			g.setColor(Color.red);
+			g.fillRect(RelativeX+10, RelativeY+19, 30, 20);
+		}
+		
+		if (direction == 'd')
+		{
+			g.setColor(Color.white);
+			g.fillRect(RelativeX+31,RelativeY+10,10,30);
+			g.setColor(Color.red);
+			g.fillRect(RelativeX+15, RelativeY+10, 20, 30);
+		}
+		
+		if (direction == 's')
+		{
+			g.setColor(Color.white);
+			g.fillRect(RelativeX+10,RelativeY+31,30,10);
+			g.setColor(Color.red);
+			g.fillRect(RelativeX+10, RelativeY+15, 30, 20);
+		}
+		
+		if (direction == 'a')
+		{
+			g.setColor(Color.white);
+			g.fillRect(RelativeX, RelativeY+10, 10,30);
+			g.setColor(Color.red);
+			g.fillRect(RelativeX+10, RelativeY+10, 10, 30);
+		}
+		*/
 	}
 }

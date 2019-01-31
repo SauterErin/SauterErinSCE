@@ -65,6 +65,35 @@ public class GameFrame extends JFrame {
 						}
 					}
 					
+					if(calen.checkInventoryMenu() == true)
+					{
+						repaint();
+						System.out.println("Pop");
+						if(e.getKeyCode() == KeyEvent.VK_UP){
+						
+							if(calen.getInventoryCursor() -1 > -1)
+							{
+								calen.changeInventoryCursor(-1);	
+							}
+						}
+						if(e.getKeyCode() == KeyEvent.VK_DOWN){
+							if(calen.getInventoryCursor() +1 <= calen.getInventoryTotal())
+							{
+								calen.changeInventoryCursor(+1);
+							}
+						}
+						if(e.getKeyCode() == 16)
+						{
+							if(calen.getInventoryCursor()== calen.getInventoryTotal())
+							{
+								calen.endInventoryMenu();
+								calen.resetInventoryCursor();
+							}
+						}
+
+						
+					}
+					
 					if(calen.checkMenu() == true)
 					{
 						if(e.getKeyCode() == KeyEvent.VK_DOWN)
@@ -85,28 +114,45 @@ public class GameFrame extends JFrame {
 						
 						
 						if(e.getKeyCode() == 16)
-						{
+						{							
 							if(calen.getMenuCursor() == 0)
 							{
-								calen.startInventoryMenu();
 								calen.endMenu();
+								calen.startInventoryMenu();
+								System.out.println("QUITE");
+								repaint();
+
 							}
 							else
-								calen.endMenu();
+							{
+							calen.endMenu();
+							}
+							calen.setMenuCursor(0);
+
 						}
 
 					}
 					
-					if(calen.checkInventoryMenu() == true)
-					{
-						
-					}
+					
 					
 					if (calen.checkDialogue() == false && calen.checkMenu() == false && calen.checkInventoryMenu() == false && wait == 1)
 					{
 						if(e.getKeyCode() == 81)
 						{
 							calen.startMenu();
+						}
+						
+						if(e.getKeyCode() == 87)
+						{
+							//calen.ModeRed();
+							calen.currentyear = calen.gameyearpast;
+
+						}
+						
+						if(e.getKeyCode() == 69)
+						{
+							calen.DefaultMode();
+							calen.currentyear = calen.gameyearpresent;
 						}
 						
 						if(e.getKeyCode() == KeyEvent.VK_LEFT)

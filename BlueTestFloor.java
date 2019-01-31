@@ -7,9 +7,9 @@ public class BlueTestFloor extends GameObject {
 
 List list;
 	
-	public BlueTestFloor (int x, int y, GameCalendar calen, List list, InteractionPanel inter, GameSprite sprite)
+	public BlueTestFloor (int x, int y, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
 	{
-		super(x, y, calen ,inter, sprite);
+		super(x, y, calen ,log, sprite);
 		move = true;
 		this.list = list;
 	}
