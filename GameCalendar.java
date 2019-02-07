@@ -1,5 +1,6 @@
 package choice;
 import javax.swing.*;
+
 import java.awt.*;
 
 public class GameCalendar extends JPanel {
@@ -12,6 +13,8 @@ public class GameCalendar extends JPanel {
 	int inventorycursor;
 	int inventorytotal;
 	boolean dialogue;
+	boolean dialogue2;
+	boolean select;
 	boolean tutorial;
 	boolean menu;
 	boolean inventorymenu;
@@ -24,13 +27,15 @@ public class GameCalendar extends JPanel {
 		gameday = 0;
 		gameyearpast = 2042;
 		gameyearpresent = 2052;
-		room = 0;
+		room = 2;
 		menucursor = 0;
 		inventorycursor = 0;
 		inventorytotal = 0;
 		dialogue = false;
+		dialogue2 = false;
 		menu = false;
 		inventorymenu = false;
+		select = false;
 		tutorial = true;
 		red = false;
 		blue = false;
@@ -87,6 +92,21 @@ public class GameCalendar extends JPanel {
 		dialogue = false;
 	}
 	
+	public boolean checkDialogue2()
+	{
+		return dialogue2;
+	}
+	
+	public void startDialogue2()
+	{
+		dialogue2 = true;
+	}
+	
+	public void endDialgoue2()
+	{
+		dialogue2 = false;
+	}
+	
 	public boolean checkMenu()
 	{
 		return menu;
@@ -101,7 +121,20 @@ public class GameCalendar extends JPanel {
 	{
 		menu = false;
 	}
+	public boolean checkSelect()
+	{
+		return select;
+	}
 	
+	public void startSelect()
+	{
+		select = true;
+	}
+	
+	public void endSelect()
+	{
+		select = false;
+	}
 	public int getMenuCursor()
 	{
 		return menucursor;
@@ -179,6 +212,17 @@ public class GameCalendar extends JPanel {
 	{
 		blue = true;
 		red = false;
+	}
+	
+	public void startBadEnd1()
+	{						System.out.println("Bad End Day -2");
+
+		gameday = -2;
+	}
+	
+	public void finishBadEnd1()
+	{
+		gameday = -3;
 	}
 	
 	public void DefaultMode()

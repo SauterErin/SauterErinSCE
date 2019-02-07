@@ -13,7 +13,6 @@ public class Bed2 extends GameObject{
 	
 	public void interacteObject()
 	{
-		System.out.println("Interacting");
 		log.readDialogue(0);
 	}
 	

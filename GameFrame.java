@@ -42,6 +42,8 @@ public class GameFrame extends JFrame {
 	
 		addKeyListener(new KeyAdapter() 
 		{		
+			int script = 0;
+
 			public void keyPressed(KeyEvent e)
 			{
 				if (calen.checkTutorial() == true)
@@ -60,15 +62,40 @@ public class GameFrame extends JFrame {
 						if(e.getKeyCode() == 16)
 						{	
 							screen.inter.changeDialogue("");
-							calen.endDialgoue();
+							script = screen.log.continueDialogue(script);
 							wait = 2;
 						}
 					}
 					
+					if (calen.checkDialogue2() == true && wait == 1)
+			    	{	
+						
+						
+						if(e.getKeyCode() == 16)
+						{	
+							screen.inter.changeDialogue("");
+							script = screen.select.log2.continueDialogue(script);
+							wait = 2;
+						}
+					}
+					
+					if (calen.checkSelect() == true && wait == 1)
+					{
+						if(e.getKeyCode() == 16)
+						{
+							screen.select.optionSelect();
+						}
+						
+						if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP)
+							screen.select.changeChoice();
+						
+						wait = 2;
+					}
+
+					
 					if(calen.checkInventoryMenu() == true)
 					{
 						repaint();
-						System.out.println("Pop");
 						if(e.getKeyCode() == KeyEvent.VK_UP){
 						
 							if(calen.getInventoryCursor() -1 > -1)
@@ -119,7 +146,6 @@ public class GameFrame extends JFrame {
 							{
 								calen.endMenu();
 								calen.startInventoryMenu();
-								System.out.println("QUITE");
 								repaint();
 
 							}
@@ -135,7 +161,8 @@ public class GameFrame extends JFrame {
 					
 					
 					
-					if (calen.checkDialogue() == false && calen.checkMenu() == false && calen.checkInventoryMenu() == false && wait == 1)
+					if (calen.checkDialogue() == false && calen.checkMenu() == false && calen.checkInventoryMenu() == false
+							&& calen.checkSelect() == false && wait == 1)
 					{
 						if(e.getKeyCode() == 81)
 						{

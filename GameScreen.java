@@ -11,6 +11,7 @@ public class GameScreen extends JPanel {
 	String dialogue;
 	Inventory items;
 	List list;
+	Select select;
 	InteractionPanel inter;
 	public GameSprite sprite;
 	Countdown clock;
@@ -28,34 +29,12 @@ public class GameScreen extends JPanel {
 		list = new List();
 		inter = new InteractionPanel();						
 		this.clock = clock;
-		sprite = new GameSprite (5, 5);
-		log = new Dialogue(calen, inter);
-		Xsprite = 5;
-		Ysprite = 5;
-		for (int k = 0; k < 2; k++){	
-			for(int i = 0; i < 20; i++){
-					for(int j = 0; j < 20; j++){
-						if(j == 0 || j == 19){
-							room[0][k][i][j] = new Boundary(i, j, calen, list, log, sprite);
-						}
-						
-						if(j > 0 && j < 19){
-							room[0][k][i][j] = new RedTestFloor(i,j,calen,list, log, sprite);
-						}
-						
-						if(j > 10 && j < 19){
-							room[0][k][i][j] = new BlueTestFloor(i,j,calen,list, log, sprite);
-						}
-						
-						if(i == 0 || i == 19)
-						{
-							room[0][k][i][j] = new Boundary(i,j,calen,list,log, sprite);
-						}
-					
-					}
-	
-			}
-		}
+		sprite = new GameSprite (2, 2);
+		select = new Select(calen, inter, list);
+		log = new Dialogue(calen, inter, select);
+		Xsprite = 2;
+		Ysprite = 2;
+
 		
 		for(int l=0; l < 6; l++)
 		{
@@ -258,14 +237,20 @@ public class GameScreen extends JPanel {
 		{	
 			clock.paintComponent(g);	
 				
-			if (calen.getGameDay()== -1)
+			if (calen.getGameDay()== -3)
 			{
 				g.setColor(Color.red);
-				g.drawString("You never left.", getWidth()/2, getHeight()/2-15);
+				g.drawString("You were never found.", getWidth()/2, getHeight()/2-15);
 				g.drawString("Game Over", getWidth()/2, getHeight()/2);
 			}
 			
-			if (calen.getGameDay() != -1 && calen.getGameDay() != 357)
+			if(calen.getGameDay() == -2)
+			{
+				System.out.println("ReadingLog");
+				log.readDialogue(98);
+			}
+			
+			if (calen.getGameDay() >= 0 && calen.getGameDay() != 357)
 			{
 				
 				
@@ -289,6 +274,11 @@ public class GameScreen extends JPanel {
 				if(calen.checkDialogue() == true)
 				{
 					inter.paintComponent(g);
+				}
+				
+				if(calen.checkSelect() == true)
+				{
+					select.paintComponent(g);
 				}
 				
 				if(calen.checkMenu() == true)

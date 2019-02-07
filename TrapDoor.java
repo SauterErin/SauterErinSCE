@@ -15,25 +15,22 @@ public class TrapDoor extends GameObject{
 	
 	public void interacteObject()
 	{
-		//String dialogue = "";
-		//calen.startDialogue();
 
 		if (positionopen == false)
 		{
-			//dialogue =  "You opened the trapdoor";
 			positionopen = true;
 			move = false;
+			log.readDialogue(2);
 		}
 		
 		else
 		{
-			//dialogue = "It's empty.";
-			list.actNote1();
-			calen.increaseInventoryTotal();
-
+			if (list.checkNote1() == false)
+				log.shortcutSelect(2);
+			else	
+				log.readDialogue(3);
 		}
 		
-		//log.changeDialogue(dialogue);
 
 	}
 	
