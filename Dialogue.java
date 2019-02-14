@@ -32,6 +32,9 @@ int scriptnumber;
 	dialogue[1][5] = " - Jackson Watson Class of xxxx, Garland Boarding School";
 	dialogue[1][6] = "@";
 	
+	dialogue[4][0] = "The door is locked.";
+	dialogue[4][1] = "@";
+	
 	dialogue[2][0] = "The floor boards are loose.";
 	dialogue [2][1] = "You lift them.";
 	dialogue[2][2] = "%";
@@ -40,6 +43,8 @@ int scriptnumber;
 	dialogue [3][0] = "The floor hollow is empty.";
 
 	dialogue [3][1] = "@";
+	
+	dialogue[8][0] = "%";
 
 
 
@@ -58,7 +63,7 @@ int scriptnumber;
 	{
 		scriptnumber = newscript;
 		calen.startDialogue();
-		System.out.println("Bad End?");
+		continueDialogue(0);
 
 	}
 	

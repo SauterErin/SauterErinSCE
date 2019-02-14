@@ -2,12 +2,13 @@ package choice;
 import java.awt.*;
 
 
-public class RedDoor extends GameObject {
+public class YellowDoor extends GameObject {
 
 	List list;
 	GameSprite sprite;
+	Countdown clock;
 	
-	public RedDoor(int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public YellowDoor(int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, calen, log, sprite);
 		move = false;
@@ -15,40 +16,24 @@ public class RedDoor extends GameObject {
 		this.sprite = sprite;
 	}
 			
+		// TODO Auto-generated constructor stub
+
 	public void interacteObject()
-	{
-		if(list.checkRedKey() == true){
+	{if(list.checkYellowKey() == true){
 			boolean onechoice = true;
-			if (calen.getRoom() == 4 && onechoice == true)
+			if (calen.getRoom() == 6 && onechoice == true)
 			{	
 				calen.changeRoom(0);
-				sprite.setGameSprite (13, 6, 's');
+				sprite.setGameSprite (7, 3, 'd');
 				onechoice = false;
 			}
-			
-			if (calen.getRoom() == 1 && onechoice == true)
-			{	
-				calen.changeRoom(0);
-				sprite.setGameSprite (3, 6, 's');
-				onechoice = false;
-			}
-			
 			if (calen.getRoom() == 0 && onechoice == true)
 			{	
-				if(sprite.checkDirection() == 'w' && onechoice == true && sprite.getX() == 13)
-					{
-						calen.changeRoom(4);
-						sprite.setGameSprite(5,7,'w');
-						onechoice = false;
-					}
-				
-				if(sprite.checkDirection() == 'w' && onechoice == true && sprite.getX() == 3)
-				{
-					calen.changeRoom(1);
-					sprite.setGameSprite(2,2,'w');
-					onechoice = false;
-				}
-			}
+				calen.changeRoom(6);
+				sprite.setGameSprite (2, 2, 'a');
+				onechoice = false;
+			}	
+		
 		}
 	}
 
@@ -62,7 +47,7 @@ public class RedDoor extends GameObject {
 		g.fillRect(RelativeX, RelativeY, 10,50 );
 		g.fillRect(RelativeX+40, RelativeY, 10,50 );
 		
-		g.setColor(Color.red);
+		g.setColor(Color.yellow);
 		g.fillRect(RelativeX+10, RelativeY, 30,50);
 		
 		g.setColor(Color.black);

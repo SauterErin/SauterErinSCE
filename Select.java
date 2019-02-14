@@ -22,13 +22,13 @@ Dialogue2nd log2;
 		int selectionnumber  = 0;
 		String dialogue = "Testing";
 		System.out.println(dialogue);
-		Dialogue2nd log2 = new Dialogue2nd(calen, inter);
+		log2 = new Dialogue2nd(calen, inter);
 	
 	}
 	
 	public void changeSelectionNumber (int change)
 	{
-
+		dialogue = "error";
 		selectionnumber = change;
 		if(change ==0)
 		{
@@ -40,6 +40,8 @@ Dialogue2nd log2;
 			dialogue = "There's a note here, do you take it?";
 		}
 		
+		if(change == 8)
+			dialogue = "The paneling is stuck on the power switch, move it?";
 	}
 	
 	public void changeChoice(){
@@ -53,9 +55,6 @@ Dialogue2nd log2;
 	public void optionSelect()
 	
 	{
-		
-		System.out.println(dialogue+ "Choosing");
-
 		if (selectionnumber == 0)
 				{
 					if (choice == true)
@@ -63,6 +62,7 @@ Dialogue2nd log2;
 						calen.endSelect();
 						calen.startBadEnd1();
 						inter.beginEndScript();
+						log2.readDialogue(98);
 					}
 					
 					else
@@ -80,7 +80,7 @@ Dialogue2nd log2;
 				list.actNote1();
 				calen.increaseInventoryTotal();
 				
-				//log2.readDialogue(1);
+				log2.readDialogue(3);
 			}
 			
 			else
@@ -88,6 +88,12 @@ Dialogue2nd log2;
 				calen.endSelect();
 			}
 		}
+		
+		if (selectionnumber == 8)
+			if (choice == true)
+				{calen.endSelect();
+				list.switchPowerSwitch();
+				log2.readDialogue(8);}
 		choice = true;
 	}
 	
@@ -95,15 +101,15 @@ Dialogue2nd log2;
 	{	
 		super.paintComponent(g);
 		g.setColor(Color.darkGray);
-		g.fillRect(100,100,200,200);
+		g.fillRect(000,400,400,300);
 		g.setColor(Color.white);
-		g.drawString(dialogue, 140, 150);
-		g.drawString("Yes", 140, 200);
-		g.drawString("No", 140, 250);
+		g.drawString(dialogue, 140, 450);
+		g.drawString("Yes", 140, 500);
+		g.drawString("No", 140, 550);
 		if(choice == true)
-			g.fillRect(100,200,10,10);
+			g.fillRect(100,500,10,10);
 		else
-			g.fillRect(100,250,10,10);
+			g.fillRect(100,550,10,10);
 	}
 	
 }

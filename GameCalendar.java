@@ -39,8 +39,11 @@ public class GameCalendar extends JPanel {
 		tutorial = true;
 		red = false;
 		blue = false;
-		currentyear = gameyearpast;
+		currentyear = gameyearpresent;
 	}
+	
+	
+	
 	
 	public void completeDay()
 	{

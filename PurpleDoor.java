@@ -12,8 +12,39 @@ public class PurpleDoor extends GameObject{
 	}
 	
 	public void interacteObject()
-	{
-	}
+	{/*
+		boolean onechoice = true;
+		if (calen.getRoom() == 2 && onechoice == true)
+		{	
+			calen.changeRoom(0);
+			sprite.setGameSprite (9, 3, 'a');
+			onechoice = false;
+		}
+		
+		if (calen.getRoom() == 0 && onechoice == true)
+		{	
+			if(sprite.checkDirection() == 'd' && onechoice == true)
+				{
+					calen.changeRoom(2);
+					sprite.setGameSprite(4,5,'w');
+					onechoice = false;
+				}
+			
+			if(sprite.checkDirection() == 'w' && onechoice == true)
+			{
+				calen.changeRoom(4);
+				sprite.setGameSprite(1,6,'d');
+				onechoice = false;
+			}
+		}
+		
+		if (calen.getRoom() == 4 && onechoice == true)
+		{
+			calen.changeRoom(3);
+			sprite.setGameSprite(9,2,'a');
+			onechoice = false;
+		}
+	*/}
 	
 	public void paintComponent(Graphics g)
 	{		

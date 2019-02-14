@@ -32,13 +32,12 @@ public class InteractionPanel extends JPanel {
 			super.paintComponent(g);
 		
 		g.setColor(Color.gray);
-		g.fillRect(100,100,200,200);
+		g.fillRect(000,500,500,400);
 		g.setColor(Color.white);
-		g.drawString(dialogue, 140, 150);
 		}
 		
 		else 
 			g.setColor(Color.white);
-			g.drawString(dialogue, 140, 150);
+			g.drawString(dialogue, 140, 550);
 	}
 }
