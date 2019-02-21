@@ -17,6 +17,7 @@ public class BlueDoor extends GameObject {
 			
 	public void interacteObject()
 	{	
+		log.readDialogue(12);
 		
 	}
 

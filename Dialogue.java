@@ -45,9 +45,23 @@ int scriptnumber;
 	dialogue [3][1] = "@";
 	
 	dialogue[8][0] = "%";
+	
+	dialogue[9][0] = "You open the piano - there's a red passkey inside.";
+	dialogue[9][1] = "You take it.";
+	dialogue[9][2] = "@";
+	
+	dialogue[10][0] = "There's a loose panel upon the wall.";
 
+	dialogue[10][1] = "@";
+	
+	dialogue[13][0] = "The panel is stuck.";
+	dialogue[13][1] = "@";
 
-
+	dialogue[11][0] = "There's nothing else.";
+	dialogue[11][1] = "@";
+	
+	dialogue[12][0] = "The door won't open. It's locked.";
+	dialogue[12][1] = "@";
 
 	
 	dialogue[98][0] = "Grandfather: Dead end, my dear.";

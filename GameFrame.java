@@ -59,7 +59,7 @@ public class GameFrame extends JFrame {
 			    	{	
 						
 						
-						if(e.getKeyCode() == 16)
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{	
 							screen.inter.changeDialogue("");
 							script = screen.log.continueDialogue(script);
@@ -71,7 +71,7 @@ public class GameFrame extends JFrame {
 			    	{	
 						
 						
-						if(e.getKeyCode() == 16)
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{	
 							screen.inter.changeDialogue("");
 							script = screen.select.log2.continueDialogue(script);
@@ -81,7 +81,7 @@ public class GameFrame extends JFrame {
 					
 					if (calen.checkSelect() == true && wait == 1)
 					{
-						if(e.getKeyCode() == 16)
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
 							screen.select.optionSelect();
 						}
@@ -109,7 +109,7 @@ public class GameFrame extends JFrame {
 								calen.changeInventoryCursor(+1);
 							}
 						}
-						if(e.getKeyCode() == 16)
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
 							if(calen.getInventoryCursor()== calen.getInventoryTotal())
 							{
@@ -140,7 +140,7 @@ public class GameFrame extends JFrame {
 						}
 						
 						
-						if(e.getKeyCode() == 16)
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{							
 							if(calen.getMenuCursor() == 0)
 							{
@@ -253,7 +253,7 @@ public class GameFrame extends JFrame {
 							}
 						}
 						
-						if (e.getKeyCode() == 16)
+						if (e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
 					    	if (calen.checkDialogue()==false && wait == 1)
 					    	{

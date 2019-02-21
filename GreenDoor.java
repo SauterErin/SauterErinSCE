@@ -83,6 +83,8 @@ public class GreenDoor extends GameObject {
 			}
 		}
 		
+		log.readDialogue(12);
+
 	}
 
 	public void paintComponent(Graphics g)

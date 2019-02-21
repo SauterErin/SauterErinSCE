@@ -50,6 +50,9 @@ public class RedDoor extends GameObject {
 				}
 			}
 		}
+		
+		else
+			log.readDialogue(12);
 	}
 
 	public void paintComponent(Graphics g)

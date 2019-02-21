@@ -18,7 +18,11 @@ public class Piano extends GameObject {
 	public void interacteObject()
 	{		
 		if(list.checkRedKey() == false)
-			list.switchRedKey();
+			{list.switchRedKey();
+			log.readDialogue(9);
+			}
+		else
+			log.readDialogue(11);
 	}
 
 	public void paintComponent(Graphics g)

@@ -22,6 +22,9 @@ public class WallHole extends GameObject{
 				sprite.setGameSprite (1, 2, 'd');
 				onechoice = false;
 			}
+			if (calen.getRoom() == 1 && onechoice == true && list.checkPowerSwitch() == true)
+				log.readDialogue(13);
+
 			
 			if (calen.getRoom() == 1 && onechoice == true && list.checkPowerSwitch() == false)
 			{	
@@ -78,6 +81,9 @@ public class WallHole extends GameObject{
 				onechoice = false;
 			}
 		}
+		
+		else 
+			log.readDialogue(10);
 	}
 	
 	public void paintComponent(Graphics g)
