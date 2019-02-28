@@ -38,10 +38,7 @@ abstract class GameObject extends JPanel {
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-	}
-	
-	abstract void setTest(int a, int b);
-	
+	}	
 	public int RetrieveRelativeX()
 	{
 		return (RelativeX-110)/50;
@@ -56,18 +53,5 @@ abstract class GameObject extends JPanel {
 	{
 		RelativeX = (x-sprite.getX())*50+110;
 		RelativeY = (y-sprite.getY())*50+110;
-	}
-	
-	public void increaseCounter()
-	{
-		if(calen.getGameDay() == 0) 
-		{
-			counterday1 += 1;
-		}
-		
-		if (calen.getGameDay() == 1)
-		{
-			counterday2 += 2;
-		}
 	}
 }

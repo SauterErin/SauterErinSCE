@@ -27,7 +27,7 @@ public class Countdown extends JPanel
 	
 	public void increaseCountdown()
 	{
-		if(calen.checkTutorial()== false)
+		/*if(calen.checkTutorial()== false)
 		{
 			if(minute ==0 && seconds == 0)
 			{
@@ -40,11 +40,11 @@ public class Countdown extends JPanel
 			}
 			
 			else seconds -= 1;
-		}
+		}*/
 	}
 	
 	public void paintComponent(Graphics g)
-	{
+	{/*
 		if(calen.getGameDay()==-1)
 		{	g.setColor(Color.red);
 			g.drawString("Time: " + gameover, 325, 20);
@@ -68,7 +68,7 @@ public class Countdown extends JPanel
 			{
 				g.drawString("Time: " + minute+ ":0"+seconds, 325,20);
 			}
-		}
+		}*/
 	}
 }
 

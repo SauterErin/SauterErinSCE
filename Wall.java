@@ -54,10 +54,4 @@ public class Wall extends GameObject{
 		}
 		g.fillRect(RelativeX*50+110, RelativeY*50+110, 50, 50);
 	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }

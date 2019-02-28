@@ -47,7 +47,10 @@ public class GameCalendar extends JPanel {
 	
 	public void completeDay()
 	{
-		gameday +=1;
+		if (currentyear == 2052)
+			currentyear = 2042;
+		else 
+			currentyear = 2052;
 	}
 	
 	public void completeGame()
@@ -218,7 +221,7 @@ public class GameCalendar extends JPanel {
 	}
 	
 	public void startBadEnd1()
-	{						System.out.println("Bad End Day -2");
+	{
 
 		gameday = -2;
 	}
@@ -252,7 +255,7 @@ public class GameCalendar extends JPanel {
 			
 			if (gameday == 0)
 			{
-			calendar.drawString("Year: " + gameyearpast, 140, 350);
+			calendar.drawString("Year: " + currentyear, 140, 350);
 			}
 			
 			if (gameday == 1)

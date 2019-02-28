@@ -13,7 +13,10 @@ public class Bed2 extends GameObject{
 	
 	public void interacteObject()
 	{
-		log.readDialogue(0);
+		if(list.checkYellowKey() == true)
+			log.readDialogue(14);
+		else
+			log.readDialogue(0);
 	}
 	
 	public void paintComponent(Graphics g)

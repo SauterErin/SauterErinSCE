@@ -36,10 +36,4 @@ public class Piano extends GameObject {
 		
 		
 	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }

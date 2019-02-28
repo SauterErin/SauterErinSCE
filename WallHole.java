@@ -146,10 +146,4 @@ public class WallHole extends GameObject{
 		g.fillRect(RelativeX+20, RelativeY + 15, 20, 35);
 
 	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }

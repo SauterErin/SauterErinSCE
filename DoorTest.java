@@ -44,9 +44,4 @@ public class DoorTest extends GameObject {
 		g.fillRect (RelativeX, RelativeY, 50, 50);
 	}
 
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -61,7 +61,6 @@ Dialogue2nd log2;
 					{
 						calen.endSelect();
 						calen.startBadEnd1();
-						inter.beginEndScript();
 						log2.readDialogue(98);
 					}
 					

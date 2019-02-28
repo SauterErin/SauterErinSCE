@@ -18,7 +18,11 @@ public class Desk extends GameObject {
 	public void interacteObject()
 	{		
 		if(list.checkYellowKey() == false)
+		{	
+			log.readDialogue(6);
 			list.switchYellowKey();
+			calen.increaseInventoryTotal();
+		}
 	}
 
 	public void paintComponent(Graphics g)
@@ -32,12 +36,6 @@ public class Desk extends GameObject {
 		
 		if(list.checkYellowKey() == false)
 			g.fillRect(RelativeX+15, RelativeY, 10,10 );
-		
-	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
 		
 	}
 }

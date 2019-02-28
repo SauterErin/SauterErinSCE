@@ -38,11 +38,17 @@ int scriptnumber;
 	dialogue[2][0] = "The floor boards are loose.";
 	dialogue [2][1] = "You lift them.";
 	dialogue[2][2] = "%";
-
 			
 	dialogue [3][0] = "The floor hollow is empty.";
 
 	dialogue [3][1] = "@";
+	
+	dialogue [6][0] = "You take the yellow key.";
+	dialogue [6][1] = "You hear something in the dark.";
+	dialogue [6][2] = "Run back to bed.";
+	dialogue [6][3] = "@";
+
+
 	
 	dialogue[8][0] = "%";
 	
@@ -62,6 +68,10 @@ int scriptnumber;
 	
 	dialogue[12][0] = "The door won't open. It's locked.";
 	dialogue[12][1] = "@";
+	
+	dialogue [14][0] = "You dive into bed";
+	dialogue [14][1] = "And wait for dawn.";
+	dialogue [14][2] = "^";
 
 	
 	dialogue[98][0] = "Grandfather: Dead end, my dear.";
@@ -98,19 +108,30 @@ int scriptnumber;
 		int ongoingdialogue = number+1;
 		if(dialogue[scriptnumber][number] != "@")
 
-			if(dialogue[scriptnumber][number] != "%")
+			if(dialogue[scriptnumber][number] != "%" && dialogue[scriptnumber][number] != "^")
 			{
 				inter.changeDialogue(dialogue[scriptnumber][number]);
 			}
 			
 			else
 			{	
+				
+				if(dialogue[scriptnumber][number] == "%")
+				{
 				ongoingdialogue = 0;
 				calen.endDialgoue();
 				calen.startSelect();
 				select.changeSelectionNumber(scriptnumber);
+				}
+				
+				if(dialogue[scriptnumber][number] == "^")
+				{
+					ongoingdialogue = 0;
+					calen.checkDialogue();
+					calen.completeDay();
+					calen.completeGame();
+				}
 			}
-		
 	
 		else
 		{

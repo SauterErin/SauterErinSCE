@@ -32,7 +32,7 @@ int scriptnumber;
 	dialogue[8][1] = "It presses the power off.";
 	dialogue[8][2] = "*ROAR* *CRASH* *BANG*";
 	dialogue[8][3] = "The switch won't power back on.";
-	dialogue [8][4] = "*";
+	dialogue [8][4] = "@";
 	
 	
 	dialogue[98][0] = "Grandfather: Dead end, my dear.";

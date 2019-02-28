@@ -187,14 +187,14 @@ public class GameScreen extends JPanel {
 		room[0][4][5][6] = new WoodFloor(5,6, calen,list,log, sprite);
 		room[0][4][5][7] = new WoodFloor(5,7, calen,list,log, sprite);
 		room[0][4][6][1] = new Piano(6,1, calen,list,log, sprite);
-		room[0][4][6][2] = new Piano(6,2, calen,list,log, sprite);
+		room[0][4][6][2] = new Piano2(6,2, calen,list,log, sprite);
 		room[0][4][6][3] = new WoodFloor(6,3, calen,list,log, sprite);
 		room[0][4][6][4] = new WoodFloor(6,4, calen,list,log, sprite);
 		room[0][4][6][5] = new WoodFloor(6,5, calen,list,log, sprite);
 		room[0][4][6][6] = new WoodFloor(6,6, calen,list,log, sprite);
 		room[0][4][6][7] = new WoodFloor(6,7, calen,list,log, sprite);
 		room[0][4][7][1] = new Piano(7,1, calen,list,log, sprite);
-		room[0][4][7][2] = new Piano(7,2, calen,list,log, sprite);
+		room[0][4][7][2] = new Piano2(7,2, calen,list,log, sprite);
 		room[0][4][7][3] = new WoodFloor(7,3, calen,list,log, sprite);
 		room[0][4][7][4] = new WoodFloor(7,4, calen,list,log, sprite);
 		room[0][4][7][5] = new WoodFloor(7,5, calen,list,log, sprite);
@@ -505,14 +505,11 @@ public class GameScreen extends JPanel {
 			
 			if(calen.getGameDay() == -2)
 			{
-				System.out.println("ReadingLog");
-				log.readDialogue(98);
+				inter.paintComponent(g);
 			}
 			
 			if (calen.getGameDay() >= 0 && calen.getGameDay() != 357)
 			{
-				
-				
 				
 				for (int i = 0; i < 20; i++)
 				{
@@ -569,6 +566,15 @@ public class GameScreen extends JPanel {
 				g.setColor(Color.green);
 				if(calen.getInventoryTotal() > 0)
 					{g.drawString("NOTE", 140, 150);}
+
+				if(calen.getInventoryTotal() > 1)
+					{g.drawString("NOTE", 140, 150);
+					g.drawString("Red Door Key", 140, 170);}
+
+				if(calen.getInventoryTotal() > 2)
+					{g.drawString("NOTE", 140, 150);
+					g.drawString("Red Door Key", 140, 170);
+					g.drawString("Yellow Door Key", 140, 190);}
 				g.drawString("EXIT", 140, 470);
 				g.setColor(Color.MAGENTA);
 				

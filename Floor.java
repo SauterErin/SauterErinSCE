@@ -41,7 +41,6 @@ public class Floor extends GameObject{
 			}
 		}
 		
-		increaseCounter();
 		inter.changeDialogue(dialogue);
 	}
 	
@@ -50,11 +49,5 @@ public class Floor extends GameObject{
 		super.paintComponent(g);
 		g.setColor(Color.YELLOW);
 		g.fillRect(RelativeX*50+110, RelativeY*50+110, 50, 50);
-	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
 	}
 }

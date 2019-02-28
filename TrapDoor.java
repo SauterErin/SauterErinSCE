@@ -80,9 +80,4 @@ public class TrapDoor extends GameObject{
 		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);		
 	}
 
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }
