@@ -16,73 +16,77 @@ public class GreenDoor extends GameObject {
 	}
 			
 	public void interacteObject()
-	{	
-		boolean onechoice = true;
-		if (calen.getRoom() == 8 && onechoice == true)
-		{	
-			calen.changeRoom(7);
-			sprite.setGameSprite (2, 10, 'w');
-			onechoice = false;
-		}
-		
-		if (calen.getRoom() == 7 && onechoice == true)
-		{	
-			if(sprite.checkDirection() == 'a' && onechoice == true && sprite.getY() == 2)
-				{
-					calen.changeRoom(0);
-					sprite.setGameSprite(15,7,'a');
-					onechoice = false;
-				}
+	{	if(list.checkGreenKey() == true)
+		{
+			boolean onechoice = true;
 			
-			if(sprite.checkDirection() == 'a' && onechoice == true && sprite.getY() == 7)
-			{
-				calen.changeRoom(9);
-				sprite.setGameSprite(15,12,'a');
-				onechoice = false;
-			}
-			
-			if(sprite.checkDirection() == 's' && onechoice == true && sprite.getX() == 2)
-			{
-				calen.changeRoom(8);
-				sprite.setGameSprite(6,1,'s');
-				onechoice = false;
-			}
-		}
-		
-		if (calen.getRoom() == 9 && onechoice == true)
-		{	
-			if(sprite.checkDirection() == 'w' && onechoice == true && sprite.getY() == 1)
-				{
-					calen.changeRoom(0);
-					sprite.setGameSprite(8,8,'w');
-					onechoice = false;
-				}
-			
-			if(sprite.checkDirection() == 'd' && onechoice == true && sprite.getY() == 12)
-			{
+			if (calen.getRoom() == 8 && onechoice == true)
+			{	
 				calen.changeRoom(7);
-				sprite.setGameSprite(1,7,'d');
+				sprite.setGameSprite (2, 10, 'w');
 				onechoice = false;
 			}
-		}
-		
-		if (calen.getRoom() == 0 && onechoice == true)
-		{	
-			if(sprite.checkDirection() == 'd' && onechoice == true && sprite.getY() == 7)
+			
+			if (calen.getRoom() == 7 && onechoice == true)
+			{	
+				if(sprite.checkDirection() == 'a' && onechoice == true && sprite.getY() == 2)
+					{
+						calen.changeRoom(0);
+						sprite.setGameSprite(15,7,'a');
+						onechoice = false;
+					}
+				
+				if(sprite.checkDirection() == 'a' && onechoice == true && sprite.getY() == 7)
+				{
+					calen.changeRoom(9);
+					sprite.setGameSprite(15,12,'a');
+					onechoice = false;
+				}
+				
+				if(sprite.checkDirection() == 's' && onechoice == true && sprite.getX() == 2)
+				{
+					calen.changeRoom(8);
+					sprite.setGameSprite(6,1,'s');
+					onechoice = false;
+				}
+			}
+			
+			if (calen.getRoom() == 9 && onechoice == true)
+			{	
+				if(sprite.checkDirection() == 'w' && onechoice == true && sprite.getY() == 1)
+					{
+						calen.changeRoom(0);
+						sprite.setGameSprite(8,8,'w');
+						onechoice = false;
+					}
+				
+				if(sprite.checkDirection() == 'd' && onechoice == true && sprite.getY() == 12)
 				{
 					calen.changeRoom(7);
-					sprite.setGameSprite(1,2,'d');
+					sprite.setGameSprite(1,7,'d');
 					onechoice = false;
 				}
-			
-			if(sprite.checkDirection() == 's' && onechoice == true && sprite.getY() == 8)
-			{
-				calen.changeRoom(9);
-				sprite.setGameSprite(8,1,'s');
-				onechoice = false;
 			}
-		}
-		
+			
+			if (calen.getRoom() == 0 && onechoice == true)
+			{	
+				if(sprite.checkDirection() == 'd' && onechoice == true && sprite.getY() == 7)
+					{
+						calen.changeRoom(7);
+						sprite.setGameSprite(1,2,'d');
+						onechoice = false;
+					}
+				
+				if(sprite.checkDirection() == 's' && onechoice == true && sprite.getY() == 8)
+				{
+					calen.changeRoom(9);
+					sprite.setGameSprite(8,1,'s');
+					onechoice = false;
+				}
+			}
+			
+			}
+		else;
 		log.readDialogue(12);
 
 	}
@@ -108,11 +112,5 @@ public class GreenDoor extends GameObject {
 		
 		g.drawLine(RelativeX+10, RelativeY, RelativeX+10, RelativeY+49);
 		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
-	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
 	}
 }

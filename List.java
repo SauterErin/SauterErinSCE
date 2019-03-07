@@ -13,6 +13,7 @@ public class List {
 	boolean doorhold1;
 	boolean doorhold2;
 	boolean escape;
+	boolean meetAlva;
 	
 	public List ()
 	
@@ -28,6 +29,7 @@ public class List {
 		doorhold1 = false;
 		doorhold2 = false;
 		escape = false;
+		meetAlva = false;
 	}
 	
 	public void actNote1()
@@ -105,6 +107,11 @@ public class List {
 		return escape;
 	}
 	
+	public void Escape()
+	{
+		escape = true;
+	}
+	
 	public void switchRedKey()
 	{
 		if(redkey == false)
@@ -151,6 +158,16 @@ public class List {
 			powerswitch = true;
 		else
 			powerswitch = false;
+	}
+	
+	public void meetAlva()
+	{
+		meetAlva = true;
+	}
+	
+	public boolean checkMeetAlva()
+	{
+		return meetAlva;
 	}
 	
 	

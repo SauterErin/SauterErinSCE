@@ -27,13 +27,17 @@ public class Piano extends GameObject {
 
 	public void paintComponent(Graphics g)
 	{
-		super.paintComponent(g);
-				
-		g.setColor(Color.white);
-		g.fillRect(RelativeX, RelativeY, 50,50);
+		if(calen.currentyear == 2052)
+		{
+			
+				g.setColor(Color.white);
+				g.fillRect(RelativeX, RelativeY, 50,50);
+		}
 		
-		g.setColor(Color.yellow);	
-		
+		else{
+			g.setColor(Color.black);
+			g.fillRect(RelativeX, RelativeY, 50,50);
+		}
 		
 	}
 }

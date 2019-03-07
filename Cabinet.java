@@ -29,7 +29,6 @@ public class Cabinet extends GameObject
 			calen.startDialogue();
 		}
 		
-		increaseCounter();
 		
 		//inter.changeDialogue(dialogue);
 	
@@ -41,11 +40,5 @@ public class Cabinet extends GameObject
 		
 		g.setColor(Color.orange);
 		g.fillRect(RelativeX*+110,RelativeY*50+110,50,50);
-	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
 	}
 }

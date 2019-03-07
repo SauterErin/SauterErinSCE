@@ -38,10 +38,7 @@ public class Chest extends GameObject
 		{
 			dialogue = "A pile of ashes.";
 			calen.startDialogue();
-		}
-		
-		increaseCounter();
-		
+		}		
 		//inter.changeDialogue(dialogue);
 	}
 	
@@ -63,12 +60,5 @@ public class Chest extends GameObject
 		
 		g.setColor(Color.white);
 		g.fillRect(RelativeX*50+110,RelativeY*50+110,50,50);
-	}
-
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
 	}
 }

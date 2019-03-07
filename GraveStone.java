@@ -21,20 +21,18 @@ public class GraveStone extends GameObject{
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		
+		move = false;
 		g.setColor(Color.DARK_GRAY);
 		
 		g.fillRect(RelativeX, RelativeY, 50, 50);
 		
-		g.setColor(Color.CYAN);
-		if(list.checkEscape() == true)
-			g.fillRect(RelativeX+25, RelativeY+25, 5, 5);
+		if(list.checkEscape() == true && list.checkMeetAlva() == false)
+			{g.setColor(Color.CYAN);
+			g.fillRect(RelativeX+25, RelativeY+25, 5, 5);}
+		if(calen.currentyear == 2042){
+			move = true;
+			g.setColor(new Color(87, 106, 54));
 		
-	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
+			g.fillRect(RelativeX, RelativeY, 50,50 );}
 	}
 }

@@ -29,9 +29,9 @@ public class GameScreen extends JPanel {
 		list = new List();
 		inter = new InteractionPanel();						
 		this.clock = clock;
-		sprite = new GameSprite (2, 2);
+		sprite = new GameSprite (2, 2, calen);
 		select = new Select(calen, inter, list);
-		log = new Dialogue(calen, inter, select);
+		log = new Dialogue(calen, inter, select, sprite, list);
 		Xsprite = 2;
 		Ysprite = 2;
 
@@ -287,6 +287,8 @@ public class GameScreen extends JPanel {
 		}
 		
 		room[0][0][6][11] = new GraveStone(6, 11, calen, list, log, sprite);
+		room[0][0][7][11] = new MonsterGrass(7, 11, calen, list, log, sprite);
+
 	
 		// Room 1 - Power Room
 		room[0][1][0][0] = new BrickWall(0,0, calen, list, log, sprite);

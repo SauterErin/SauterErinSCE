@@ -43,10 +43,4 @@ public class BlueDoor extends GameObject {
 		g.drawLine(RelativeX+10, RelativeY, RelativeX+10, RelativeY+49);
 		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
 	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }

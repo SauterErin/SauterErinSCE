@@ -29,20 +29,33 @@ public class Piano2 extends GameObject {
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-				
-		if(list.checkRedKey() == true)
+	
+		if(calen.currentyear == 2052)
 		{
+			if(list.checkRedKey() == true)
+		
+			{
+				g.setColor(Color.black);
+				g.fillRect(RelativeX, RelativeY+25, 50, 25);
+				g.setColor(Color.white);
+				g.fillRect(RelativeX, RelativeY, 50,25);
+				g.setColor(Color.yellow);
+				g.drawLine(RelativeX, RelativeY+49, RelativeX+49, RelativeY+49);
+			}
+			else
+			{
+				g.setColor(Color.white);
+				g.fillRect(RelativeX, RelativeY, 50,50);
+			}
+		}
+		
+		else{
 			g.setColor(Color.black);
 			g.fillRect(RelativeX, RelativeY+25, 50, 25);
 			g.setColor(Color.white);
 			g.fillRect(RelativeX, RelativeY, 50,25);
 			g.setColor(Color.yellow);
 			g.drawLine(RelativeX, RelativeY+49, RelativeX+49, RelativeY+49);
-		}
-		else
-		{
-			g.setColor(Color.white);
-			g.fillRect(RelativeX, RelativeY, 50,50);
 		}
 
 		

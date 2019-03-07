@@ -58,10 +58,4 @@ public class Box extends GameObject {
 		g.drawLine(RelativeX+15, RelativeY, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+26, RelativeY, RelativeX+26, RelativeY+49);
 	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -15,20 +15,27 @@ public class TrapDoor extends GameObject{
 	
 	public void interacteObject()
 	{
-
-		if (positionopen == false)
+		if(calen.currentyear == 2052)
 		{
-			positionopen = true;
-			move = false;
-			log.readDialogue(2);
+			if (positionopen == false)
+			{
+				positionopen = true;
+				move = false;
+				log.readDialogue(2);
+			}
+			
+			else
+			{
+				if (list.checkNote1() == false)
+					log.shortcutSelect(2);
+				else	
+					log.readDialogue(3);
+			}
 		}
 		
 		else
 		{
-			if (list.checkNote1() == false)
-				log.shortcutSelect(2);
-			else	
-				log.readDialogue(3);
+			
 		}
 		
 

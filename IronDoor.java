@@ -47,7 +47,6 @@ public class IronDoor extends GameObject {
 				}
 			}
 			
-		increaseCounter();
 		//inter.changeDialogue(dialogue);
 	}
 				
@@ -57,11 +56,5 @@ public class IronDoor extends GameObject {
 					
 		g.setColor(Color.getHSBColor(0, 0, 75));
 		g.fillRect (RelativeX*50+110, RelativeY*50+110, 50, 50);
-	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -92,6 +92,7 @@ Dialogue2nd log2;
 			if (choice == true)
 				{calen.endSelect();
 				list.switchPowerSwitch();
+				list.Escape();
 				log2.readDialogue(8);}
 		choice = true;
 	}

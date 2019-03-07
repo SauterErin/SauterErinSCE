@@ -65,10 +65,4 @@ public class BrickWall extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 
 	}
-
-	@Override
-	void setTest(int a, int b) {
-		// TODO Auto-generated method stub
-		
-	}
 }

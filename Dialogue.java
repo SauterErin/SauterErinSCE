@@ -8,14 +8,18 @@ int[] Choicecatcher = new int [99];
 GameCalendar calen;
 InteractionPanel inter;
 Select select;
+GameSprite sprite;
+List list;
 int scriptnumber;
 
-	public Dialogue (GameCalendar calen, InteractionPanel inter, Select select)
+	public Dialogue (GameCalendar calen, InteractionPanel inter, Select select, GameSprite sprite, List list)
 	{
 		
 		this.calen = calen;
+		this.list = list;
 		this.inter = inter;
 		this.select = select;
+		this.sprite = sprite;
 		int scriptnumber  =0;
 	
 	
@@ -51,7 +55,6 @@ int scriptnumber;
 
 	
 	dialogue[8][0] = "%";
-	
 	dialogue[9][0] = "You open the piano - there's a red passkey inside.";
 	dialogue[9][1] = "You take it.";
 	dialogue[9][2] = "@";
@@ -70,9 +73,16 @@ int scriptnumber;
 	dialogue[12][1] = "@";
 	
 	dialogue [14][0] = "You dive into bed";
-	dialogue [14][1] = "And wait for dawn.";
+	dialogue [14][1] = "And wait for dawn.";;
 	dialogue [14][2] = "^";
-
+	
+	dialogue [15][0] = "Jackson: For the next generation of troublemakers.";
+	dialogue [15][1] = "@";
+	
+	dialogue [16][0] = "Jackson: I thought I told you only big kids are allowed to sneak around, Alva.";
+	dialogue [16][2] = "Jackson: *Sigh* - Come on let's get you to bed.";
+	dialogue [16][1] = "^";
+	dialogue [16][3] = "@";
 	
 	dialogue[98][0] = "Grandfather: Dead end, my dear.";
 	dialogue[98][1] = "Grandmother: Three weeks - where could they be?.";
@@ -127,9 +137,21 @@ int scriptnumber;
 				if(dialogue[scriptnumber][number] == "^")
 				{
 					ongoingdialogue = 0;
-					calen.checkDialogue();
-					calen.completeDay();
-					calen.completeGame();
+					if(scriptnumber == 14)
+					{
+						calen.currentyear = 2042;
+						sprite.setGameSprite(3,4, 'w');
+						list.Note1= false;
+						readDialogue(15);
+					}
+					
+					if(scriptnumber == 15)
+					{
+						list.meetAlva();
+						sprite.alvaFollow = true;
+						continueDialogue(2);
+					}
+					
 				}
 			}
 	
