@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class PowerSwitch extends GameObject{
+public class Vent extends GameObject{
 
 	List list;
 	
-	public PowerSwitch (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public Vent (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
@@ -13,11 +13,55 @@ public class PowerSwitch extends GameObject{
 	
 	public void interactObject()
 	{
-		log.readDialogue(8);
+		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		{	boolean onechoice = true;
+			if (gameinfo.getRoom() == 7 && onechoice == true && list.checkPastBreakWall() == false)
+			{	
+				log.readDialogue(28);
+			}					
+			if (gameinfo.getRoom() == 7 && onechoice == true && list.checkPastBreakWall() == true)
+			{
+				log.readDialogue(42);
+			}
+							
+			if (gameinfo.getRoom() == 12)
+			{
+				log.readDialogue(44);
+			}					
+			
+			if (gameinfo.getRoom() == 0 && onechoice == true && list.checkNightofHorrors() == false)
+			{
+				log.readDialogue(43);
+			}
+			
+			if (gameinfo.getRoom() == 8 && onechoice == true && list.checkNightofHorrors() == false && sprite.getX() == 1)
+			{	
+				log.readDialogue(43);
+			}
+			
+			if (gameinfo.getRoom() == 8 && onechoice == true && list.checkNightofHorrors() == false && sprite.getX() == 5 && list.checkRemovePanel() == false)
+			{	
+				log.readDialogue(44);
+			}
+			
+			if (gameinfo.getRoom() == 8 && onechoice == true && list.checkNightofHorrors() == false && sprite.getX() == 5 && list.checkRemovePanel() == true)
+			{	
+				log.readDialogue(46);
+			}
+		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent && list.checkNightofFire() == false)
+		{
+			log.readDialogue(45);
+		}
+							
+
+			
+
 	}
 	
 	public void paintComponent(Graphics g)
-	{		
+	{
 		super.paintComponent(g);
 		g.setColor(Color.black);
 		g.drawLine(RelativeX, RelativeY+49, RelativeX+49, RelativeY+49);
@@ -63,20 +107,28 @@ public class PowerSwitch extends GameObject{
 		g.fillRect(RelativeX+21, RelativeY+31, 19,9);
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
-		g.fillRect(RelativeX+41, RelativeY+31, 9,9);	
+		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		g.setColor(Color.black);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+25, RelativeY+20);
-		g.drawLine(RelativeX+20, RelativeY+25, RelativeX+25, RelativeY+25);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+20, RelativeY+25);
-		g.drawLine(RelativeX+25, RelativeY+20, RelativeX+25, RelativeY+25);
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent)
+		{
+			g.setColor(Color.darkGray);
+			g.fillRect(RelativeX+10, RelativeY+5, 30,40);
+		}
 		
-		if (list.checkPowerSwitch() == true)
-			g.setColor(Color.blue);
-		else
-			g.setColor(Color.red);
-		g.fillRect(RelativeX+21,RelativeY+21, 4,4);
+		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		{
+			g.setColor(Color.GRAY);
+			g.fillRect(RelativeX+10, RelativeY+5, 30,40);
+			g.setColor(Color.black);
+			g.fillRect(RelativeX+15, RelativeY+15, 15, 3);
+			
+			g.fillRect(RelativeX+15, RelativeY+22, 15, 3);
 
+			
+			g.fillRect(RelativeX+15, RelativeY+29, 15, 3);
+
+			g.fillRect(RelativeX+15, RelativeY+36, 15, 3);
+		}
 
 	}
 }

@@ -5,17 +5,17 @@ public class TrapDoor extends GameObject{
 	List list;
 	boolean positionopen;
 	
-	public TrapDoor (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public TrapDoor (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = true;
 		this.list = list;
 		positionopen = false;
 	}
 	
-	public void interacteObject()
+	public void interactObject()
 	{
-		if(calen.currentyear == 2052)
+		if(gameinfo.currentyear == 2052)
 		{
 			if (positionopen == false)
 			{
@@ -45,26 +45,29 @@ public class TrapDoor extends GameObject{
 	{
 		super.paintComponent(g);
 		
-		if(calen.returnYear() == calen.gameyearpast)
-				g.setColor(new Color(121,94, 32));
+		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		{		g.setColor(new Color(121,94, 32));
+		}
 		else
 			g.setColor(new Color(96, 45, 6));
-		if(positionopen == false)
+		if(positionopen == false || gameinfo.returnYear() == gameinfo.gameyearpast)
 		{
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 			g.setColor(Color.black);
 			g.drawLine(RelativeX+17, RelativeY, RelativeX+17, RelativeY+50);
 			g.drawLine(RelativeX+33, RelativeY, RelativeX+33, RelativeY+50);
+			move = true;
 
 		}
 		
-		else 
+		else // Present & Open 
 		{
+			move = false;
 			g.fillRect(RelativeX, RelativeY, 50, 10);
 			g.setColor(Color.black);
 			g.drawLine(RelativeX+17, RelativeY, RelativeX+17, RelativeY+10);
 			g.drawLine(RelativeX+33, RelativeY, RelativeX+33, RelativeY+10);
-			if(calen.returnYear() == calen.gameyearpast)
+			if(gameinfo.returnYear() == gameinfo.gameyearpast)
 				g.setColor(new Color(39, 29, 22));
 			else 
 				g.setColor(new Color(50, 31, 16));

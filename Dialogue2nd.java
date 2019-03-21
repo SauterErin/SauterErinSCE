@@ -3,16 +3,18 @@ import java.awt.*;
 
 import javax.swing.*;
 public class Dialogue2nd extends JPanel{
-String [][] dialogue = new String [99][10];
-GameCalendar calen;
-InteractionPanel inter;
-Select select;
-int scriptnumber;
+	String [][] dialogue = new String [99][10];
+	GameMode gameinfo;
+	SystemMode system;
+	InteractionPanel inter;
+	Select select;
+	int scriptnumber;
 
-	public Dialogue2nd (GameCalendar calen, InteractionPanel inter)
+	public Dialogue2nd (GameMode gameinfo, SystemMode system, InteractionPanel inter)
 	{
 		
-		this.calen = calen;
+		this.gameinfo = gameinfo;
+		this.system = system;
 		this.inter = inter;
 		int scriptnumber  =0;
 	
@@ -47,7 +49,8 @@ int scriptnumber;
 	public void readDialogue(int newscript)
 	{
 		scriptnumber = newscript;
-		calen.startDialogue2();
+		system.startDialogue2();
+		system.endMove();
 		continueDialogue(0);
 		
 	}
@@ -65,17 +68,18 @@ int scriptnumber;
 			if(dialogue[scriptnumber][number] != "*")
 				inter.changeDialogue(dialogue[scriptnumber][number]);
 			else
-				calen.completeGame();
+				gameinfo.completeGame();
 			
 		else
 		{
 		ongoingdialogue = 0;
 		inter.changeDialogue("");
-		calen.endDialgoue2();
+		system.endDialogue2();
+		system.startMove();
 		
-		if(calen.getGameDay() == -2)
+		if(gameinfo.getGameDay() == -2)
 		{
-			calen.finishBadEnd1();
+			gameinfo.finishBadEnd1();
 		}
 			
 

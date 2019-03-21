@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class PowerSwitch extends GameObject{
+public class AtticHole extends GameObject{
 
 	List list;
 	
-	public PowerSwitch (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public AtticHole (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
@@ -13,13 +13,31 @@ public class PowerSwitch extends GameObject{
 	
 	public void interactObject()
 	{
-		log.readDialogue(8);
+		if(sprite.getY() == 1)
+		{	
+			gameinfo.changeRoom(3);
+			sprite.setGameSprite(6,2,'S');
+		}
+		
+		else
+		{
+			if(gameinfo.getRed()== true)
+			{
+				gameinfo.changeRoom(0);
+				sprite.setGameSprite(15,5,'S');
+			}
+			
+			else
+			{
+				log.readDialogue(23);
+			}
+		}
 	}
 	
 	public void paintComponent(Graphics g)
 	{		
 		super.paintComponent(g);
-		g.setColor(Color.black);
+		g.setColor(Color.gray);
 		g.drawLine(RelativeX, RelativeY+49, RelativeX+49, RelativeY+49);
 		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
 		
@@ -39,7 +57,7 @@ public class PowerSwitch extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.getHSBColor(245, 140, 133));	
+		g.setColor(Color.black);	
 		if(gameinfo.getRed() == true)
 			g.setColor(Color.getHSBColor(87, 89, 70));
 			
@@ -63,20 +81,10 @@ public class PowerSwitch extends GameObject{
 		g.fillRect(RelativeX+21, RelativeY+31, 19,9);
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
-		g.fillRect(RelativeX+41, RelativeY+31, 9,9);	
+		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		g.setColor(Color.black);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+25, RelativeY+20);
-		g.drawLine(RelativeX+20, RelativeY+25, RelativeX+25, RelativeY+25);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+20, RelativeY+25);
-		g.drawLine(RelativeX+25, RelativeY+20, RelativeX+25, RelativeY+25);
-		
-		if (list.checkPowerSwitch() == true)
-			g.setColor(Color.blue);
-		else
-			g.setColor(Color.red);
-		g.fillRect(RelativeX+21,RelativeY+21, 4,4);
-
-
+		g.setColor(Color.white);
+		g.fillRect(RelativeX+10, RelativeY+10, 30,30);
 	}
+	
 }

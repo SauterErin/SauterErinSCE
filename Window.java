@@ -4,14 +4,14 @@ public class Window extends GameObject{
 
 	List list;
 	
-	public Window (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public Window (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 	}
 	
-	public void interacteObject()
+	public void interactObject()
 	{
 	}
 	

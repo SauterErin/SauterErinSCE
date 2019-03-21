@@ -7,87 +7,87 @@ public class GreenDoor extends GameObject {
 	List list;
 	GameSprite sprite;
 	
-	public GreenDoor(int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public GreenDoor(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 		this.sprite = sprite;
 	}
 			
-	public void interacteObject()
+	public void interactObject()
 	{	if(list.checkGreenKey() == true)
 		{
 			boolean onechoice = true;
 			
-			if (calen.getRoom() == 8 && onechoice == true)
+			if (gameinfo.getRoom() == 8 && onechoice == true)
 			{	
-				calen.changeRoom(7);
-				sprite.setGameSprite (2, 10, 'w');
+				gameinfo.changeRoom(7);
+				sprite.setGameSprite (2, 10, 'N');
 				onechoice = false;
 			}
 			
-			if (calen.getRoom() == 7 && onechoice == true)
+			if (gameinfo.getRoom() == 7 && onechoice == true)
 			{	
-				if(sprite.checkDirection() == 'a' && onechoice == true && sprite.getY() == 2)
+				if(sprite.checkDirection() == 'W' && onechoice == true && sprite.getY() == 2)
 					{
-						calen.changeRoom(0);
-						sprite.setGameSprite(15,7,'a');
+						gameinfo.changeRoom(0);
+						sprite.setGameSprite(15,7,'W');
 						onechoice = false;
 					}
 				
-				if(sprite.checkDirection() == 'a' && onechoice == true && sprite.getY() == 7)
+				if(sprite.checkDirection() == 'W' && onechoice == true && sprite.getY() == 7)
 				{
-					calen.changeRoom(9);
-					sprite.setGameSprite(15,12,'a');
+					gameinfo.changeRoom(9);
+					sprite.setGameSprite(15,12,'W');
 					onechoice = false;
 				}
 				
-				if(sprite.checkDirection() == 's' && onechoice == true && sprite.getX() == 2)
+				if(sprite.checkDirection() == 'S' && onechoice == true && sprite.getX() == 2)
 				{
-					calen.changeRoom(8);
-					sprite.setGameSprite(6,1,'s');
+					gameinfo.changeRoom(8);
+					sprite.setGameSprite(6,1,'S');
 					onechoice = false;
 				}
 			}
 			
-			if (calen.getRoom() == 9 && onechoice == true)
+			if (gameinfo.getRoom() == 9 && onechoice == true)
 			{	
-				if(sprite.checkDirection() == 'w' && onechoice == true && sprite.getY() == 1)
+				if(sprite.checkDirection() == 'N' && onechoice == true && sprite.getY() == 1)
 					{
-						calen.changeRoom(0);
-						sprite.setGameSprite(8,8,'w');
+						gameinfo.changeRoom(0);
+						sprite.setGameSprite(8,8,'N');
 						onechoice = false;
 					}
 				
-				if(sprite.checkDirection() == 'd' && onechoice == true && sprite.getY() == 12)
+				if(sprite.checkDirection() == 'E' && onechoice == true && sprite.getY() == 12)
 				{
-					calen.changeRoom(7);
-					sprite.setGameSprite(1,7,'d');
+					gameinfo.changeRoom(7);
+					sprite.setGameSprite(1,7,'E');
 					onechoice = false;
 				}
 			}
 			
-			if (calen.getRoom() == 0 && onechoice == true)
+			if (gameinfo.getRoom() == 0 && onechoice == true)
 			{	
-				if(sprite.checkDirection() == 'd' && onechoice == true && sprite.getY() == 7)
+				if(sprite.checkDirection() == 'E' && onechoice == true && sprite.getY() == 7)
 					{
-						calen.changeRoom(7);
-						sprite.setGameSprite(1,2,'d');
+						gameinfo.changeRoom(7);
+						sprite.setGameSprite(1,2,'E');
 						onechoice = false;
 					}
 				
-				if(sprite.checkDirection() == 's' && onechoice == true && sprite.getY() == 8)
+				if(sprite.checkDirection() == 'S' && onechoice == true && sprite.getY() == 8)
 				{
-					calen.changeRoom(9);
-					sprite.setGameSprite(8,1,'s');
+					gameinfo.changeRoom(9);
+					sprite.setGameSprite(8,1,'S');
 					onechoice = false;
 				}
 			}
 			
 			}
-		else;
-		log.readDialogue(12);
+		else
+			log.readDialogue(12);
 
 	}
 

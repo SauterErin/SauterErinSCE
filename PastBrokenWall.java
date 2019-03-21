@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class PowerSwitch extends GameObject{
+public class PastBrokenWall extends GameObject{
 
 	List list;
 	
-	public PowerSwitch (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public PastBrokenWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
@@ -13,11 +13,15 @@ public class PowerSwitch extends GameObject{
 	
 	public void interactObject()
 	{
-		log.readDialogue(8);
+		if (list.checkPastBreakWall() == true)
+		{
+			gameinfo.changeRoom(11);
+			sprite.setGameSprite(1,7,'N');
+		}
 	}
 	
 	public void paintComponent(Graphics g)
-	{		
+	{
 		super.paintComponent(g);
 		g.setColor(Color.black);
 		g.drawLine(RelativeX, RelativeY+49, RelativeX+49, RelativeY+49);
@@ -63,20 +67,12 @@ public class PowerSwitch extends GameObject{
 		g.fillRect(RelativeX+21, RelativeY+31, 19,9);
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
-		g.fillRect(RelativeX+41, RelativeY+31, 9,9);	
+		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		g.setColor(Color.black);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+25, RelativeY+20);
-		g.drawLine(RelativeX+20, RelativeY+25, RelativeX+25, RelativeY+25);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+20, RelativeY+25);
-		g.drawLine(RelativeX+25, RelativeY+20, RelativeX+25, RelativeY+25);
-		
-		if (list.checkPowerSwitch() == true)
-			g.setColor(Color.blue);
-		else
-			g.setColor(Color.red);
-		g.fillRect(RelativeX+21,RelativeY+21, 4,4);
-
-
+		if(list.checkPastBreakWall() == true)
+		{
+			g.setColor(Color.black);
+			g.fillRect(RelativeX+20, RelativeY + 15, 20, 35);
+		}
 	}
 }

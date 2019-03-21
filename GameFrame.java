@@ -5,13 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
 public class GameFrame extends JFrame {
 	
-	GameCalendar calen;
-	InteractionPanel interact;
+	GameMode gameinfo;
+	SystemMode system;
 	GameScreen screen;
 	Countdown clock;
 	int wait;
@@ -20,9 +21,9 @@ public class GameFrame extends JFrame {
 	{
 		setFocusTraversalKeysEnabled(false);
 		
-		calen = new GameCalendar();
-		clock = new Countdown(calen);
-		screen = new GameScreen (calen, clock);
+		gameinfo = new GameMode();
+		system = new SystemMode();
+		screen = new GameScreen (gameinfo, system);
 		
 		int delay = 1000;
 		
@@ -31,7 +32,7 @@ public class GameFrame extends JFrame {
 		
 			public void actionPerformed (ActionEvent e)
 			{
-				clock.increaseCountdown();
+				//clock.increaseCountdown();
 				repaint();
 			}
 		};
@@ -46,16 +47,16 @@ public class GameFrame extends JFrame {
 
 			public void keyPressed(KeyEvent e)
 			{
-				if (calen.checkTutorial() == true)
+				if (system.checkTutorial() == true)
 				{
-					calen.endTutorial();
+					system.endTutorial();
 				}
 				
 				else
 				{
 					int wait = 1;
 					
-					if (calen.checkDialogue() == true)
+					if (system.checkDialogue() == true)
 			    	{	
 						
 						
@@ -67,7 +68,7 @@ public class GameFrame extends JFrame {
 						}
 					}
 					
-					if (calen.checkDialogue2() == true && wait == 1)
+					if (system.checkDialogue2() == true && wait == 1)
 			    	{	
 						
 						
@@ -79,7 +80,7 @@ public class GameFrame extends JFrame {
 						}
 					}
 					
-					if (calen.checkSelect() == true && wait == 1)
+					if (system.checkSelect() == true && wait == 1)
 					{
 						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
@@ -93,67 +94,67 @@ public class GameFrame extends JFrame {
 					}
 
 					
-					if(calen.checkInventoryMenu() == true)
+					if(system.checkInventoryMenu() == true)
 					{
 						repaint();
 						if(e.getKeyCode() == KeyEvent.VK_UP){
 						
-							if(calen.getInventoryCursor() -1 > -1)
+							if(system.getInventoryCursor() -1 > -1)
 							{
-								calen.changeInventoryCursor(-1);	
+								system.changeInventoryCursor(-1);	
 							}
 						}
 						if(e.getKeyCode() == KeyEvent.VK_DOWN){
-							if(calen.getInventoryCursor() +1 <= calen.getInventoryTotal())
+							if(system.getInventoryCursor() +1 <= system.getInventoryTotal())
 							{
-								calen.changeInventoryCursor(+1);
+								system.changeInventoryCursor(+1);
 							}
 						}
 						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
-							if(calen.getInventoryCursor()== calen.getInventoryTotal())
+							if(system.getInventoryCursor()== system.getInventoryTotal())
 							{
-								calen.endInventoryMenu();
-								calen.resetInventoryCursor();
+								system.endInventoryMenu();
+								system.resetInventoryCursor();
 							}
 						}
 
 						
 					}
 					
-					if(calen.checkMenu() == true)
+					if(system.checkMenu() == true)
 					{
 						if(e.getKeyCode() == KeyEvent.VK_DOWN)
 						{
-							if(calen.getMenuCursor() == 0)
-								calen.setMenuCursor(1);
+							if(system.getMenuCursor() == 0)
+								system.setMenuCursor(1);
 							else
-								calen.setMenuCursor(0);
+								system.setMenuCursor(0);
 						}
 						
 						if(e.getKeyCode() == KeyEvent.VK_UP)
 						{
-							if(calen.getMenuCursor() == 0)
-								calen.setMenuCursor(1);
+							if(system.getMenuCursor() == 0)
+								system.setMenuCursor(1);
 							else
-								calen.setMenuCursor(0);
+								system.setMenuCursor(0);
 						}
 						
 						
 						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{							
-							if(calen.getMenuCursor() == 0)
+							if(system.getMenuCursor() == 0)
 							{
-								calen.endMenu();
-								calen.startInventoryMenu();
+								system.endMenu();
+								system.startInventoryMenu();
 								repaint();
 
 							}
 							else
 							{
-							calen.endMenu();
+								system.endMenu();
 							}
-							calen.setMenuCursor(0);
+							system.setMenuCursor(0);
 
 						}
 
@@ -161,37 +162,40 @@ public class GameFrame extends JFrame {
 					
 					
 					
-					if (calen.checkDialogue() == false && calen.checkMenu() == false && calen.checkInventoryMenu() == false
-							&& calen.checkSelect() == false && wait == 1)
+					if (system.checkMove() == true && wait == 1)
 					{
 						if(e.getKeyCode() == 81)
 						{
-							calen.startMenu();
+							system.startMenu();
 						}
 						
 						if(e.getKeyCode() == 87)
 						{
 							//calen.ModeRed();
-							calen.currentyear = calen.gameyearpast;
+							gameinfo.currentyear = gameinfo.gameyearpast;
 
 						}
 						
 						if(e.getKeyCode() == 69)
 						{
-							calen.DefaultMode();
-							calen.currentyear = calen.gameyearpresent;
+							gameinfo.currentyear = gameinfo.gameyearpresent;
+						}
+						
+						if(e.getKeyCode() == KeyEvent.VK_3)
+						{
+							screen.log.readDialogue(51);
 						}
 						
 						if(e.getKeyCode() == KeyEvent.VK_LEFT)
 						{
-							if (screen.sprite.checkDirection() != 'a')
+							if (screen.sprite.checkDirection() != 'W')
 							{
-								screen.sprite.changeDirection('a');
+								screen.sprite.changeDirection('W');
 							}
 							
-							else if (screen.sprite.checkDirection() =='a') 
+							else if (screen.sprite.checkDirection() =='W') 
 							{
-								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].checkMove()==true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].checkMoveAction()==true)
 								{
 									screen.sprite.changeX(-1);
 									screen.changeX(-1);
@@ -202,14 +206,14 @@ public class GameFrame extends JFrame {
 						
 						if(e.getKeyCode() == KeyEvent.VK_UP)
 						{
-							if (screen.sprite.checkDirection() != 'w')
+							if (screen.sprite.checkDirection() != 'N')
 							{
-								screen.sprite.changeDirection('w');
+								screen.sprite.changeDirection('N');
 							}
 							
-							else if (screen.sprite.checkDirection() =='w') 
+							else if (screen.sprite.checkDirection() =='N') 
 							{
-								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].checkMove()==true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].checkMoveAction()==true)
 								{
 									screen.sprite.changeY(-1);
 									screen.changeY(-1);
@@ -220,15 +224,16 @@ public class GameFrame extends JFrame {
 						
 						if(e.getKeyCode() == KeyEvent.VK_DOWN)
 						{
-							if(screen.sprite.checkDirection() != 's')
+							if(screen.sprite.checkDirection() != 'S')
 							{
-								screen.sprite.changeDirection('s');
+								screen.sprite.changeDirection('S');
 							}
 							
-							else if(screen.sprite.checkDirection() == 's')
+							else if(screen.sprite.checkDirection() == 'S')
 							{
-								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].checkMove() ==true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].checkMoveAction() ==true)
 								{
+
 									screen.sprite.changeY(+1);
 									screen.changeY(+1);
 								}
@@ -237,14 +242,14 @@ public class GameFrame extends JFrame {
 						
 						if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 						{
-							if (screen.sprite.checkDirection() != 'd')
+							if (screen.sprite.checkDirection() != 'E')
 							{
-								screen.sprite.changeDirection('d');
+								screen.sprite.changeDirection('E');
 							}
 							
-							else if (screen.sprite.checkDirection() == 'd')
+							else if (screen.sprite.checkDirection() == 'E')
 							{
-								if(screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].checkMove() == true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].checkMoveAction() == true)
 								{
 									screen.sprite.changeX(+1);
 									screen.changeX(+1);
@@ -255,27 +260,27 @@ public class GameFrame extends JFrame {
 						
 						if (e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
-					    	if (calen.checkDialogue()==false && wait == 1)
+					    	if (system.checkDialogue()==false && wait == 1)
 					    	{
 					 
-						    	if(screen.sprite.checkDirection()== 'a')
+						    	if(screen.sprite.checkDirection()== 'W')
 						    	{
-						    		screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].interacteObject();
+						    		screen.room[gameinfo.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].interactObject();
 						    	}
 						    	
-						    	if(screen.sprite.checkDirection()== 's')
+						    	if(screen.sprite.checkDirection()== 'S')
 						    	{
-						    		screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].interacteObject();
+						    		screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].interactObject();
 						    	}
 						    		
-						    	if(screen.sprite.checkDirection()== 'w')
+						    	if(screen.sprite.checkDirection()== 'N')
 						    	{	
-						    		screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].interacteObject();
+						    		screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].interactObject();
 						    	}
 						    		
-						    	if(screen.sprite.checkDirection()== 'd')
+						    	if(screen.sprite.checkDirection()== 'E')
 						    	{
-						    		screen.room[calen.getGameDay()][calen.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].interacteObject();	
+						    		screen.room[gameinfo.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].interactObject();	
 						    	}
 					    	}
 						}

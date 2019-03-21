@@ -5,14 +5,14 @@ public class Wall extends GameObject{
 
 	List list;
 	
-	public Wall ( int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public Wall ( int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 	}
 	
-	public void interacteObject()
+	public void interactObject()
 	{
 		/*String dialogue = "";
 		if (calen.getGameDay()==0)
@@ -43,7 +43,7 @@ public class Wall extends GameObject{
 	{
 		super.paintComponent(g);
 		
-		if(calen.getGameDay()== 0)
+		if(gameinfo.getGameDay()== 0)
 		{
 			g.setColor(Color.gray);
 		}

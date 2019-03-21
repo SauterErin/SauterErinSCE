@@ -3,14 +3,14 @@ import java.awt.*;
 
 public class RedTestFloor extends GameObject {
 	List list;
-	public RedTestFloor ( int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public RedTestFloor ( int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen ,log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo ,log, list, sprite);
 		move = true;
 		this.list = list;
 	}
 
-	public void interacteObject() 
+	public void interactObject() 
 	{
 	}	
 	public void paintComponent(Graphics g)

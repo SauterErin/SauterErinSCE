@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class WoodFloor extends GameObject{
+public class WoodFloorNote extends GameObject{
 
 	List list;
 	
-	public WoodFloor (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public WoodFloorNote (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = true;
@@ -13,12 +13,17 @@ public class WoodFloor extends GameObject{
 	
 	public void interactObject()
 	{
+		if(list.checkNote2() == false)
+		{
+			log.readDialogue(17);
+		}
 	}
 	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 
+		move = true;
 		g.setColor(new Color(96,45, 6));	
 		if(gameinfo.returnYear() == gameinfo.gameyearpast)
 			g.setColor(new Color(121,94, 32));
@@ -37,7 +42,13 @@ public class WoodFloor extends GameObject{
 		
 		g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
 		g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
-				
+		
+		if(list.checkNote2() == false)
+		{
+			move = false;
+			g.setColor(Color.yellow);
+			g.fillRect(RelativeX+10, RelativeY+10, 5, 5);
+		}	
 
 	}
 }

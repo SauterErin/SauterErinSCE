@@ -7,14 +7,14 @@ public class BlueTestFloor extends GameObject {
 
 List list;
 	
-	public BlueTestFloor (int x, int y, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public BlueTestFloor (int x, int y, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(x, y, calen ,log, sprite);
+		super(x, y, gameinfo ,log, list, sprite);
 		move = true;
 		this.list = list;
 	}
 
-	public void interacteObject() 
+	public void interactObject() 
 	{
 	}
 	public void paintComponent(Graphics g)

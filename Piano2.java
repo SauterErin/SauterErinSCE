@@ -7,30 +7,49 @@ public class Piano2 extends GameObject {
 	List list;
 	GameSprite sprite;
 	
-	public Piano2(int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public Piano2(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 		this.sprite = sprite;
 	}
 			
-	public void interacteObject()
+	public void interactObject()
 	{		
 		if(list.checkRedKey() == false)
 			{list.switchRedKey();
-			calen.increaseInventoryTotal();
 			log.readDialogue(9);
 			}
 		else
 			log.readDialogue(11);
+		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		{
+			if(list.checkDoorHold1() == true)
+			{
+				if(list.checkHideRedKey() == false)
+				{
+					log.readDialogue(25);
+				}
+				
+				else
+				{
+					log.readDialogue(26);
+				}
+			}
+			
+			else
+			{
+				log.readDialogue(27);
+			}
+		}
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 	
-		if(calen.currentyear == 2052)
+		if(gameinfo.currentyear == 2052)
 		{
 			if(list.checkRedKey() == true)
 		

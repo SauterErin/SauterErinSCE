@@ -4,14 +4,14 @@ public class Boundary extends GameObject{
 
 	List list;
 	
-	public Boundary (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public Boundary (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 	}
 	
-	public void interacteObject()
+	public void interactObject()
 	{
 	}
 	
@@ -21,7 +21,7 @@ public class Boundary extends GameObject{
 		
 		g.setColor(Color.getHSBColor(235, 99, 23));
 		
-		if(calen.getRed() == true)
+		if(gameinfo.getRed() == true)
 			g.setColor(Color.getHSBColor(100,92,145));
 			
 		

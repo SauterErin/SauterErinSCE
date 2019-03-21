@@ -5,15 +5,22 @@ public class BrokenWall extends GameObject{
 	
 	List list;
 
-	public BrokenWall (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public BrokenWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 	}
 
-	public void interacteObject()
+	public void interactObject()
 	{
+		if(gameinfo.getRoom() == 0)
+		{
+			if(sprite.getX() == 7 && list.checkNight2() == true)
+			{
+				gameinfo.changeRoom(9);
+			}
+		}
 			
 	}
 		
@@ -42,7 +49,7 @@ public class BrokenWall extends GameObject{
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
 		g.setColor(Color.getHSBColor(245, 140, 133));	
-		if(calen.getRed() == true)
+		if(gameinfo.getRed() == true)
 			g.setColor(Color.getHSBColor(87, 89, 70));
 			
 		
@@ -66,6 +73,14 @@ public class BrokenWall extends GameObject{
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
+		
+		if(gameinfo.getRoom() == 0 && x == 7)
+		{
+			if(list.checkNight2() == true)
+			{	g.setColor(Color.black);
+				g.fillRect(RelativeX+4, RelativeY+2, 45, 47);
+			}
+		}
 
 	}
 }

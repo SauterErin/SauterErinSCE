@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class PowerSwitch extends GameObject{
+public class WireBox extends GameObject{
 
 	List list;
 	
-	public PowerSwitch (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public WireBox (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
@@ -13,7 +13,36 @@ public class PowerSwitch extends GameObject{
 	
 	public void interactObject()
 	{
-		log.readDialogue(8);
+		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		{
+			if(list.checkBrokenWireBox() == false && list.checkBrokenSimpleDoor() == false)
+			{
+				log.readDialogue(31);
+			}
+			
+			if(list.checkBrokenWireBox() == true)
+			{
+				log.readDialogue(33);
+			}
+			
+			if(list.checkBrokenSimpleDoor() == true)
+			{
+				log.readDialogue(35);
+			}
+		}
+		
+		else
+		{
+			if(list.checkSearWireBox() == true)
+			{
+				log.readDialogue(36);
+			}
+			
+			else
+			{	
+				log.readDialogue(37);
+			}
+		}
 	}
 	
 	public void paintComponent(Graphics g)
@@ -65,18 +94,34 @@ public class PowerSwitch extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);	
 		
-		g.setColor(Color.black);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+25, RelativeY+20);
-		g.drawLine(RelativeX+20, RelativeY+25, RelativeX+25, RelativeY+25);
-		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+20, RelativeY+25);
-		g.drawLine(RelativeX+25, RelativeY+20, RelativeX+25, RelativeY+25);
+		if(list.checkBrokenWireBox() == false)
+		{
+			g.setColor(Color.gray);
+			g.fillRect(RelativeX+5, RelativeY+2, 40, 46);
+		}
 		
-		if (list.checkPowerSwitch() == true)
-			g.setColor(Color.blue);
-		else
+		if(list.checkBrokenWireBox() == true && list.checkSearWireBox() == false)
+		{
+			g.setColor(Color.gray);
+			g.fillRect(RelativeX+5, RelativeY+2, 40, 46);
 			g.setColor(Color.red);
-		g.fillRect(RelativeX+21,RelativeY+21, 4,4);
+			g.drawLine(RelativeX+5, RelativeY+10, RelativeX+9, RelativeY+15);
+			g.drawLine(RelativeX+5, RelativeY+15, RelativeX+11, RelativeY+23);
+			g.drawLine(RelativeX+5, RelativeY+18, RelativeX+15, RelativeY+35);
 
+			
+
+		}
+
+		
+		if(list.checkBrokenWireBox() == true && list.checkSearWireBox() == true)
+		{	
+			g.setColor(Color.gray);
+			g.fillRect(RelativeX+5, RelativeY+2, 40, 46);
+			
+			g.setColor(Color.darkGray);
+			g.drawRect(RelativeX+5, RelativeY+2,40,46);
+		}
 
 	}
 }

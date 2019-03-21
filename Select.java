@@ -4,7 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 public class Select extends JPanel{
 String [][] select = new String [99][10];
-GameCalendar calen;
+GameMode gameinfo;
+SystemMode system;
 InteractionPanel inter;
 List list;
 int selectionnumber;
@@ -12,17 +13,17 @@ boolean choice;
 String dialogue;
 Dialogue2nd log2; 
 
-	public Select (GameCalendar calen, InteractionPanel inter, List list)
+	public Select (GameMode gameinfo, SystemMode system, InteractionPanel inter, List list)
 	{
 		
-		this.calen = calen;
+		this.gameinfo = gameinfo;
+		this.system = system;
 		this.inter = inter;
 		this.list = list;
 		 boolean choice = true;
 		int selectionnumber  = 0;
 		String dialogue = "Testing";
-		System.out.println(dialogue);
-		log2 = new Dialogue2nd(calen, inter);
+		log2 = new Dialogue2nd(gameinfo, system, inter);
 	
 	}
 	
@@ -41,13 +42,32 @@ Dialogue2nd log2;
 		}
 		
 		if(change == 8)
+		{
 			dialogue = "The paneling is stuck on the power switch, move it?";
+		}
+		
+		if(change == 31)
+		{
+			dialogue = "Do you pull the wires?";
+		}
+		
+		if(change == 32)
+		{
+			dialogue = "Do you pop the door?";
+		}
+		
+		if(change == 37)
+		{
+			dialogue = "Do you pull the wires?";
+		}
 	}
 	
 	public void changeChoice(){
 
 		if (choice == true)
-			{choice = false;}
+			{
+				choice = false;
+			}
 		else
 			choice = true;
 	}
@@ -59,14 +79,15 @@ Dialogue2nd log2;
 				{
 					if (choice == true)
 					{
-						calen.endSelect();
-						calen.startBadEnd1();
+						system.endSelect();
+						gameinfo.startBadEnd1();
 						log2.readDialogue(98);
 					}
 					
 					else
 					{
-						calen.endSelect();
+						system.endSelect();
+						system.startMove();
 					}
 				}
 		
@@ -74,34 +95,71 @@ Dialogue2nd log2;
 		{
 			if (choice == true)
 			{
-				calen.endSelect();
+				system.endSelect();
 				
 				list.actNote1();
-				calen.increaseInventoryTotal();
 				
 				log2.readDialogue(3);
 			}
 			
 			else
 			{
-				calen.endSelect();
+				system.endSelect();
+				system.startMove();
 			}
 		}
 		
 		if (selectionnumber == 8)
 			if (choice == true)
-				{calen.endSelect();
-				list.switchPowerSwitch();
-				list.Escape();
-				log2.readDialogue(8);}
+				{
+					system.endSelect();
+					system.startMove();
+					list.switchPowerSwitch();
+					list.Escape();
+					log2.readDialogue(8);
+				}
+			else
+			{
+				system.endSelect();
+				system.startMove();
+			}
+		
+		if (selectionnumber == 31 ||  selectionnumber == 37)
+			{
+				if (choice == true)
+					{
+						system.endSelect();
+						system.startMove();
+						list.actBrokenWireBox();
+					}
+				else
+				{
+					system.endSelect();
+					system.startMove();
+				}
+			}
+		if (selectionnumber == 32 ||  selectionnumber == 38)
+			{
+				if (choice == true)
+					{
+						system.endSelect();
+						system.startMove();
+						list.actBrokenSimpleDoor();
+					}
+				else
+				{
+					system.endSelect();
+					system.startMove();
+				}
+			}
 		choice = true;
 	}
 	
 	public void paintComponent(Graphics g)
 	{	
 		super.paintComponent(g);
-		g.setColor(Color.darkGray);
-		g.fillRect(000,400,400,300);
+		g.setColor(Color.gray);
+		g.fillRect(000,400,600,300);
 		g.setColor(Color.white);
 		g.drawString(dialogue, 140, 450);
 		g.drawString("Yes", 140, 500);

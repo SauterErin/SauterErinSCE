@@ -7,15 +7,15 @@ public class Grass extends GameObject {
 	List list;
 	GameSprite sprite;
 	
-	public Grass(int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public Grass(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = true;
 		this.list = list;
 		this.sprite = sprite;
 	}
 			
-	public void interacteObject()
+	public void interactObject()
 	{	
 		
 	}
@@ -24,7 +24,7 @@ public class Grass extends GameObject {
 	{
 		super.paintComponent(g);
 		
-		if(calen.returnYear() == calen.gameyearpresent)
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent)
 			g.setColor(Color.green);	
 		else
 			g.setColor(new Color(87, 106, 54));

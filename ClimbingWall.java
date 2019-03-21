@@ -4,15 +4,24 @@ public class ClimbingWall extends GameObject{
 
 	List list;
 	
-	public ClimbingWall (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public ClimbingWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 	}
 	
-	public void interacteObject()
+	public void interactObject()
 	{
+		if(gameinfo.returnYear() == gameinfo.gameyearpast && list.checkMeetAlva() == false)
+		{
+			log.readDialogue(17);
+		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpast && list.checkMeetAlva() == true)
+		{
+			log.readDialogue(19);
+		}
 	}
 	
 	public void paintComponent(Graphics g)
@@ -39,7 +48,7 @@ public class ClimbingWall extends GameObject{
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
 		g.setColor(Color.getHSBColor(245, 34, 133));	
-		if(calen.getRed() == true)
+		if(gameinfo.getRed() == true)
 			g.setColor(Color.getHSBColor(87, 34, 70));
 			
 		
@@ -63,6 +72,15 @@ public class ClimbingWall extends GameObject{
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
+		
+		if (gameinfo.returnYear() == gameinfo.gameyearpast)
+		{	g.setColor(Color.getHSBColor(169, 104, 54));
+
+			g.drawLine(RelativeX+20, RelativeY, RelativeX+20, RelativeY+49);
+			g.drawLine(RelativeX+21, RelativeY, RelativeX+21, RelativeY+49);
+			g.drawLine(RelativeX+22, RelativeY, RelativeX+22, RelativeY+49);
+			g.drawLine(RelativeX+23, RelativeY, RelativeX+23, RelativeY+49);
+		}
 
 	}
 

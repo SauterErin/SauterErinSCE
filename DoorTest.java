@@ -9,30 +9,30 @@ public class DoorTest extends GameObject {
 	Countdown clock;
 	List list;
 	
-	public DoorTest (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list,  Dialogue log, GameSprite sprite)
+	public DoorTest (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list,  Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.sprite = sprite;
 	}
 			
-	public void interacteObject()
+	public void interactObject()
 	{
 		/*String dialogue = "";
 		dialogue =  "You left the room.";
-		calen.startDialogue();*/
-				if (calen.getRoom() == 0)
+		gameinfo.startDialogue();*/
+				if (gameinfo.getRoom() == 0)
 				{	
-					calen.changeRoom(1);
+					gameinfo.changeRoom(1);
 					sprite.setGameSprite (15, 1, 's');
-					calen.ModeRed();
+					gameinfo.ModeRed();
 				}
 				
-				else if (calen.getRoom() == 1)
+				else if (gameinfo.getRoom() == 1)
 				{
-					calen.changeRoom(2);
+					gameinfo.changeRoom(2);
 					sprite.setGameSprite(4, 4, 'n');
-					calen.DefaultMode();
+					gameinfo.DefaultMode();
 				}	
 	}
 				

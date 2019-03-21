@@ -4,14 +4,14 @@ public class BrickWall extends GameObject{
 
 	List list;
 	
-	public BrickWall (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public BrickWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 	}
 	
-	public void interacteObject()
+	public void interactObject()
 	{
 	}
 	
@@ -39,7 +39,7 @@ public class BrickWall extends GameObject{
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
 		g.setColor(Color.getHSBColor(245, 140, 133));	
-		if(calen.getRed() == true)
+		if(gameinfo.getRed() == true)
 			g.setColor(Color.getHSBColor(87, 89, 70));
 			
 		

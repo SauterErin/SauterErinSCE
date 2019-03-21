@@ -7,15 +7,15 @@ public class BlueDoor extends GameObject {
 	List list;
 	GameSprite sprite;
 	
-	public BlueDoor(int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public BlueDoor(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 		this.sprite = sprite;
 	}
 			
-	public void interacteObject()
+	public void interactObject()
 	{	
 		log.readDialogue(12);
 		

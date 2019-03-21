@@ -4,19 +4,19 @@ public class Bed1 extends GameObject{
 
 	List list;
 	
-	public Bed1 (int AbsoluteX, int AbsoluteY, GameCalendar calen, List list, Dialogue log, GameSprite sprite)
+	public Bed1 (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, calen, log, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
 		this.list = list;
 	}
 	
-	public void interacteObject()
+	public void interactObject()
 	{
 
-		if(list.checkYellowKey() == true)
+		if(list.checkYellowKey() == true && list.checkEscape() == true && gameinfo.currentyear == 2052)
 			log.readDialogue(14);
-		else
+		if(list.checkYellowKey() == false && list.checkEscape() == false && gameinfo.currentyear == 2052 )
 			log.readDialogue(0);
 	}
 	
@@ -24,14 +24,14 @@ public class Bed1 extends GameObject{
 	{
 		super.paintComponent(g);
 
-		if(calen.currentyear == 2052)
+		if(gameinfo.currentyear == 2052)
 		{
 			move = false;
 			g.setColor(Color.green);
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 		}
 		
-		if(calen.currentyear == 2042)
+		if(gameinfo.currentyear == 2042)
 
 		{
 			move = true;

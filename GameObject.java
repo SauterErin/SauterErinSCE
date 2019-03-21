@@ -1,5 +1,6 @@
 package choice;
 import java.awt.*;
+
 import javax.swing.*;
 
 abstract class GameObject extends JPanel {
@@ -10,30 +11,39 @@ abstract class GameObject extends JPanel {
 	protected boolean move;
 	protected int counterday1;
 	protected int counterday2;
-	public GameCalendar calen;
+	public GameMode gameinfo;
+	public List list;
 	protected Dialogue log;
 	protected GameSprite sprite;
 	
-	public GameObject (int x, int y, GameCalendar calen, Dialogue log, GameSprite sprite)
+	public GameObject (int x, int y, GameMode gameinfo, Dialogue log, List list, GameSprite sprite)
 	{
 		this.x = x;
 		this.y = y;
+		this.list = list;
 		RelativeX = 0;
 		RelativeY = 0;
 		boolean move;
 		int counterday1 = 0;
 		int counterday2 = 0;
-		this.calen = calen;
+		this.gameinfo = gameinfo;
 		this.log = log;
 		this.sprite = sprite;
 	}
 	
-	public boolean checkMove ()
+	public boolean checkMoveAction()
 	{
+
+		if(gameinfo.getRoom() == 3 && sprite.getX() == 6 && gameinfo.returnYear() == gameinfo.gameyearpast && list.checkMeetAlva() == false)
+		{
+			//log.readDialogue(16);
+			System.out.println(list.checkMeetAlva());
+		}
 		return move;
+		
 	}
 	
-	abstract void interacteObject();
+	abstract void interactObject();
 	
 	public void paintComponent(Graphics g)
 	{

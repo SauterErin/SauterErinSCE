@@ -3,6 +3,7 @@ package choice;
 public class List {
 	
 	boolean Note1;
+	boolean Note2;
 	boolean wall2;
 	boolean floor1;
 	boolean floor2;
@@ -13,12 +14,30 @@ public class List {
 	boolean doorhold1;
 	boolean doorhold2;
 	boolean escape;
+	boolean enterNorthHallway;
 	boolean meetAlva;
+	boolean hideRedKey;
+	boolean pastBreakWall;
+	boolean brokenWireBox;
+	boolean brokenSimpleDoor;
+	boolean removeWallPanel;
+	boolean reinforcedSimpleDoor;
+	boolean searWireBox;
+	boolean retrieveScrewdriver;
+	boolean retrieveFatherID;
+	boolean retrievePurpleKey;
+	boolean removePanel;
+	boolean nightofHorrors;
+	boolean nightofFire;
+	boolean night2;
+
 	
 	public List ()
 	
 	{
+		night2 = false;
 		Note1 = false;
+		Note2 = false;
 		wall2 = false;
 		floor1 = false;
 		floor2 = false;
@@ -29,7 +48,25 @@ public class List {
 		doorhold1 = false;
 		doorhold2 = false;
 		escape = false;
+		enterNorthHallway = false;
 		meetAlva = false;
+		hideRedKey = false;
+		pastBreakWall = false;
+		brokenWireBox = false;
+		reinforcedSimpleDoor = false;
+		brokenSimpleDoor = false;
+		removeWallPanel = false;
+		searWireBox = false;
+		retrieveScrewdriver = false;
+		retrieveFatherID = false;
+		retrievePurpleKey = false;
+		removePanel = false;
+		nightofHorrors = false;
+		nightofFire = false;
+
+
+
+
 	}
 	
 	public void actNote1()
@@ -56,6 +93,16 @@ public class List {
 	public boolean checkNote1()
 	{
 		return Note1;
+	}
+	
+	public boolean checkHideRedKey()
+	{
+		return hideRedKey;
+	}
+	
+	public void actHideRedKey()
+	{
+		hideRedKey = true;
 	}
 	
 	public boolean checkWall2()
@@ -170,6 +217,133 @@ public class List {
 		return meetAlva;
 	}
 	
+	public void enterNorthHallway()
+	{
+		enterNorthHallway = true;
+	}
 	
+	public boolean checkEnterNorthHallway()
+	{
+		return enterNorthHallway;
+	}
+
+	public  boolean checkNote2() {
+		return Note2;
+	}
+	
+	public void actNote2()
+	{
+		Note2 = true;
+	}
+
+	public boolean checkPastBreakWall() {
+		return pastBreakWall;
+	}
+	
+	public void actPastBreakWall()
+	{
+		pastBreakWall = true;
+	}
+
+	public boolean checkBrokenWireBox() {
+		return brokenWireBox;
+	}
+
+	public boolean checkSearWireBox() {
+		return false;
+	}
+
+	public boolean checkBrokenSimpleDoor() {
+		return brokenSimpleDoor;
+	}
+
+	public void actBrokenWireBox() {
+		brokenWireBox = true;
+		
+	}
+
+	public boolean checkReinforcedSimpleDoor() {
+		return reinforcedSimpleDoor;
+	}
+	
+	public void actReinforcedSimpleDoor()
+	{
+		reinforcedSimpleDoor = true;
+	}
+	
+	public boolean checkRemoveWallPanel()
+	{
+		return removeWallPanel;
+	}
+	
+	public void actRemoveWallPanel()
+	{
+		removeWallPanel = true;
+	}
+
+	public void actBrokenSimpleDoor() 
+	{
+		brokenSimpleDoor = true;
+	}
+	
+	public void actSearWireBox()
+	{
+		searWireBox = true;
+	}
+
+	public boolean checkRetrieveScrewdriver() {
+		return retrieveScrewdriver;
+	}
+	
+	public void actRetrieveScrewdriver()
+	{
+		retrieveScrewdriver = true;
+	}
+	
+	public boolean checkRemovePanel() {
+		return removePanel;
+	}
+	
+	public void actRemovePanel()
+	{
+		removePanel = true;
+	}
+
+	public boolean checkNightofHorrors() {
+		return nightofHorrors;
+	}
+	
+	public void actNightofHorrors()
+	{
+		nightofHorrors = true;
+	}
+	
+
+
+	public boolean checkNightofFire() {
+		return nightofHorrors;
+	}
+
+	public void actNightofFire()
+	{
+		nightofHorrors = true;
+	}
+
+	public boolean checkRetrieveFatherID() {
+		return retrieveFatherID;
+	}
+	
+	public void actRetrieveFatherID() {
+		 retrieveFatherID = true;
+	}
+
+	public boolean checkNight2() {
+		return night2;
+	}
+	
+	public void actNight2()
+	{
+		night2 = true;
+	}
 }
 	
