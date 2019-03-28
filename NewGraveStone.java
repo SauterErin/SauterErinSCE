@@ -8,7 +8,7 @@ public class NewGraveStone extends GameObject{
 	public NewGraveStone (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
-		move = false;
+		move = true;
 		this.list = list;
 	}
 
@@ -30,14 +30,17 @@ public class NewGraveStone extends GameObject{
 		
 		if(list.checkNightofFire() == true)
 		{
+			move = false;
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 			
-			g.setColor(Color.CYAN);
-			g.fillRect(RelativeX+25, RelativeY+25, 5, 5);
-			g.setColor(Color.white);
-			g.fillRect(RelativeX+25, RelativeY+35, 5, 5);
-
+			if(list.checkGift() == true)
+			{	
+				g.setColor(Color.CYAN);
+				g.fillRect(RelativeX+25, RelativeY+25, 5, 5);
+				g.setColor(Color.white);
+				g.fillRect(RelativeX+25, RelativeY+35, 5, 5);
+			}
 		}
 		
 		if(gameinfo.currentyear == 2042){

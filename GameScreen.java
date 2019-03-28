@@ -725,7 +725,7 @@ public class GameScreen extends JPanel {
 		for(int i = 0; i<5; i++)
 		{
 			room[18][i][0] = new BrickWall(i,0,gameinfo,list,log,sprite);
-			room[18][i][4] = new BrickWall(i,0,gameinfo,list,log,sprite);
+			room[18][i][4] = new BrickWall(i,4,gameinfo,list,log,sprite);
 		}
 		
 		for(int j = 1; j < 4; j++)

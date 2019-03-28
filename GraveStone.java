@@ -8,13 +8,20 @@ public class GraveStone extends GameObject{
 	public GraveStone (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
-		move = false;
+		move = true;
 		this.list = list;
 	}
 
 	public void interactObject()
 	{
-		log.readDialogue(72);
+		if(gameinfo.currentyear == gameinfo.gameyearpresent)
+		{
+			if(gameinfo.checkMonsterMode() == true)
+				log.readDialogue(105);
+		
+			else
+				log.readDialogue(72);
+		}
 	}
 		
 	

@@ -433,10 +433,25 @@ int scriptnumber;
 	dialogue[109][0] = "You will not leave the boy here.";
 	dialogue[109][1] = "@";
 	
-	dialogue[110][0] = "You will not leave the boy here.";
-	dialogue[110][1] = "@";
+	dialogue[110][0] = "The key out.";
+	dialogue[110][1] = "^";
 	
+	dialogue[111][0] = "I know somewhere safe for you to be.";
+	dialogue[111][1] = "^";
 	
+	dialogue[112][0] = "...";
+	dialogue[112][1] = "^";
+	
+	dialogue[113][0] = "And one way to repay.";
+	dialogue[113][1] = "^";
+	
+	dialogue[114][0] = "It's not enough but thank you.";
+	dialogue[114][1] = "^";	
+	
+	dialogue[115][0] = "Your son will survive.";
+	dialogue[115][1] ="He will get out of here.";
+	dialogue[115][2] = "I promise.";
+	dialogue[115][3] = "^";
 
 	}
 	
@@ -782,12 +797,60 @@ int scriptnumber;
 					
 					if(scriptnumber == 107 && firstbranch == true)					
 					{
-						sprite.switchCarrying();
 						gameinfo.changeRoom(16);
 						sprite.setGameSprite(3,1,'W');
 						list.actBreakWallBurial();
 						ongoingdialogue = 1;
 						continueDialogue(1);
+					}
+					
+					if(scriptnumber == 110 && firstbranch == true)
+					{					
+						sprite.changeDirection('W');
+						readDialogue(112);
+						firstbranch = false;
+
+					}
+					
+					if(scriptnumber == 111 && firstbranch == true)
+					{					
+						firstbranch = false;
+						sprite.switchCarrying();
+						readDialogue(107);
+					}
+					
+					if(scriptnumber == 112 && firstbranch == true)
+					{					
+						readDialogue(113);
+						firstbranch = false;
+
+					}
+					
+					
+					
+					if(scriptnumber == 113 && firstbranch == true)
+					{					
+						gameinfo.changeRoom(9);
+						sprite.setGameSprite(11,3,'N');
+						list.actBurial();
+						list.actNightofFire();
+						readDialogue(114);
+						firstbranch = false;
+
+					}
+					
+					if(scriptnumber == 114 && firstbranch == true)
+					{
+						list.actGift();
+						readDialogue(115);
+						firstbranch = false;
+					}
+					
+					if(scriptnumber == 115 && firstbranch == true)
+					{
+						gameinfo.completeGame();
+						firstbranch = false;
+
 					}
 
 				}				

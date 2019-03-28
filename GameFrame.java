@@ -164,7 +164,7 @@ public class GameFrame extends JFrame {
 					
 					if (system.checkMove() == true && wait == 1)
 					{
-						if(e.getKeyCode() == 81)
+						/*if(e.getKeyCode() == 81)
 						{
 							system.startMenu();
 						}
@@ -179,7 +179,7 @@ public class GameFrame extends JFrame {
 						if(e.getKeyCode() == 69)
 						{
 							gameinfo.currentyear = gameinfo.gameyearpresent;
-						}
+						}*/
 						
 						if(e.getKeyCode() == KeyEvent.VK_3)
 						{

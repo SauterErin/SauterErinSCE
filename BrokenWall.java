@@ -20,7 +20,7 @@ public class BrokenWall extends GameObject{
 		{
 			if(gameinfo.getRoom() == 0 && onechoice == true)
 			{
-				if(sprite.getX() == 7 && list.checkNight2() == true)
+				if(sprite.getX() == 7 && sprite.getY() == 8 && list.checkNight2() == true)
 				{
 					gameinfo.changeRoom(9);
 					sprite.setGameSprite(7,1, 'S');
@@ -219,7 +219,7 @@ public class BrokenWall extends GameObject{
 				
 				if(list.checkRescueComplete() == true && list.checkBurial() == false)
 				{
-					log.readDialogue(107);
+					log.readDialogue(111);
 				}
 				
 				if(list.checkRescueComplete() == false)
@@ -275,7 +275,7 @@ public class BrokenWall extends GameObject{
 					onechoice = false;
 				}
 				
-				if(sprite.getX() == 7)
+				if(sprite.getX() == 7 && sprite.getY() == 1)
 				{
 					log.readDialogue(109);
 				}
@@ -286,6 +286,17 @@ public class BrokenWall extends GameObject{
 				if(sprite.getY() == 3 && list.checkBreakWallNorthWestPassage() == false && onechoice == true)
 				{
 					list.actBreakWallNorthEastPassage();
+					log.readDialogue(60);
+					onechoice = false;
+					interactObject();
+				}
+			}
+			
+			if(gameinfo.getRoom() == 17 && onechoice == true)
+			{
+				if(sprite.getY() == 9 && sprite.getX() == 1 && onechoice == true)
+				{
+					list.actBreakWallRescue();
 					log.readDialogue(60);
 					onechoice = false;
 					interactObject();
@@ -405,7 +416,7 @@ public class BrokenWall extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		if(gameinfo.getRoom() == 0 && x == 7)
+		if(gameinfo.getRoom() == 0 && x == 7 && y == 9)
 		{
 			if(list.checkNight2() == true && gameinfo.currentyear == gameinfo.gameyearpresent)
 			{
@@ -559,6 +570,22 @@ public class BrokenWall extends GameObject{
 				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
 				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
 			}
+		}
+		
+		if(gameinfo.getRoom() == 18 && list.checkBreakWallRescue() == true)
+		{
+			g.setColor(Color.black);
+			g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+			g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+			g.fillRect(RelativeX+9, RelativeY+32, 25, 15);			
+		}
+		
+		if(gameinfo.getRoom() == 16 && list.checkBreakWallBurial() == true)
+		{
+			g.setColor(Color.black);
+			g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+			g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+			g.fillRect(RelativeX+9, RelativeY+32, 25, 15);			
 		}
 	}
 }

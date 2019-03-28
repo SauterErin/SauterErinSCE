@@ -2,6 +2,7 @@ package choice;
 
 public class List {
 	
+	boolean gift;
 	boolean Note1;
 	boolean Note2;
 	boolean wall2;
@@ -56,6 +57,7 @@ public class List {
 	public List ()
 	
 	{	
+		gift = false;
 		breakWallRescue = false;
 		burial = false;
 		breakWallBurial = false;
@@ -370,12 +372,12 @@ public class List {
 
 
 	public boolean checkNightofFire() {
-		return nightofHorrors;
+		return nightofFire;
 	}
 
 	public void actNightofFire()
 	{
-		nightofHorrors = true;
+		nightofFire = true;
 	}
 
 	public boolean checkRetrieveFatherID() {
@@ -594,6 +596,16 @@ public class List {
 	public void actBreakWallRescue() {
 		breakWallRescue = true;
 		
+	}
+
+	public boolean checkGift() {
+		// TODO Auto-generated method stub
+		return gift;
+	}
+	
+	public void actGift() {
+		// TODO Auto-generated method stub
+		gift = true;
 	}
 
 

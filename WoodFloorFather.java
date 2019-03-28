@@ -38,8 +38,11 @@ public class WoodFloorFather extends GameObject{
 		
 		g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
 		g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
+		System.out.println("Painting");
+		System.out.println(list.checkRescueComplete());
+		System.out.println("Fire: " + list.checkNightofFire());
 		
-		if(list.checkAlvaRampage() == true && list.checkNightofFire() == false)
+		if(list.checkRescueComplete() == true && list.checkNightofFire() == false)
 		{
 			move = false;
 			g.setColor(Color.green);
