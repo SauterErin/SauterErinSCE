@@ -183,7 +183,7 @@ public class GameFrame extends JFrame {
 						
 						if(e.getKeyCode() == KeyEvent.VK_3)
 						{
-							screen.log.readDialogue(91);
+							screen.log.readDialogue(107);
 							screen.list.redkey = true;
 							screen.list.removeWallPanel = true;
 							screen.list.retrieveScrewdriver = true;

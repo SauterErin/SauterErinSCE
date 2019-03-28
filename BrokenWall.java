@@ -212,7 +212,7 @@ public class BrokenWall extends GameObject{
 			{
 				if(list.checkRescueComplete() == true && list.checkBurial() == true)
 				{
-					gameinfo.changeRoom(18);
+					gameinfo.changeRoom(17);
 					sprite.setGameSprite(1,9,'E');
 					onechoice = false;
 				}
@@ -344,6 +344,15 @@ public class BrokenWall extends GameObject{
 					log.readDialogue(60);
 					onechoice = false;
 					interactObject();
+				}
+			}
+			
+			if(gameinfo.getRoom() == 17 && onechoice == true && sprite.getX()  == 1 && sprite.getY() == 1)
+			{
+				if(list.checkBurial() == false && onechoice == true)
+				{
+					log.readDialogue(108);
+					onechoice = false;
 				}
 			}
 			

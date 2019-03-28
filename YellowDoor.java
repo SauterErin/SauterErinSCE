@@ -18,7 +18,9 @@ public class YellowDoor extends GameObject {
 			
 
 	public void interactObject()
-	{if(list.checkYellowKey() == true){
+	{
+		if(list.checkYellowKey() == true)
+		{
 			boolean onechoice = true;
 			if (gameinfo.getRoom() == 6 && onechoice == true)
 			{	
@@ -92,10 +94,15 @@ public class YellowDoor extends GameObject {
 	
 		
 		}
+		
+		boolean onechoice = true;
+		
 		if(list.checkYellowKey() == false && gameinfo.checkMonsterMode() == false)
 			log.readDialogue(12);
 		
-		boolean onechoice = true;
+		if(list.checkYellowKey() == false && gameinfo.checkMonsterMode() == true && gameinfo.getRoom() != 12 && onechoice == true && gameinfo.getRoom() != 14)
+			log.readDialogue(12);
+		
 		
 		if(list.checkYellowKey() == false && gameinfo.checkMonsterMode() == true && gameinfo.getRoom() == 12 && onechoice == true)
 		{

@@ -3,7 +3,7 @@ import java.awt.*;
 
 import javax.swing.*;
 public class Dialogue extends JPanel{
-String [][] dialogue = new String [199][10];
+String [][] dialogue = new String [199][12];
 int[] Choicecatcher = new int [99];
 GameMode gameinfo;
 SystemMode system;
@@ -286,7 +286,7 @@ int scriptnumber;
 	dialogue[72][1] = "The flower is fresh.";
 	dialogue[72][2] = "@";
 	
-	dialogue[73][0]= "You're dad hasn't seen your card...";
+	dialogue[73][0]= "Your dad hasn't seen your card...";
 	dialogue[73][1] = "@";
 	
 	dialogue[74][0]= "Your dad never saw the card.";
@@ -452,6 +452,20 @@ int scriptnumber;
 	dialogue[115][1] ="He will get out of here.";
 	dialogue[115][2] = "I promise.";
 	dialogue[115][3] = "^";
+	
+	dialogue[116][0] = "Scrawled on torn paper - ";
+	dialogue[116][1] ="You are awake..";
+	dialogue[116][2] = "Time for you to leave.";
+	dialogue[116][3] = "Your father is dead.";
+	dialogue[116][4] = "I'm sorry.";
+	dialogue[116][5] = "*Crash*";
+	dialogue[116][6] = "Just take the purple key and GO.";
+	dialogue[116][7] = "The people here won't hurt anyone else..";
+	dialogue[116][8] = "I'll make sure of it.";
+	dialogue[116][9] = "I'll make sure of it.";
+	dialogue[116][10] = " - Miss Monster";
+	dialogue[116][11] = "^";
+
 
 	}
 	
@@ -848,10 +862,25 @@ int scriptnumber;
 					
 					if(scriptnumber == 115 && firstbranch == true)
 					{
-						gameinfo.completeGame();
+						list.actNightofFire();
+						gameinfo.DefaultMode();
+						gameinfo.changeRoom(10);
+						sprite.setGameSprite(2,2,'N');
 						firstbranch = false;
-
+						system.endDialogue();
+						system.startMove();
+						list.switchYellowKey();
+						list.switchRedKey();
 					}
+					
+					if(scriptnumber == 116 && firstbranch == true)
+					{
+						list.actFinalPurpleKeyPass();
+						system.endDialogue();
+						system.startMove();
+						firstbranch = false;
+					}
+
 
 				}				
 			}

@@ -292,6 +292,9 @@ public class GameScreen extends JPanel {
 		room[0][7][11] = new MonsterGrass(7, 11, gameinfo, list, log, sprite);
 		room[0][3][6] = new WoodFloorNote(3,6,gameinfo,list,log,sprite);
 		room[0][7][1] = new WoodFloorGreenKey(7,1,gameinfo,list,log,sprite);
+		room[0][10][11] = new GraveDirt(10, 11, gameinfo, list, log, sprite);
+		room[0][11][11] = new NewGraveStone(11, 11, gameinfo, list, log, sprite);
+
 
 	
 		// Room 1 - Power Room
@@ -515,6 +518,7 @@ public class GameScreen extends JPanel {
 				}
 			}
 		}
+		room[10][1][2] = new RedCarpetNote(1,2,gameinfo,list,log,sprite);
 		
 		room[10][2][2] = new BlueCarpet(2,2,gameinfo,list,log,sprite);
 		room[10][1][0] = new AtticHole(1,0,gameinfo,list,log,sprite);

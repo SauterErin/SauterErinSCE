@@ -50,5 +50,7 @@ public class WoodFloorFather extends GameObject{
 			g.setColor(Color.red);
 			g.fillRect(RelativeX+32, RelativeY+8, 10,34);
 		}
+		
+		move = true;
 	}
 }

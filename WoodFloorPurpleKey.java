@@ -13,7 +13,7 @@ public class WoodFloorPurpleKey extends GameObject{
 	
 	public void interactObject()
 	{
-		if(list.checkRetrievePurpleKey() == false)
+		if(list.checkNightofFire() == false)
 		{
 			log.readDialogue(110);
 		}
@@ -43,7 +43,7 @@ public class WoodFloorPurpleKey extends GameObject{
 		g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
 		g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
 		
-		if(list.checkRetrievePurpleKey() == false)
+		if(list.checkNightofFire() == false)
 		{
 			move = false;
 			g.setColor(Color.MAGENTA);

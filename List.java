@@ -5,6 +5,7 @@ public class List {
 	boolean gift;
 	boolean Note1;
 	boolean Note2;
+	boolean note3;
 	boolean wall2;
 	boolean floor1;
 	boolean floor2;
@@ -52,11 +53,13 @@ public class List {
 	boolean breakWallBurial;
 	boolean burial;
 	 boolean breakWallRescue;
+	 boolean finalPurpleKeyPass;
 
 	
 	public List ()
 	
 	{	
+		note3 = false;
 		gift = false;
 		breakWallRescue = false;
 		burial = false;
@@ -107,6 +110,7 @@ public class List {
 		blockC = true;
 		retrieveGreenKey = false;
 		retrieveBackpack = false;
+		finalPurpleKeyPass = false;
 
 
 
@@ -606,6 +610,24 @@ public class List {
 	public void actGift() {
 		// TODO Auto-generated method stub
 		gift = true;
+	}
+
+	public boolean checkFinalPurpleKeyPass() {
+		// TODO Auto-generated method stub
+		return finalPurpleKeyPass;
+	}
+	
+	public void actFinalPurpleKeyPass() {
+		// TODO Auto-generated method stub
+		finalPurpleKeyPass = true;
+	}
+
+	public void actNote3() {
+		note3= true;
+	}
+	
+	public boolean checkNote3() {
+		return note3;
 	}
 
 

@@ -36,7 +36,7 @@ public class WoodFloorBoy extends GameObject{
 		
 		g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
 		g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
-		
+		move = true;
 		if(list.checkAlvaRampage() == true && list.checkRescueComplete() == false)
 		{
 			move = false;
