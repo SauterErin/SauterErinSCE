@@ -3,7 +3,7 @@ import java.awt.*;
 
 import javax.swing.*;
 public class Dialogue extends JPanel{
-String [][] dialogue = new String [99][10];
+String [][] dialogue = new String [199][10];
 int[] Choicecatcher = new int [99];
 GameMode gameinfo;
 SystemMode system;
@@ -46,7 +46,6 @@ int scriptnumber;
 	dialogue[2][2] = "%";
 			
 	dialogue [3][0] = "The floor hollow is empty.";
-
 	dialogue [3][1] = "@";
 	
 	dialogue [6][0] = "You take the yellow key.";
@@ -60,22 +59,22 @@ int scriptnumber;
 
 	
 	dialogue[8][0] = "%";
+	
 	dialogue[9][0] = "You open the piano - there's a red passkey inside.";
 	dialogue[9][1] = "You take it.";
 	dialogue[9][2] = "@";
 	
 	dialogue[10][0] = "There's a loose panel upon the wall.";
-
 	dialogue[10][1] = "@";
-	
-	dialogue[13][0] = "The panel is stuck.";
-	dialogue[13][1] = "@";
 
 	dialogue[11][0] = "There's nothing else.";
 	dialogue[11][1] = "@";
 	
 	dialogue[12][0] = "The door won't open. It's locked.";
 	dialogue[12][1] = "@";
+	
+	dialogue[13][0] = "The panel is stuck.";
+	dialogue[13][1] = "@";
 	
 	dialogue [14][0] = "You dive into bed";
 	dialogue [14][1] = "And wait for dawn.";;
@@ -117,12 +116,15 @@ int scriptnumber;
 	dialogue[23][0] = "The hole leads to the hallway.";
 	dialogue[23][1] = "You're awfully high up.";
 	dialogue[23][2] = "@";
-	
-	dialogue[24][0] = "Jackson: Good idea squirt.";
+
+	dialogue[24][0] = "Jackson: Need key to open door - but need to hide key...";
 	dialogue[24][1] = "^";
+	dialogue[24][2] = "Jackson: Good idea squirt.";
+	dialogue[24][3] = "@";
+
 	
 	dialogue[25][0] = "Jackson: Good luck future kid.";
-	dialogue[25][1] = "Jackson: Now I only have the *Red Key*";
+	dialogue[25][1] = "Jackson: Now I only have the *Green Door Key*";
 	dialogue[25][2] = "^";
 
 	
@@ -162,23 +164,23 @@ int scriptnumber;
 	dialogue[35][1] = "@";
 
 
-	dialogue[36][0] = "The panel has been seared shut.";
+	dialogue[36][0] = "The panel has been welded shut.";
 	dialogue[36][1] = "@";
 	
 	dialogue[37][0] = "The door should open if you pull a wire...";
 	dialogue[37][1] = "%";
 	
 	dialogue[38][0] = "If you push here you might be able to get the door open...";
-	dialogue[38][1] = "@";
+	dialogue[38][1] = "%";
 
 	dialogue[39][0] = "No - you're never going down there again.";
-	dialogue[39][0] = "@";
+	dialogue[39][1] = "@";
 
 	dialogue[40][0] = "You can hear the whirring of machines.";
 	dialogue[40][1] = "@";
 	
 	dialogue[41][0] = "Jackson: Just remove this panel and...";
-	dialogue[41][1] = "Pop";
+	dialogue[41][1] = "*Pop*";
 	dialogue[41][2] = "^";
 
 	dialogue[42][0] = "Jackson: No - I already got my screwdriver.";
@@ -190,7 +192,7 @@ int scriptnumber;
 	dialogue[43][2] = "@";
 
 	dialogue[44][0] = "Jackson: I have to get my screwdriver.";
-	dialogue[44][1] = "Jackson: Anyways I can't reach without help anyways.";
+	dialogue[44][1] = "Jackson: It's in the East Wing.";
 	dialogue[44][2] = "@";
 	
 	dialogue[45][0] = "The vent is welded shut.";
@@ -198,14 +200,13 @@ int scriptnumber;
 	
 	dialogue[46][0] = "Jackson: Up you go squirt.";
 	dialogue[46][1] = "^";
-		
-	dialogue[47][0] = "Jackson: I have to get my screwdriver.";
-	dialogue[47][1] = "Jackson: Anyways I can't reach without help anyways.";
-	dialogue[47][2] = "@";
+	
+	dialogue[47][0] = "Jackson: I need to get some sleep.";
+	dialogue[47][1] = "@";
 	
 	dialogue[48][0] = "That's your father's ID.";
 	dialogue[48][1] = "Where is he?";
-	dialogue[48][2] = "@";
+	dialogue[48][2] = "^";
 	
 	dialogue[49][0] = "Someone is banging on the door.";
 	dialogue[49][2] = "You need to go, you need to run.";
@@ -244,11 +245,199 @@ int scriptnumber;
 	
 	dialogue[59][0] ="Time to explore.";
 	dialogue[59][1] = "@";	
-			
+	
+	dialogue[60][0] = "*Boom*";
+	dialogue[60][1] = "@";
+
+	dialogue[61][0] = "Jackson: No, no midnight fieldtrips.";
+	dialogue[61][1] = "@";
+	
+	dialogue [62][0] = "You can see a space above. But you can't reach it.";
+	dialogue [62][1] ="@";
+	
+	dialogue [63][0] = "No, you need to leave. No more time for sleeping.";
+	dialogue [63][1] ="Dad... (Sob)";
+	dialogue [63][2] ="@";
+	
+	dialogue[64][0] = "Jackson: I have to hide the key.";
+	dialogue[64][1] = "@";
+	
+	dialogue[65][0] = "The power won't turn back on...";
+	dialogue[65][1] = "@";
+	
+	dialogue[66][0] = "%";
+	
+	dialogue[67][0]= "You probably shouldn't touch this.";
+	dialogue[67][1] = "@";
+
+	dialogue[68][0]= "Jackson: I need to pry this off with my screwdriver.";
+	dialogue[68][1] = "@";
+	
+	dialogue[69][0]= "You're too excited to sleep.";
+	dialogue[69][1] = "@";
+	
+	dialogue[70][0]= "You couldn't sleep here again if you tried.";
+	dialogue[70][1] = "@";
+	
+	dialogue[71][0]= "Why are you even thinking about it!";
+	dialogue[71][1] = "@";
+	
+	dialogue[72][0]= "The grave is unmarked.";
+	dialogue[72][1] = "The flower is fresh.";
+	dialogue[72][2] = "@";
+	
+	dialogue[73][0]= "You're dad hasn't seen your card...";
+	dialogue[73][1] = "@";
+	
+	dialogue[74][0]= "Your dad never saw the card.";
+	dialogue[74][1] = "They don't get to keep it.";
+	dialogue[74][2] = "^";
+	
+	dialogue[75][0]= "Something very big and very powerful broke this.";
+	dialogue[75][1] = "You want your father.";
+	dialogue[75][2] = "@";
+	
+	dialogue[76][0]= "There's nothing here.";
+	dialogue[76][1] = "@";
+	
+	
+	dialogue[77][0]= "The dirt is still upturned...";
+	dialogue[77][1] = "The grave looks deep.";
+	dialogue[77][2] = "@";
+	
+	dialogue[78][0]= "It's a new grave. The stone was carved by claws.";
+	dialogue[78][1] = "Your father's spare ID is left on the grave.";
+	dialogue[78][2] = "@";
+	
+	dialogue[79][0]= "Something is very wrong.";
+	dialogue[79][1] = "What's that on the ground?";
+	dialogue[79][2] = "@";
+
+	dialogue[80][0]= "Something broke through the door.";
+	dialogue[80][1] = "Your dad keeps records in here...";
+	dialogue[80][2] = "^";
+	
+	dialogue[81][0] = "Uh-oh";
+	dialogue[81][1] = "@";
+	
+	dialogue[82][0] = "^";
+
+	dialogue[83][0] = "He - Hello, Mr, Mr. Mo- Monster.";
+	dialogue[83][1] = "Pl- Please don't hurt me.";
+	dialogue[83][2] = "^";
+	
+	dialogue[84][0] = "*Bam*";
+	dialogue[84][1] = "*Bam*";
+	dialogue[84][2] = "Guard: The brat is in here!";
+	dialogue[84][3] = "The door holds firm.";
+	dialogue[84][4] = "You need to run.";
+	dialogue[84][5] = "^";
+	
+	dialogue[85][0] = "You need to run.";
+	dialogue[85][1] = "@";
+	
+	dialogue[86][0] = "Guard: Oh look, there's our newest test subject.";
+	dialogue[86][1] = "^";
+	
+	dialogue[87][0] = "Jackson: Let me see your throat Alva.";
+	dialogue[87][1] = "Jackson: Can you make any sounds?";
+	dialogue[87][2] = "Jackson: ... It's alright. It's not your fault.";
+	dialogue[87][3] = "Jackson: Everyone else is gone. We need to leave now.";
+	dialogue[87][4] = "Jackson: They took my *Green Key* but...";
+	dialogue[87][5] = "Jackson: But I still have my screwdriver.";
+	dialogue[87][6] = "Jackson: Let's go.";
+	dialogue[87][7] = "@";
+	
+	
+	dialogue[88][0] = "*Pry* *Thunk*";
+	dialogue[88][1] = "^";
+
+
+	dialogue[89][0] = "Guard: Caught the mute!";
+	dialogue[89][1] = "Jackson: Alva, Alva!";
+	dialogue[89][2] = "@";
+	
+	dialogue[90][0] = "Jackson: I'm not leaving without her.";
+	dialogue[90][1] = "@";
+	
+
+	dialogue[91][0] = "Guard: It's the trouble maker! We got him!";
+	dialogue[91][1] = "Jackson: I'm sorry Alva.";
+	dialogue[91][2] = "^";
+	
+	dialogue[92][0] = "Jackson: I'm so sorry.";
+	dialogue[92][1] = "^";
+
+	dialogue[93][0] = "Jackson: Green key!";
+	dialogue[93][1] =  "^";
+	
+	dialogue[94][0] = "...He's dead.";
+	dialogue[94][1] = "He was helping me.";
+	dialogue[94][2] = "@";
+	
+	dialogue[95][0] = "Jackson: No - he's expecting that.";
+	dialogue[95][1] = "Jackson: I need another way.";
+	dialogue[95][2] = "@";
+	
+	dialogue[96][0] = "^";
+	
+	dialogue[97][0] = "Not this time.";
+	dialogue[97][1] = "Not again.";
+	dialogue[97][2] = "They will not hurt another child.";
+	dialogue[97][3] = "@";
+	
 	dialogue[98][0] = "Grandfather: Dead end, my dear.";
 	dialogue[98][1] = "Grandmother: Three weeks - where could they be?.";
 	dialogue[98][2] = "Grandfather: We'll find them. I promise.";
 	dialogue[98][3] = "@";
+	
+	dialogue[99][0] = "The backpack.";
+	dialogue[99][1] = "@";
+	
+	dialogue[100][0] = "There.";
+	dialogue[100][1] = "@";
+
+
+	dialogue[101][0] = "*Crick*";
+	dialogue[101][1] = "@";
+	
+
+	dialogue[102][0] = "The block has a strange humming sound.";
+	dialogue[102][1] = "@";
+	
+	dialogue[103][0] = "A mechanical block in two pieces.";
+	dialogue[103][1] = "@";
+	
+	dialogue[104][0] = "The light burns. You can't cross.";
+	dialogue[104][1] = "@";
+	
+	dialogue[105][0] = "No time to add names...";
+	dialogue[105][1] = "The flowers don't need to be replaced yet.";
+	dialogue[105][2] = "@";
+	
+	dialogue[106][0] = "He's alive.";
+	dialogue[106][1] = "^";
+	dialogue[106][2] = "Time to get you out of here...";
+	dialogue[106][3] = "Squirt.";
+	dialogue[106][4] = "@";
+
+	dialogue[107][0] = "^";
+	dialogue[107][1] = "*Boom*";
+	dialogue[107][2] = "You'd been afraid of this.";
+	dialogue[107][2] = "@";
+	
+	dialogue[108][0] = "*Sniff*";
+	dialogue[108][1] = "The boy's not there.";
+	dialogue[108][2] = "@";
+	
+	dialogue[109][0] = "You will not leave the boy here.";
+	dialogue[109][1] = "@";
+	
+	dialogue[110][0] = "You will not leave the boy here.";
+	dialogue[110][1] = "@";
+	
+	
+
 	}
 	
 	public void readDialogue(int newscript)
@@ -314,11 +503,19 @@ int scriptnumber;
 					{
 						gameinfo.currentyear = 2052;
 						gameinfo.changeRoom(2);
-						sprite.setGameSprite(1,3, 'E');
+						sprite.setGameSprite(1,2, 'E');
 						list.Note1= true;
 						list.switchYellowKey();
 						list.switchGreenKey();
-						list.switchRedKey();
+						list.switchPowerSwitch();
+						System.out.println(list.checkBrokenWireBox());
+						if(list.checkBrokenWireBox() == true)
+						{
+							list.actSearWireBox();
+						}
+						
+						else
+							list.actReinforcedSimpleDoor();
 						list.actNight2();
 						readDialogue(59);
 						firstbranch = false;
@@ -352,7 +549,7 @@ int scriptnumber;
 					if(scriptnumber == 17 && firstbranch == true)
 					{
 						gameinfo.changeRoom(10);
-						sprite.setGameSprite(2,1,'S');
+						sprite.setGameSprite(1,1,'S');
 						readDialogue(16);
 						firstbranch = false;
 
@@ -368,11 +565,12 @@ int scriptnumber;
 					
 					if (scriptnumber == 24 && firstbranch == true)
 					{
+						ongoingdialogue = 2;
 						sprite.switchAlvaFollow();
 						list.switchDoorHold1();
-						system.endDialogue();
-						system.startMove();
 						firstbranch = false;
+						continueDialogue(2);
+
 					}
 					
 					if (scriptnumber == 25 && firstbranch == true)
@@ -405,7 +603,7 @@ int scriptnumber;
 					{	
 						list.actRemovePanel();
 						gameinfo.changeRoom(11);
-						sprite.setGameSprite (17, 7, 'N');
+						sprite.setGameSprite (17, 8, 'N');
 						system.endDialogue();
 						firstbranch = false;
 						system.startMove();
@@ -416,7 +614,14 @@ int scriptnumber;
 						sprite.switchAlvaFollow();
 						readDialogue(57);
 						firstbranch = false;
-
+					}
+					
+					if(scriptnumber == 48 && firstbranch == true)
+					{
+						list.actRetrieveFatherID();
+						system.endDialogue();
+						firstbranch = false;
+						system.startMove();
 					}
 					
 					if(scriptnumber == 57 && firstbranch == true)
@@ -439,6 +644,151 @@ int scriptnumber;
 
 					}
 					
+					if(scriptnumber == 80 && firstbranch == true)
+					{
+						firstbranch = false;
+
+						gameinfo.changeRoom(14);	
+						sprite.setGameSprite (1, 2, 'N');
+						readDialogue(81);
+					}
+					
+					if(scriptnumber == 82 && firstbranch == true)					
+					{
+						list.actMeetMonster();
+						gameinfo.changeRoom(12);	
+						sprite.switchPresentMonster();
+						sprite.setGameSprite (4, 1, 'S');
+						sprite.setMonsterSprite(4,2,'N');
+						readDialogue(83);
+						firstbranch = false;
+					}
+
+					if(scriptnumber == 83 && firstbranch == true)					
+					{
+						sprite.changeDirection('W');
+						sprite.changeMonsterDirection('W');
+						sprite.setMonsterSprite(1,3, 'W');
+						readDialogue(84);
+						firstbranch = false;
+					}
+					
+					if(scriptnumber == 84 && firstbranch == true)					
+					{
+						list.actRun();
+						system.endDialogue();
+						system.startMove();
+						firstbranch = false;
+					}
+					
+					if(scriptnumber == 86 && firstbranch == true)					
+					{
+						firstbranch = false;
+
+						list.actNightofHorrors();
+						gameinfo.currentyear = gameinfo.gameyearpast;
+						gameinfo.changeRoom(15);
+						sprite.setGameSprite(1,5,'E');
+						list.switchRedKey();
+						list.switchYellowKey();
+						sprite.switchAlvaFollow();
+						sprite.alvaDirection = 'W';
+						readDialogue(87);
+					}
+					
+					if(scriptnumber == 88 && firstbranch == true)
+					{
+						firstbranch = false;
+
+						if(gameinfo.room == 17)
+						{	
+							list.actNorthWestVent();
+							sprite.setGameSprite(1,8,'E');
+							gameinfo.changeRoom(0);
+							sprite.switchAlvaFollow();
+							readDialogue(89);
+						}
+
+						
+						if(gameinfo.room == 8)
+						{
+							list.actSouthWestVent();
+							gameinfo.changeRoom(17); 
+							sprite.setGameSprite(3,7, 'W');
+							system.endDialogue();
+							system.startMove();
+						}
+						
+						if(gameinfo.room == 15)
+						{
+							list.actDormVent();
+							sprite.setGameSprite(5,3,'N');
+							gameinfo.changeRoom(8);
+							system.endDialogue();
+							system.startMove();
+						}
+
+						
+						
+						
+					}
+					
+					if(scriptnumber == 91 && firstbranch == true)					
+					{
+						firstbranch = false;
+						readDialogue(92);
+					}
+					if(scriptnumber == 92 && firstbranch == true)					
+					{
+
+						readDialogue(96);
+						firstbranch = false;
+					}
+					
+					
+					
+					if(scriptnumber == 96 && firstbranch == true)					
+					{
+						firstbranch = false;
+						gameinfo.gameday = 0;
+						gameinfo.currentyear = gameinfo.gameyearpresent;
+						gameinfo.MonsterMode();
+						list.actAlvaRampage();
+						list.actNightMonster();
+						gameinfo.changeRoom(15);
+						sprite.setGameSprite(1,18,'N');
+						inter.monster = true;
+						readDialogue(97);
+					}
+					
+					if(scriptnumber == 93 && firstbranch == true)					
+					{
+						list.actRetrieveGreenKey();
+						list.switchGreenKey();
+						system.endDialogue();
+						system.startMove();
+						firstbranch = false;
+
+					}
+					
+					if(scriptnumber == 106 && firstbranch == true)					
+					{
+						list.actRescueComplete();
+						sprite.switchCarrying();
+						ongoingdialogue = 2;
+						continueDialogue(2);
+						firstbranch = false;
+					}
+					
+					if(scriptnumber == 107 && firstbranch == true)					
+					{
+						sprite.switchCarrying();
+						gameinfo.changeRoom(16);
+						sprite.setGameSprite(3,1,'W');
+						list.actBreakWallBurial();
+						ongoingdialogue = 1;
+						continueDialogue(1);
+					}
 
 				}				
 			}
@@ -454,10 +804,7 @@ int scriptnumber;
 			{
 				gameinfo.finishBadEnd1();
 			}
-				
-	
 		}
-		
 		return ongoingdialogue;
 	}
 	

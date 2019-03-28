@@ -61,13 +61,20 @@ public class SimpleDoor extends GameObject {
 				if(gameinfo.getRoom() == 12)
 				{
 					gameinfo.changeRoom(13);
-					sprite.setGameSprite(5,3,'N');
+					sprite.setGameSprite(1,2,'N');
+					sprite.presentMonster = false;
 				}
 				
 				else
 				{
-					gameinfo.changeRoom(12);
-					sprite.setGameSprite(9,1,'S');	
+					if((list.checkRun() == true && list.checkNightofHorrors() == true) || list.checkRun() == false)
+					{
+						gameinfo.changeRoom(12);
+						sprite.setGameSprite(9,1,'S');
+					}
+					
+					else
+						log.readDialogue(85);
 				}
 			}
 		}
@@ -156,8 +163,6 @@ public class SimpleDoor extends GameObject {
 			
 			g.drawLine(RelativeX+10, RelativeY, RelativeX+10, RelativeY+49);
 			g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
-			
-			g.fillRect(RelativeX+35, RelativeY, 5, 50);
 		}
 	}
 }

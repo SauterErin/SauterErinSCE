@@ -183,7 +183,14 @@ public class GameFrame extends JFrame {
 						
 						if(e.getKeyCode() == KeyEvent.VK_3)
 						{
-							screen.log.readDialogue(51);
+							screen.log.readDialogue(91);
+							screen.list.redkey = true;
+							screen.list.removeWallPanel = true;
+							screen.list.retrieveScrewdriver = true;
+							screen.list.meetAlva = true;
+							screen.list.night2 = true;
+							screen.list.nightofHorrors = true;
+
 						}
 						
 						if(e.getKeyCode() == KeyEvent.VK_LEFT)
@@ -195,7 +202,7 @@ public class GameFrame extends JFrame {
 							
 							else if (screen.sprite.checkDirection() =='W') 
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].checkMoveAction()==true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].checkMoveAction()==true && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
 								{
 									screen.sprite.changeX(-1);
 									screen.changeX(-1);
@@ -213,7 +220,7 @@ public class GameFrame extends JFrame {
 							
 							else if (screen.sprite.checkDirection() =='N') 
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].checkMoveAction()==true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].checkMoveAction()==true  && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
 								{
 									screen.sprite.changeY(-1);
 									screen.changeY(-1);
@@ -231,7 +238,7 @@ public class GameFrame extends JFrame {
 							
 							else if(screen.sprite.checkDirection() == 'S')
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].checkMoveAction() ==true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].checkMoveAction() ==true  && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
 								{
 
 									screen.sprite.changeY(+1);
@@ -249,7 +256,7 @@ public class GameFrame extends JFrame {
 							
 							else if (screen.sprite.checkDirection() == 'E')
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].checkMoveAction() == true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].checkMoveAction() == true  && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
 								{
 									screen.sprite.changeX(+1);
 									screen.changeX(+1);

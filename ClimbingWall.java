@@ -22,6 +22,22 @@ public class ClimbingWall extends GameObject{
 		{
 			log.readDialogue(19);
 		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent & list.checkNightofFire() == false &list.checkAlvaRampage() == false)
+		{
+			log.readDialogue(62);
+		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent & list.checkNightofFire() == false &list.checkAlvaRampage() == true)
+		{
+			log.readDialogue(63);
+		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent & list.checkNightofFire() == true &list.checkAlvaRampage() == true)
+		{
+			
+		}
+		
 	}
 	
 	public void paintComponent(Graphics g)
@@ -73,7 +89,7 @@ public class ClimbingWall extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		if (gameinfo.returnYear() == gameinfo.gameyearpast)
+		if (gameinfo.returnYear() == gameinfo.gameyearpast || list.checkAlvaRampage() == true)
 		{	g.setColor(Color.getHSBColor(169, 104, 54));
 
 			g.drawLine(RelativeX+20, RelativeY, RelativeX+20, RelativeY+49);

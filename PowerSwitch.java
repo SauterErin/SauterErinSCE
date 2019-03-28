@@ -13,7 +13,21 @@ public class PowerSwitch extends GameObject{
 	
 	public void interactObject()
 	{
-		log.readDialogue(8);
+		if(list.checkNight2() == false && list.checkPowerSwitch() == true)
+			log.readDialogue(8);
+		if(list.checkNight2() == false && list.checkPowerSwitch() == false)
+			log.readDialogue(65);
+		
+		if(list.checkNight2() == true && list.checkNightofFireRescue() == false)
+		{
+			log.readDialogue(67);
+		}
+		
+		if(list.checkNightofFireRescue() == true)
+		{
+			log.readDialogue(66);
+		}
+
 	}
 	
 	public void paintComponent(Graphics g)

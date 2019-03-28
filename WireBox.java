@@ -114,13 +114,17 @@ public class WireBox extends GameObject{
 		}
 
 		
-		if(list.checkBrokenWireBox() == true && list.checkSearWireBox() == true)
+		if(list.checkSearWireBox() == true)
 		{	
 			g.setColor(Color.gray);
 			g.fillRect(RelativeX+5, RelativeY+2, 40, 46);
 			
 			g.setColor(Color.darkGray);
 			g.drawRect(RelativeX+5, RelativeY+2,40,46);
+			g.drawRect(RelativeX+6, RelativeY+3,39,45);
+			g.drawRect(RelativeX+7, RelativeY+4,38,44);
+			g.drawRect(RelativeX+8, RelativeY+5,37,43);
+
 		}
 
 	}

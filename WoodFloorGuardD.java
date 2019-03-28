@@ -1,10 +1,10 @@
 package choice;
 import java.awt.*;
-public class WoodFloorNote extends GameObject{
+public class WoodFloorGuardD extends GameObject{
 
 	List list;
 	
-	public WoodFloorNote (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public WoodFloorGuardD (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = true;
@@ -13,17 +13,12 @@ public class WoodFloorNote extends GameObject{
 	
 	public void interactObject()
 	{
-		if(list.checkNote2() == false)
-		{
-			log.readDialogue(20);
-		}
 	}
 	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 
-		move = true;
 		g.setColor(new Color(96,45, 6));	
 		if(gameinfo.returnYear() == gameinfo.gameyearpast)
 			g.setColor(new Color(121,94, 32));
@@ -43,12 +38,13 @@ public class WoodFloorNote extends GameObject{
 		g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
 		g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
 		
-		if(list.checkNote2() == false)
+		if(list.checkRun() == true && list.checkNightofHorrors() == false)
 		{
 			move = false;
-			g.setColor(Color.yellow);
-			g.fillRect(RelativeX+10, RelativeY+10, 5, 5);
-		}	
-
+			g.setColor(Color.white);
+			g.fillRect(RelativeX+8, RelativeY+8, 24, 34);
+			g.setColor(Color.red);
+			g.fillRect(RelativeX+32, RelativeY+8, 10,34);
+		}
 	}
 }

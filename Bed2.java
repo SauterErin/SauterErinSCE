@@ -13,10 +13,24 @@ public class Bed2 extends GameObject{
 	
 	public void interactObject()
 	{
-		if(list.checkYellowKey() == true && list.checkEscape() == false && gameinfo.currentyear == 2052)
+		if(list.checkYellowKey() == true && list.checkNight2() == false && gameinfo.currentyear == 2052)
 			log.readDialogue(14);
-		if(list.checkYellowKey() == false && list.checkEscape() == false && gameinfo.currentyear == 2052 )
+		if(list.checkYellowKey() == false && gameinfo.currentyear == 2052 )
 			log.readDialogue(0);
+		if(list.checkNight2() == true && list.checkNightofFire() == false)
+		{
+			log.readDialogue(69);
+		}
+		
+		if(list.checkNightofFire() == true && list.checkNightofFireRescue() == false)
+		{
+			log.readDialogue(70);
+		}
+		
+		if(list.checkNightofFireRescue() == true)
+		{
+			log.readDialogue(71);
+		}
 	}
 	
 	public void paintComponent(Graphics g)
@@ -26,7 +40,7 @@ public class Bed2 extends GameObject{
 		if(gameinfo.currentyear == 2052)
 		{
 			move = false;
-			g.setColor(Color.green);
+			g.setColor(Color.blue);
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 	
 			g.setColor(Color.white);

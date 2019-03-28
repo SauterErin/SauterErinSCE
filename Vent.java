@@ -14,24 +14,46 @@ public class Vent extends GameObject{
 	public void interactObject()
 	{
 		if(gameinfo.returnYear() == gameinfo.gameyearpast)
-		{	boolean onechoice = true;
+		{	
+			boolean onechoice = true;
+			System.out.println(gameinfo.getRoom());
+			System.out.println(sprite.checkDirection());
+
 			if (gameinfo.getRoom() == 7 && onechoice == true && list.checkPastBreakWall() == false)
-			{	
+			{
+				onechoice = false;
 				log.readDialogue(28);
 			}					
 			if (gameinfo.getRoom() == 7 && onechoice == true && list.checkPastBreakWall() == true)
 			{
 				log.readDialogue(42);
+				onechoice = false;
 			}
 							
 			if (gameinfo.getRoom() == 12)
 			{
 				log.readDialogue(44);
+				onechoice = false;
 			}					
 			
-			if (gameinfo.getRoom() == 0 && onechoice == true && list.checkNightofHorrors() == false)
+			if (gameinfo.getRoom() == 0 && onechoice == true && list.checkNightofHorrors() == false && sprite.checkDirection() == 'N')
+			{
+				onechoice = false;
+				log.readDialogue(61);			}
+			
+			if (gameinfo.getRoom() == 0 && onechoice == true && list.checkNightofHorrors() == false && sprite.checkDirection() == 'W')
 			{
 				log.readDialogue(43);
+			}
+			
+			if (gameinfo.getRoom() == 0 && onechoice == true && list.checkNightofHorrors() == true && sprite.checkDirection() == 'N')
+			{
+				log.readDialogue(90);
+			}
+			
+			if (gameinfo.getRoom() == 0 && onechoice == true && list.checkNightofHorrors() == true && sprite.checkDirection() == 'W')
+			{
+				log.readDialogue(95);
 			}
 			
 			if (gameinfo.getRoom() == 8 && onechoice == true && list.checkNightofHorrors() == false && sprite.getX() == 1)
@@ -47,10 +69,75 @@ public class Vent extends GameObject{
 			if (gameinfo.getRoom() == 8 && onechoice == true && list.checkNightofHorrors() == false && sprite.getX() == 5 && list.checkRemovePanel() == true)
 			{	
 				log.readDialogue(46);
+				onechoice = false;
 			}
+			
+			if (gameinfo.getRoom() == 8 && onechoice == true && list.checkNightofHorrors() == true && sprite.getX() == 1)
+			{	
+				if(list.prySouthWestVent() == false)
+					log.readDialogue(88);
+				else
+				{
+					sprite.setGameSprite(3,7,'W');
+					gameinfo.changeRoom(17);
+				}
+				onechoice = false;
+			}
+			
+			if (gameinfo.getRoom() == 8 && onechoice == true && list.checkNightofHorrors() == true && sprite.getY() == 3)
+			{	
+				sprite.setGameSprite(5,1,'S');
+				gameinfo.changeRoom(15);
+				onechoice = false;
+			}
+			
+			if (gameinfo.getRoom() == 17 && onechoice == true && list.checkNightofHorrors() == true && sprite.getY() == 7)
+			{	
+				sprite.setGameSprite(1,1,'E');
+				gameinfo.changeRoom(8);
+				onechoice = false;
+			}
+			
+			if (gameinfo.getRoom() == 17 && onechoice == true && list.checkNightofHorrors() == true && sprite.getY() == 3)
+			{	
+				log.readDialogue(88);
+			}
+			
+			if (gameinfo.getRoom() == 15 && onechoice == true && list.checkNightofHorrors() == false)
+			{	
+				log.readDialogue(47);
+				onechoice = false;
+			}
+		
+			if (gameinfo.getRoom() == 15 && onechoice == true && list.checkNightofHorrors() == true)
+			{	
+				if(list.pryDormVent() == false)
+					log.readDialogue(88);
+				else
+				{
+					sprite.setGameSprite(5,3,'N');
+					gameinfo.changeRoom(8);
+				}
+				onechoice = false;
+			}
+			
+			// if game room North Exit
+			/*{
+				gamenifo.changeRoom(0);
+				onechoice = false;
+				sprite.setGameSprite(9,1,'S');
+			}*/
+			
+			// if game room West Hall
+			/*{
+				gamenifo.changeRoom(0);
+				sprite.setGameSprite(1,8,'E');
+			}*/
+			
+			
 		}
 		
-		if(gameinfo.returnYear() == gameinfo.gameyearpresent && list.checkNightofFire() == false)
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent)
 		{
 			log.readDialogue(45);
 		}
@@ -109,12 +196,6 @@ public class Vent extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		if(gameinfo.returnYear() == gameinfo.gameyearpresent)
-		{
-			g.setColor(Color.darkGray);
-			g.fillRect(RelativeX+10, RelativeY+5, 30,40);
-		}
-		
 		if(gameinfo.returnYear() == gameinfo.gameyearpast)
 		{
 			g.setColor(Color.GRAY);
@@ -128,6 +209,68 @@ public class Vent extends GameObject{
 			g.fillRect(RelativeX+15, RelativeY+29, 15, 3);
 
 			g.fillRect(RelativeX+15, RelativeY+36, 15, 3);
+		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpresent || list.checkNightofHorrors() == true)
+		{
+			g.setColor(Color.darkGray);
+			g.fillRect(RelativeX+10, RelativeY+5, 30,40);
+		}
+		
+
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpast &&  list.checkNightofHorrors() == true && list.pryDormVent() == true  && ((gameinfo.getRoom() == 15 && y == 0) || gameinfo.getRoom() == 8 && y == 4))
+		{
+			g.setColor(Color.GRAY);
+			g.fillRect(RelativeX+10, RelativeY+5, 30,40);
+			g.setColor(Color.black);
+			g.fillRect(RelativeX+15, RelativeY+15, 15, 3);
+			
+			g.fillRect(RelativeX+15, RelativeY+22, 15, 3);
+
+			
+			g.fillRect(RelativeX+15, RelativeY+29, 15, 3);
+
+			g.fillRect(RelativeX+15, RelativeY+36, 15, 3);
+			
+			g.setColor(Color.darkGray);
+			g.fillRect(RelativeX+20, RelativeY+10, 30,40);
+		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpast &&  list.checkNightofHorrors() == true && list.pryNorthWestVent() == true  == true && list.prySouthWestVent() == true && ((gameinfo.getRoom() == 17 && y == 2) || gameinfo.getRoom() == 0 && x == 0))
+		{
+			g.setColor(Color.GRAY);
+			g.fillRect(RelativeX+10, RelativeY+5, 30,40);
+			g.setColor(Color.black);
+			g.fillRect(RelativeX+15, RelativeY+15, 15, 3);
+			
+			g.fillRect(RelativeX+15, RelativeY+22, 15, 3);
+
+			
+			g.fillRect(RelativeX+15, RelativeY+29, 15, 3);
+
+			g.fillRect(RelativeX+15, RelativeY+36, 15, 3);
+			
+			g.setColor(Color.darkGray);
+			g.fillRect(RelativeX+20, RelativeY+10, 30,40);
+		}
+		
+		if(gameinfo.returnYear() == gameinfo.gameyearpast &&  list.checkNightofHorrors() == true && list.prySouthWestVent() == true && ((gameinfo.getRoom() == 17 && y == 7) || gameinfo.getRoom() == 8 && x == 0))
+		{
+			g.setColor(Color.GRAY);
+			g.fillRect(RelativeX+10, RelativeY+5, 30,40);
+			g.setColor(Color.black);
+			g.fillRect(RelativeX+15, RelativeY+15, 15, 3);
+			
+			g.fillRect(RelativeX+15, RelativeY+22, 15, 3);
+
+			
+			g.fillRect(RelativeX+15, RelativeY+29, 15, 3);
+
+			g.fillRect(RelativeX+15, RelativeY+36, 15, 3);
+			
+			g.setColor(Color.darkGray);
+			g.fillRect(RelativeX+20, RelativeY+10, 30,40);
 		}
 
 	}

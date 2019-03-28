@@ -61,18 +61,28 @@ public class RedDoor extends GameObject {
 			{
 				if(gameinfo.getRoom() == 4)
 				{
-					if(list.checkHideRedKey() == false)
+					if(list.checkHideRedKey() == false && sprite.checkAlvaFollow() == true)
 					{
 						log.readDialogue(24);
 					}
 					
-					else
+					if(list.checkHideRedKey() == false && sprite.checkAlvaFollow() == false)
+					{
+						log.readDialogue(64);
+					}	
+					
+					if(list.checkHideRedKey() == true)
 					{
 						gameinfo.changeRoom(0);
 						sprite.setGameSprite (13, 6, 'S');
 						list.switchDoorHold1();
 						sprite.switchAlvaFollow();	
 					}
+				}
+				
+				else
+				{
+					log.readDialogue(12);
 				}
 			}
 		}

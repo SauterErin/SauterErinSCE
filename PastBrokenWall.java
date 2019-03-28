@@ -16,7 +16,7 @@ public class PastBrokenWall extends GameObject{
 		if (list.checkPastBreakWall() == true)
 		{
 			gameinfo.changeRoom(11);
-			sprite.setGameSprite(1,7,'N');
+			sprite.setGameSprite(1,8,'N');
 		}
 	}
 	

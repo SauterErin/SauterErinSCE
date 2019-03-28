@@ -206,9 +206,9 @@ public class GameScreen extends JPanel {
 		
 		//Room 0 - North Hallway
 		room[0][6][0] = new BrickWall(6,0,gameinfo,list,log, sprite);
-		room[0][7][0] = new BrickWall(7,0,gameinfo,list,log, sprite);
+		room[0][7][0] = new BrokenWall(7,0,gameinfo,list,log, sprite);
 		room[0][8][0] = new PurpleDoor(8,0,gameinfo,list,log, sprite);
-		room[0][9][0] = new BrickWall(9,0,gameinfo,list,log, sprite);
+		room[0][9][0] = new Vent(9,0,gameinfo,list,log, sprite);
 		room[0][10][0] = new BrickWall(10,0,gameinfo,list,log, sprite);
 
 		room[0][6][1] = new BrickWall(6,1, gameinfo,list, log, sprite);
@@ -243,7 +243,7 @@ public class GameScreen extends JPanel {
 		room[0][3][5] = new RedDoor(3,5,gameinfo, list, log, sprite);
 
 		room[0][0][5] = new BrickWall(0,5,gameinfo, list, log, sprite);
-		room[0][0][6] = new BrickWall(0,6,gameinfo, list, log, sprite);
+		room[0][0][6] = new BrokenWall(0,6,gameinfo, list, log, sprite);
 		room[0][0][7] = new BlueDoor(0,7,gameinfo, list, log, sprite);
 		room[0][0][8] = new Vent(0,8,gameinfo, list, log, sprite);
 		room[0][0][9] = new BrickWall(0,9,gameinfo, list, log, sprite);
@@ -265,7 +265,7 @@ public class GameScreen extends JPanel {
 		room[0][16][9] = new BrickWall(16,9, gameinfo, list, log, sprite);
 		room[0][16][6] = new BrickWall(16,6, gameinfo, list, log, sprite);
 		room[0][16][7] = new GreenDoor(16,7, gameinfo, list, log, sprite);
-		room[0][16][8] = new BrickWall(16,8, gameinfo, list, log, sprite);
+		room[0][16][8] = new BrokenWall(16,8, gameinfo, list, log, sprite);
 
 		for (int i = 0; i < 3; i++)
 		{ for (int j = 0; j < 17; j++)
@@ -290,6 +290,8 @@ public class GameScreen extends JPanel {
 		room[0][16][7] = new BlueDoor(16,7, gameinfo, list, log, sprite);
 		room[0][6][11] = new GraveStone(6, 11, gameinfo, list, log, sprite);
 		room[0][7][11] = new MonsterGrass(7, 11, gameinfo, list, log, sprite);
+		room[0][3][6] = new WoodFloorNote(3,6,gameinfo,list,log,sprite);
+		room[0][7][1] = new WoodFloorGreenKey(7,1,gameinfo,list,log,sprite);
 
 	
 		// Room 1 - Power Room
@@ -376,8 +378,8 @@ public class GameScreen extends JPanel {
 		room[7][0][0] = new BrickWall(0,0, gameinfo, list, log, sprite);
 		room[7][0][1] = new BrickWall(0,1, gameinfo, list, log, sprite);
 		room[7][0][2] = new BlueDoor(0,2, gameinfo, list, log, sprite);
-		room[7][0][3] = new BrickWall(0,3, gameinfo, list, log, sprite);
 		room[7][0][4] = new BrickWall(0,4, gameinfo, list, log, sprite);
+		room[7][0][3] = new BrokenWall(0,3, gameinfo, list, log, sprite);
 		room[7][0][5] = new BrickWall(0,5, gameinfo, list, log, sprite);
 		room[7][0][6] = new BrokenWall(0,6, gameinfo, list, log, sprite);
 		room[7][0][7] = new GreenDoor(0,7, gameinfo, list, log, sprite);
@@ -394,7 +396,7 @@ public class GameScreen extends JPanel {
 		room[7][4][5] = new BrickWall(4,5, gameinfo, list, log, sprite);
 		room[7][4][6] = new Vent(4,6, gameinfo, list, log, sprite);
 		room[7][4][7] = new BlueDoor(4,7, gameinfo, list, log, sprite);
-		room[7][4][8] = new BrickWall(4,8, gameinfo, list, log, sprite);
+		room[7][4][8] = new BrokenWall(4,8, gameinfo, list, log, sprite);
 		room[7][4][9] = new BrickWall(4,9, gameinfo, list, log, sprite);
 		room[7][4][10] = new BrickWall(4,10, gameinfo, list, log, sprite);
 		room[7][4][11] = new BrickWall(4,11, gameinfo, list, log, sprite);
@@ -402,10 +404,11 @@ public class GameScreen extends JPanel {
 		room[7][1][0] = new BrickWall(1,0, gameinfo, list, log, sprite);
 		room[7][2][0] = new BrickWall(2,0, gameinfo, list, log, sprite);
 		room[7][3][0] = new PastBrokenWall(3,0, gameinfo, list, log, sprite);
-		room[7][1][11] = new BrickWall(1,11, gameinfo, list, log, sprite);
+		room[7][1][11] = new BrokenWall(1,11, gameinfo, list, log, sprite);
 		room[7][2][11] = new GreenDoor(2,11, gameinfo, list, log, sprite);
 		room[7][3][11] = new BrickWall(3,11, gameinfo, list, log, sprite);
 
+		
 		for (int i = 1; i < 4; i++)
 		{
 			for (int j = 1; j < 11; j++)
@@ -413,6 +416,17 @@ public class GameScreen extends JPanel {
 				room[7][i][j] = new WoodFloor(i,j, gameinfo, list,log,sprite);
 			}
 		}
+		
+
+		room[7][3][2] = new WoodFloorGuardN(3,2, gameinfo, list, log, sprite);
+		room[7][2][1] = new WoodFloorGuardE(2,1, gameinfo, list, log, sprite);
+		
+		for(int i = 2;  i< 4; i++)
+		{
+			room[7][i][4] = new WoodFloorBlock(i,4, gameinfo,list,log,sprite);
+		}
+		
+		room[7][1][4] = new WoodFloorBlockSource(1,4,gameinfo,list,log,sprite);
 		//Room 8 - South Hall
 		
 		for (int i = 1; i < 8; i++)
@@ -437,8 +451,14 @@ public class GameScreen extends JPanel {
 		room[8][0][2] = new BlueDoor(0,2,gameinfo,list,log,sprite);
 		room[8][0][1] = new Vent(0,1,gameinfo,list,log,sprite);
 		room[8][5][4] = new Vent(5,4,gameinfo,list,log,sprite);
+		room[8][5][0] = new BrokenWall(5,0,gameinfo,list,log,sprite);
+		room[8][3][4] = new BrokenWall(3,4,gameinfo,list,log,sprite);
+		room[8][0][3] = new BrokenWall(0,3,gameinfo,list,log,sprite);
 		room[8][6][0] = new GreenDoor(6,0,gameinfo,list,log,sprite);
 		room[8][4][4] = new YellowDoor(4,4,gameinfo,list,log,sprite);
+		room[8][2][1] = new WoodFloorBlockSource(2,1,gameinfo,list,log,sprite);
+		room[8][2][2] = new WoodFloorBlock(2,2,gameinfo,list,log,sprite);
+		room[8][2][3] = new WoodFloorBlock(2,3,gameinfo,list,log,sprite);
 		
 
 		//Room 9 - Yard
@@ -461,6 +481,25 @@ public class GameScreen extends JPanel {
 		
 		room[9][16][12] = new GreenDoor(16,12, gameinfo, list, log, sprite);
 		room[9][8][0] = new GreenDoor(8,0, gameinfo, list, log, sprite);
+		room[9][8][2] = new GrassGuardN(8,2,gameinfo,list,log,sprite);
+		room[9][7][1] = new GrassGuardW(7,1,gameinfo,list,log,sprite);
+		room[9][9][1] = new GrassGuardE(9,1,gameinfo,list,log,sprite);
+
+		room[9][7][0] = new BrokenWall(7,0,gameinfo,list,log,sprite);
+		room[9][16][11] = new BrokenWall(16,11,gameinfo,list,log,sprite);
+		
+		room[9][6][2] = new GraveStone(6,2, gameinfo,list,log,sprite);
+		room[9][6][5] = new GraveStone(6,5, gameinfo,list,log,sprite);
+		room[9][6][8] = new GraveStone(6,8, gameinfo,list,log,sprite);
+		room[9][6][11] = new GraveStone(6,11, gameinfo,list,log,sprite);
+		room[9][6][14] = new GraveStone(6,14, gameinfo,list,log,sprite);
+		room[9][11][2] = new NewGraveStone(11,2, gameinfo,list,log,sprite);
+		room[9][10][2] = new GraveDirt(10,2, gameinfo,list,log,sprite);
+
+		
+
+		
+		
 
 		// Room 10 - Attic
 		
@@ -535,6 +574,7 @@ public class GameScreen extends JPanel {
 		
 		room[12][0][2] = new Vent(0,2,gameinfo,list,log,sprite);
 		room[12][0][3] = new BlueDoor (0,3,gameinfo,list,log,sprite);
+		room[12][0][4] = new BrokenWall (0,4,gameinfo,list,log,sprite);
 		room[12][10][0] = new WireBox(10,0,gameinfo,list,log,sprite);
 		room[12][9][0] = new SimpleDoor(9,0,gameinfo,list,log,sprite);
 		room[12][4][0] = new YellowDoor(4,0,gameinfo,list,log,sprite);
@@ -578,7 +618,7 @@ public class GameScreen extends JPanel {
 		}
 		room[14][2][1] = new Desk(2,1,gameinfo,list,log,sprite);
 		room[14][1][3] = new YellowDoor(1,3,gameinfo,list,log,sprite);
-		room[14][2][2] = new WoodFloorID(2,3,gameinfo,list,log,sprite);
+		room[14][2][2] = new WoodFloorID(2,2,gameinfo,list,log,sprite);
 		
 		//Room 15 - Old Dorm room 
 		
@@ -621,9 +661,103 @@ public class GameScreen extends JPanel {
 
 		room [15][7][15] = new JacksonBed1(7,15,gameinfo,list,log,sprite);
 		room [15][7][16] = new JacksonBed2(7,16,gameinfo,list,log,sprite);
+
+		room [15][3][0] = new BrokenWall(3,0,gameinfo,list,log,sprite);
+		room [15][4][0] = new YellowDoor(4,0,gameinfo,list,log,sprite);
+		room [15][5][0] = new Vent(5,0,gameinfo,list,log,sprite);
+		room[15][9][18] = new FloorHole(9,18,gameinfo,list,log,sprite);
+		room[15][2][18] = new WoodFloorBackpack(2,18,gameinfo,list,log,sprite);
 		
-		room [15][0][4] = new YellowDoor(0,4,gameinfo,list,log,sprite);
-		room [15][0][5] = new Vent(0,5,gameinfo,list,log,sprite);
+		
+		// Holding Room A
+		
+		for(int i = 0; i < 5; i ++)
+		{
+			for(int j = 0; j < 5; j++)
+			room[16][i][j]  = new BrickWall(i,j, gameinfo,list,log,sprite);
+		}
+		
+		for(int i = 1; i < 4; i ++)
+		{
+			for(int j = 1; j < 4; j++)
+			room[16][i][j]  = new WoodFloor(i,j, gameinfo,list,log,sprite);
+		}
+		
+		room[16][1][1] = new WoodFloorFather(1,1,gameinfo,list,log,sprite);
+		room[16][2][1] = new WoodFloorPurpleKey (2,1,gameinfo,list,log,sprite);
+		room[16][4][1] = new BrokenWall (4,1,gameinfo,list,log,sprite);
+		room[16][4][2] = new BlueDoor(4,2,gameinfo,list,log,sprite);
+
+		
+		// West Hall
+		
+		for(int i = 0; i < 5; i ++)
+		{
+			room[17][i][0]  = new BrickWall(i,0, gameinfo,list,log,sprite);
+			room[17][i][10]  = new BrickWall(i,10, gameinfo,list,log,sprite);
+		}
+		
+		for(int i = 1; i < 10; i ++)
+		{
+			room[17][0][i]  = new BrickWall(0,i, gameinfo,list,log,sprite);
+			room[17][4][i]  = new BrickWall(4,i, gameinfo,list,log,sprite);
+		}
+		
+		for(int i = 1; i < 10; i++)
+		{
+			room[17][1][i] = new WoodFloor(1,i,gameinfo,list,log,sprite);
+			room[17][3][i] = new WoodFloor(3,i,gameinfo,list,log,sprite);
+			room[17][2][i] = new WoodFloorBlock(2,i,gameinfo,list,log,sprite);
+		}
+		
+		room[17][2][1] = new WoodFloorBlockSource(2,1,gameinfo,list,log,sprite);
+		room[17][4][7] = new Vent(4,7,gameinfo,list,log,sprite);
+		room[17][4][3] = new Vent(4,3,gameinfo,list,log,sprite);
+		room[17][4][2] = new BlueDoor(4,2,gameinfo,list,log,sprite);
+		room[17][4][8] = new BlueDoor(4,8,gameinfo,list,log,sprite);
+		room[17][4][1] = new BrokenWall(4,1,gameinfo,list,log,sprite);
+		room[17][4][9] = new BrokenWall(4,9,gameinfo,list,log,sprite);
+		room[17][0][2] = new BlueDoor(0,2,gameinfo,list,log,sprite);
+		room[17][0][8] = new BlueDoor(0,8,gameinfo,list,log,sprite);
+		room[17][0][1] = new BrokenWall(0,1,gameinfo,list,log,sprite);
+		room[17][0][9] = new BrokenWall(0,9,gameinfo,list,log,sprite);
+		
+		for(int i = 0; i<5; i++)
+		{
+			room[18][i][0] = new BrickWall(i,0,gameinfo,list,log,sprite);
+			room[18][i][4] = new BrickWall(i,0,gameinfo,list,log,sprite);
+		}
+		
+		for(int j = 1; j < 4; j++)
+		{
+			room[18][0][j] = new BrickWall(0,j,gameinfo,list,log,sprite);
+			room[18][4][j] = new BrickWall(4,j,gameinfo,list,log,sprite);
+		}
+		
+		for(int i = 1; i<4; i++)
+		{
+			for(int j = 1; j < 4; j++)
+			{
+				room[18][i][j] = new WoodFloor(i,j,gameinfo,list,log,sprite);
+	
+			}
+		}
+		
+		room[18][1][1] = new WoodFloorBoy(1,1,gameinfo,list,log,sprite);
+		room[18][4][2] = new BlueDoor(4,2,gameinfo,list,log,sprite);
+		room[18][4][3] = new BrokenWall(4,3,gameinfo,list,log,sprite);
+
+
+		
+		
+		
+		
+		// Holding Room B
+		
+		
+		
+		
+		
 
 	}
 

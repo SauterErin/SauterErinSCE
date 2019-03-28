@@ -7,6 +7,7 @@ public class InteractionPanel extends JPanel {
 	
 	String dialogue;
 	boolean endscript;
+	boolean monster;
 
 	
 	public InteractionPanel ()
@@ -32,12 +33,16 @@ public class InteractionPanel extends JPanel {
 			super.paintComponent(g);
 		
 		g.setColor(Color.gray);
-		g.fillRect(000,500,500,400);
+		if(monster == true)
+			g.setColor(Color.black);
+		g.fillRect(000,500,700,400);
 		g.setColor(Color.white);
 		}
 		
 		else 
 			g.setColor(Color.white);
-			g.drawString(dialogue, 140, 550);
+		if(monster == true)
+			g.setColor(Color.red);
+		g.drawString(dialogue, 140, 550);
 	}
 }

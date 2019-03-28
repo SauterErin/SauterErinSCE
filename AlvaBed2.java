@@ -24,6 +24,7 @@ public class AlvaBed2 extends GameObject{
 			{
 				log.readDialogue(54);
 			}
+			
 		}
 		
 		else
@@ -57,10 +58,6 @@ public class AlvaBed2 extends GameObject{
 			g.fillRect(RelativeX, RelativeY+40, 10, 10);
 			g.fillRect(RelativeX+40, RelativeY+40, 10, 10);
 			
-			if(list.checkNightofHorrors() == false)
-			{
-				g.fillRect(RelativeX+10, RelativeY+10, 25,25);
-			}
 		}
 	}
 }

@@ -30,14 +30,40 @@ public class List {
 	boolean nightofHorrors;
 	boolean nightofFire;
 	boolean night2;
+	boolean alvaRampage;
+	boolean NightofFireRescue;
+	boolean breakWallNorthWestPassage;
+	boolean breakWallSouthWestPassage;
+	boolean breakWallNorthEastPassage;
+	boolean run;
+	boolean meetMonster;
+	boolean nightMonster;
+	boolean northWestVent;
+	boolean southWestVent;
+	boolean dormVent;
+	boolean blockA;
+	boolean blockB;
+	boolean blockC;
+	boolean retrieveGreenKey;
+	 boolean retrieveBackpack;
+	 boolean breakEastPassage;
+	boolean rescueComplete;
+	boolean breakWallBurial;
+	boolean burial;
+	 boolean breakWallRescue;
 
 	
 	public List ()
 	
-	{
+	{	
+		breakWallRescue = false;
+		burial = false;
+		breakWallBurial = false;
+		rescueComplete = false;
 		night2 = false;
 		Note1 = false;
 		Note2 = false;
+		breakEastPassage = false;
 		wall2 = false;
 		floor1 = false;
 		floor2 = false;
@@ -63,6 +89,23 @@ public class List {
 		removePanel = false;
 		nightofHorrors = false;
 		nightofFire = false;
+		alvaRampage = false;
+		NightofFireRescue = false;
+		breakWallNorthWestPassage = false;
+		breakWallNorthEastPassage = false;
+		breakWallSouthWestPassage = false;
+		run = false;
+		meetMonster = false;
+		nightMonster = false;
+		northWestVent = false;
+		southWestVent = false;
+		dormVent = false;
+		blockA = true;
+		blockB = true;
+		blockC = true;
+		retrieveGreenKey = false;
+		retrieveBackpack = false;
+
 
 
 
@@ -205,6 +248,11 @@ public class List {
 			powerswitch = true;
 		else
 			powerswitch = false;
+		
+		if(checkEscape() == false)
+		{
+			escape = true;
+		}
 	}
 	
 	public void meetAlva()
@@ -250,7 +298,7 @@ public class List {
 	}
 
 	public boolean checkSearWireBox() {
-		return false;
+		return searWireBox;
 	}
 
 	public boolean checkBrokenSimpleDoor() {
@@ -288,6 +336,7 @@ public class List {
 	
 	public void actSearWireBox()
 	{
+		System.out.println("Sear");
 		searWireBox = true;
 	}
 
@@ -345,5 +394,208 @@ public class List {
 	{
 		night2 = true;
 	}
+
+	public boolean checkBreakWallNorthEastPassage() 
+	{
+		return breakWallNorthEastPassage;
+	}
+
+	public boolean checkBreakWallNorthWestPassage() 
+	{
+		return breakWallNorthWestPassage;
+	}
+
+	public void actBreakWallNorthEastPassage() 
+	{
+		breakWallNorthEastPassage = true;
+	}
+
+	public void actBreakWallNorthWestPassage() 
+	{		
+		breakWallNorthWestPassage = true;	
+	}
+
+	public boolean checkNightMonster() 
+	{
+		return nightMonster;
+	}
+	
+	public void actNightMonster()
+	{
+		nightMonster = true;
+	}
+
+	public boolean checkAlvaRampage() {
+		return alvaRampage;
+	}
+	
+	public void actAlvaRampage()
+	{
+		alvaRampage = true;
+	}
+
+	public boolean checkNightofFireRescue() {
+		return NightofFireRescue;
+	}
+	
+	public void actNightofFireRescue()
+	{
+		NightofFireRescue = true;
+	}
+
+	public boolean checkRun() 
+	{
+		return run;
+	}
+	
+	public void actRun()
+	{
+		run = true;
+	}
+
+	public boolean checkBreakWallSouthWestPassage() 
+	{
+		return breakWallSouthWestPassage;
+	}
+
+	public void actBreakWallSouthWestPassage()
+	{
+		breakWallSouthWestPassage = true;
+	}
+
+	public void actMeetMonster() 
+	{
+		meetMonster = true;
+	}
+	
+	public boolean checkMeetMonster()
+	{
+		return meetMonster;
+	}
+
+	public boolean pryDormVent()
+	{
+		return dormVent;
+	}
+
+	public boolean prySouthWestVent()
+	{
+		return southWestVent;
+	}
+	
+	public boolean pryNorthWestVent()
+	{
+		return northWestVent;
+	}
+	
+	public void actDormVent()
+	{
+		dormVent = true;
+	}
+	
+	public void actNorthWestVent()
+	{
+		northWestVent = true;
+	}
+	
+	public void actSouthWestVent()
+	{
+		southWestVent = true;
+	}
+
+	public boolean checkRetrievePurpleKey() {
+		return retrievePurpleKey;
+	}
+	
+	public void actRetrievePurpleKey()
+	{
+		retrievePurpleKey = true;
+	}
+
+	public boolean checkBlockA() {
+		return blockA;
+	}
+	public void actBlockA() {
+		 blockA = false;
+	}	
+	
+	public void actBlockB() {
+		 blockB = false;
+		
+	}	
+	public void actBlockC() {
+		 blockC = false;
+	}
+
+	public boolean checkBlockB() {
+		return blockB;
+	}
+
+	public boolean checkBlockC() {
+		return blockC;
+	}
+
+	public boolean checkRetrieveGreenKey() {
+		return retrieveGreenKey;
+	}
+	
+	public void actRetrieveGreenKey() {
+		retrieveGreenKey = true;
+	}
+
+	public boolean checkRetrieveBackpack() {
+		return retrieveBackpack;
+	}
+	
+	public void actRetrieveBackpack() {
+		 retrieveBackpack = true;
+	}
+
+	public boolean checkBreakWallRescue() {
+		
+		return breakWallRescue;
+	}
+
+	public boolean checkBreakWallBurial() {
+		return breakWallBurial;
+	}
+
+	public boolean checkBreakEastPassage() {
+		return breakEastPassage;
+	}
+	
+	public void actBreakEastPassage() {
+		breakEastPassage = true;
+	}
+
+	public boolean checkRescueComplete() {
+		// TODO Auto-generated method stub
+		return rescueComplete;
+	}
+	
+	public void actRescueComplete()
+	{
+		rescueComplete = true;
+	}
+
+	public void actBreakWallBurial() {
+		breakWallBurial = true;
+		
+	}
+
+	public boolean checkBurial() {
+		return burial;
+	}
+	
+	public void actBurial() {
+		burial = true;
+	}
+
+	public void actBreakWallRescue() {
+		breakWallRescue = true;
+		
+	}
+
+
 }
 	

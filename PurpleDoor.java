@@ -12,39 +12,45 @@ public class PurpleDoor extends GameObject{
 	}
 	
 	public void interactObject()
-	{/*
-		boolean onechoice = true;
-		if (gameinfo.getRoom() == 2 && onechoice == true)
-		{	
-			gameinfo.changeRoom(0);
-			sprite.setGameSprite (9, 3, 'a');
-			onechoice = false;
-		}
-		
-		if (gameinfo.getRoom() == 0 && onechoice == true)
-		{	
-			if(sprite.checkDirection() == 'd' && onechoice == true)
-				{
-					gameinfo.changeRoom(2);
-					sprite.setGameSprite(4,5,'w');
-					onechoice = false;
-				}
-			
-			if(sprite.checkDirection() == 'w' && onechoice == true)
+	{
+		if(list.checkRetrievePurpleKey() == true)
 			{
-				gameinfo.changeRoom(4);
-				sprite.setGameSprite(1,6,'d');
+			boolean onechoice = true;
+			if (gameinfo.getRoom() == 2 && onechoice == true)
+			{	
+				gameinfo.changeRoom(0);
+				sprite.setGameSprite (9, 3, 'a');
 				onechoice = false;
 			}
-		}
+			
+			if (gameinfo.getRoom() == 0 && onechoice == true)
+			{	
+				if(sprite.checkDirection() == 'd' && onechoice == true)
+					{
+						gameinfo.changeRoom(2);
+						sprite.setGameSprite(4,5,'w');
+						onechoice = false;
+					}
+				
+				if(sprite.checkDirection() == 'w' && onechoice == true)
+				{
+					gameinfo.changeRoom(4);
+					sprite.setGameSprite(1,6,'d');
+					onechoice = false;
+				}
+			}
+			
+			if (gameinfo.getRoom() == 4 && onechoice == true)
+			{
+				gameinfo.changeRoom(3);
+				sprite.setGameSprite(9,2,'a');
+				onechoice = false;
+			}
+		}	
 		
-		if (gameinfo.getRoom() == 4 && onechoice == true)
-		{
-			gameinfo.changeRoom(3);
-			sprite.setGameSprite(9,2,'a');
-			onechoice = false;
-		}
-	*/}
+		else
+			log.readDialogue(12);
+	}
 	
 	public void paintComponent(Graphics g)
 	{		

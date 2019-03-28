@@ -51,7 +51,7 @@ Dialogue2nd log2;
 			dialogue = "Do you pull the wires?";
 		}
 		
-		if(change == 32)
+		if(change == 32 || change == 38)
 		{
 			dialogue = "Do you pop the door?";
 		}

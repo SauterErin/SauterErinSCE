@@ -21,7 +21,7 @@ public class CommonBed1 extends GameObject{
 			
 			else
 			{
-				log.readDialogue(55);
+				log.readDialogue(56);
 			}
 		}
 		
@@ -47,11 +47,12 @@ public class CommonBed1 extends GameObject{
 		if(gameinfo.currentyear == 2042)
 
 		{
-			g.setColor(Color.blue);
+			g.setColor(Color.green);
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 			
 			if(list.checkNightofHorrors() == false)
-			{
+			{				
+				g.setColor(Color.white);
 				g.fillRect(RelativeX+10, RelativeY+10, 25,25);
 			}
 		}

@@ -14,7 +14,7 @@ public class GraveStone extends GameObject{
 
 	public void interactObject()
 	{
-	
+		log.readDialogue(72);
 	}
 		
 	
@@ -26,7 +26,7 @@ public class GraveStone extends GameObject{
 		
 		g.fillRect(RelativeX, RelativeY, 50, 50);
 		
-		if(list.checkEscape() == true && list.checkMeetAlva() == false)
+		if(list.checkMeetAlva() == true)
 			{g.setColor(Color.CYAN);
 			g.fillRect(RelativeX+25, RelativeY+25, 5, 5);}
 		if(gameinfo.currentyear == 2042){

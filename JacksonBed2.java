@@ -47,10 +47,6 @@ public class JacksonBed2 extends GameObject{
 			
 			g.fillRect(RelativeX, RelativeY+40, 10, 10);
 			g.fillRect(RelativeX+40, RelativeY+40, 10, 10);
-			
-			g.setColor(Color.black);
-			g.fillRect(RelativeX, RelativeY+40, 10, 10);
-			g.fillRect(RelativeX+40, RelativeY+40, 10, 10);
 		}
 
 		

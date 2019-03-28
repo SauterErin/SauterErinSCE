@@ -52,8 +52,11 @@ public class AlvaBed1 extends GameObject{
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 			
 			if(list.checkNightofHorrors() == false)
-			{
-				g.fillRect(RelativeX+10, RelativeY+10, 25,25);
+			{			
+				g.setColor(Color.green);
+				g.fillRect(RelativeX+12,RelativeY+31,26,8);
+				g.setColor(Color.white);
+				g.fillRect(RelativeX+12, RelativeY+15, 26, 18);
 			}
 		}
 	}

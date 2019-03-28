@@ -13,7 +13,7 @@ public class WallHole extends GameObject{
 	
 	public void interactObject()
 	{
-		if (list.checkNote1() == true || gameinfo.returnYear() == gameinfo.gameyearpast){
+		if (list.checkNote1() == true || gameinfo.returnYear() == gameinfo.gameyearpast || list.checkNight2() == true){
 
 			boolean onechoice = true;
 			if (gameinfo.getRoom() == 2 && onechoice == true)
@@ -22,11 +22,11 @@ public class WallHole extends GameObject{
 				sprite.setGameSprite (1, 2, 'E');
 				onechoice = false;
 			}
-			if (gameinfo.getRoom() == 1 && onechoice == true && list.checkPowerSwitch() == true)
+			if (gameinfo.getRoom() == 1 && onechoice == true && list.checkEscape() == false)
 				log.readDialogue(13);
 
 			
-			if (gameinfo.getRoom() == 1 && onechoice == true && list.checkPowerSwitch() == false)
+			if (gameinfo.getRoom() == 1 && onechoice == true && list.checkEscape() == true)
 			{	
 				gameinfo.changeRoom(5);
 				sprite.setGameSprite (1, 5, 'N');
@@ -92,19 +92,34 @@ public class WallHole extends GameObject{
 			{
 				if(sprite.getX() != 1 && onechoice == true)
 				{
-					gameinfo.changeRoom(13);
-					sprite.setGameSprite(1,1,'S');
-					onechoice = false;
+
+					if((list.checkRun() == true && list.checkNightofHorrors() == true) || list.checkRun() == false)
+					{
+						gameinfo.changeRoom(12);
+						sprite.setGameSprite(9,1,'S');
+						gameinfo.changeRoom(13);
+						sprite.setGameSprite(1,1,'S');
+						onechoice = false;
+					}
+					
+					else
+						log.readDialogue(85);
 				}
 				
 				if(sprite.getX() == 1 && onechoice == true)
 				{
 					gameinfo.changeRoom(7);
-					sprite.setGameSprite(1,3,'S');
+					sprite.setGameSprite(3,1,'S');
 					list.actPastBreakWall();
 					if(gameinfo.returnYear() == gameinfo.gameyearpast && sprite.checkAlvaFollow() == false)
-					{
+					{	
+						sprite.alvaDirection = 'N'; 
 						sprite.switchAlvaFollow();
+					}
+					
+					if(list.checkRun() == true && list.checkNightofHorrors() == false)
+					{
+						log.readDialogue(86);
 					}
 					onechoice = false;
 				}
@@ -114,14 +129,21 @@ public class WallHole extends GameObject{
 			{	
 			
 					gameinfo.changeRoom(11);
-					sprite.setGameSprite(16,7,'N');
+					sprite.setGameSprite(17,8,'N');
 					onechoice = false;
 			}
 			
-			if (gameinfo.getRoom() == 13 && onechoice == true && list.checkRemovePanel() == false)
+			if (gameinfo.getRoom() == 13 && onechoice == true && list.checkRemovePanel() == false && list.checkRetrieveScrewdriver() == true)
 			{
 				log.readDialogue(41);
 			}
+			
+			if (gameinfo.getRoom() == 13 && onechoice == true && list.checkRemovePanel() == false && list.checkRetrieveScrewdriver() == false)
+			{
+				log.readDialogue(68);
+			}
+			
+			
 
 		}
 		
@@ -178,7 +200,7 @@ public class WallHole extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		if(list.checkNote1() == false || (gameinfo.getRoom() == 1 && list.checkPowerSwitch() == true))
+		if(list.checkNote1() == false || (gameinfo.getRoom() == 1 && list.checkEscape() == false))
 		{
 			
 			g.setColor(Color.white);

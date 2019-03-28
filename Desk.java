@@ -23,7 +23,28 @@ public class Desk extends GameObject {
 			{	
 				log.readDialogue(6);
 			}
+			
+			if(list.checkNight2() == true && gameinfo.getRoom() == 6 && list.checkNightofFire() == false)
+			{
+				log.readDialogue(73);
+			}
+			
+			if(list.checkNightofFire() == true && gameinfo.getRoom() == 6)
+			{
+				log.readDialogue(74);
+			}
 		}
+
+			if(list.checkNight2() == true && gameinfo.getRoom() == 14 && list.checkNightofFire() == false)
+			{
+				log.readDialogue(75);
+				System.out.println("Reached");
+			}
+			
+			if(list.checkNightofFire() == true && gameinfo.getRoom() == 14)
+			{
+				log.readDialogue(76);
+			}
 		
 		if (gameinfo.getRoom() == 13)
 		{

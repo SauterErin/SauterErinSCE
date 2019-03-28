@@ -70,18 +70,17 @@ public class GreenDoor extends GameObject {
 			
 			if (gameinfo.getRoom() == 0 && onechoice == true)
 			{	
-				if(sprite.checkDirection() == 'E' && onechoice == true && sprite.getY() == 7)
-					{
-						gameinfo.changeRoom(7);
-						sprite.setGameSprite(1,2,'E');
-						onechoice = false;
-					}
 				
 				if(sprite.checkDirection() == 'S' && onechoice == true && sprite.getY() == 8)
 				{
 					gameinfo.changeRoom(9);
 					sprite.setGameSprite(8,1,'S');
 					onechoice = false;
+				}
+				
+				if(list.checkRetrieveGreenKey() == true)
+				{
+					log.readDialogue(91);
 				}
 			}
 			

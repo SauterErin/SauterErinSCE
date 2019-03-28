@@ -22,6 +22,9 @@ public class GameMode {
 		room = 2;
 		red = false;
 		currentyear = gameyearpresent;
+		monsterMode = false;
+		red = false;
+		
 	}
 	
 	
