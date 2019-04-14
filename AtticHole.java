@@ -1,36 +1,39 @@
 package choice;
 import java.awt.*;
 public class AtticHole extends GameObject{
-
-	List list;
 	
 	public AtticHole (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
 	{
-		if(sprite.getY() == 1)
+		// If in past or if Will hasn't picked up the purple key
+		if(sprite.getY() == 1 &&(gameinfo.getYear() == gameinfo.getPresent() && list.checkFinalPurpleKeyPass() != true) == false)
 		{	
 			gameinfo.changeRoom(3);
 			sprite.setGameSprite(6,2,'S');
 		}
 		
-		else
+		// If Will is rescuing Alva - allowed to use hole above hallway
+		if(list.checkNightofFireRescue()== true && y != 0)
 		{
-			if(gameinfo.getRed()== true)
-			{
-				gameinfo.changeRoom(0);
-				sprite.setGameSprite(15,5,'S');
-			}
+			gameinfo.changeRoom(0);
+			sprite.setGameSprite(15,6,'S');
+		}
 			
-			else
-			{
-				log.readDialogue(23);
-			}
+		//  Default response of trying to use hole above hallway 
+		if(sprite.getY() == 4 && list.checkNightofFireRescue() == false)
+		{
+			log.readDialogue(23);
+		}
+			
+		// If Will hasn't gotten purple key 
+		if(sprite.getY() == 1 &&(gameinfo.getYear() == gameinfo.getPresent() && list.checkFinalPurpleKeyPass() == false) == true)
+		{
+			log.readDialogue(121);
 		}
 	}
 	
@@ -57,11 +60,14 @@ public class AtticHole extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.black);	
-		if(gameinfo.getRed() == true)
-			g.setColor(Color.getHSBColor(87, 89, 70));
-			
+		g.setColor(Color.black);
 		
+		// If ran back into burning building color change
+		if(list.checkNightofFireRescue() == true)
+		{
+			g.setColor(Color.getHSBColor(87, 89, 70));
+		}
+			
 		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
 		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
 		g.fillRect(RelativeX+1, RelativeY+41, 14,9 );
@@ -86,5 +92,4 @@ public class AtticHole extends GameObject{
 		g.setColor(Color.white);
 		g.fillRect(RelativeX+10, RelativeY+10, 30,30);
 	}
-	
 }

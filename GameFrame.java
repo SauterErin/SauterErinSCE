@@ -10,12 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 public class GameFrame extends JFrame {
+
+	boolean wait;
 	
 	GameMode gameinfo;
-	SystemMode system;
 	GameScreen screen;
-	Countdown clock;
-	int wait;
+	SystemMode system;
 		
 	public GameFrame()
 	{
@@ -23,6 +23,7 @@ public class GameFrame extends JFrame {
 		
 		gameinfo = new GameMode();
 		system = new SystemMode();
+		
 		screen = new GameScreen (gameinfo, system);
 		
 		int delay = 1000;
@@ -32,7 +33,6 @@ public class GameFrame extends JFrame {
 		
 			public void actionPerformed (ActionEvent e)
 			{
-				//clock.increaseCountdown();
 				repaint();
 			}
 		};
@@ -44,43 +44,42 @@ public class GameFrame extends JFrame {
 		addKeyListener(new KeyAdapter() 
 		{		
 			int script = 0;
-
 			public void keyPressed(KeyEvent e)
 			{
 				if (system.checkTutorial() == true)
 				{
 					system.endTutorial();
+					screen.log.readDialogue(5);
 				}
 				
 				else
 				{
-					int wait = 1;
+					wait = false;
 					
+					//Dialogue (1) Mode
 					if (system.checkDialogue() == true)
 			    	{	
-						
-						
 						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{	
 							screen.inter.changeDialogue("");
 							script = screen.log.continueDialogue(script);
-							wait = 2;
+							wait = true;
 						}
 					}
 					
-					if (system.checkDialogue2() == true && wait == 1)
+					//Dialogue (2) Mode
+					if (system.checkDialogue2() == true && wait == false)
 			    	{	
-						
-						
 						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{	
 							screen.inter.changeDialogue("");
 							script = screen.select.log2.continueDialogue(script);
-							wait = 2;
+							wait = true;
 						}
 					}
 					
-					if (system.checkSelect() == true && wait == 1)
+					//Select Mode
+					if (system.checkSelect() == true && wait == false)
 					{
 						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
@@ -88,111 +87,16 @@ public class GameFrame extends JFrame {
 						}
 						
 						if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP)
-							screen.select.changeChoice();
-						
-						wait = 2;
-					}
-
-					
-					if(system.checkInventoryMenu() == true)
-					{
-						repaint();
-						if(e.getKeyCode() == KeyEvent.VK_UP){
-						
-							if(system.getInventoryCursor() -1 > -1)
-							{
-								system.changeInventoryCursor(-1);	
-							}
-						}
-						if(e.getKeyCode() == KeyEvent.VK_DOWN){
-							if(system.getInventoryCursor() +1 <= system.getInventoryTotal())
-							{
-								system.changeInventoryCursor(+1);
-							}
-						}
-						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 						{
-							if(system.getInventoryCursor()== system.getInventoryTotal())
-							{
-								system.endInventoryMenu();
-								system.resetInventoryCursor();
-							}
+							screen.select.changeChoice();	
 						}
-
 						
+						wait = true;
 					}
 					
-					if(system.checkMenu() == true)
-					{
-						if(e.getKeyCode() == KeyEvent.VK_DOWN)
-						{
-							if(system.getMenuCursor() == 0)
-								system.setMenuCursor(1);
-							else
-								system.setMenuCursor(0);
-						}
-						
-						if(e.getKeyCode() == KeyEvent.VK_UP)
-						{
-							if(system.getMenuCursor() == 0)
-								system.setMenuCursor(1);
-							else
-								system.setMenuCursor(0);
-						}
-						
-						
-						if(e.getKeyCode() == KeyEvent.VK_ENTER)
-						{							
-							if(system.getMenuCursor() == 0)
-							{
-								system.endMenu();
-								system.startInventoryMenu();
-								repaint();
-
-							}
-							else
-							{
-								system.endMenu();
-							}
-							system.setMenuCursor(0);
-
-						}
-
-					}
-					
-					
-					
-					if (system.checkMove() == true && wait == 1)
-					{
-						/*if(e.getKeyCode() == 81)
-						{
-							system.startMenu();
-						}
-						
-						if(e.getKeyCode() == 87)
-						{
-							//calen.ModeRed();
-							gameinfo.currentyear = gameinfo.gameyearpast;
-
-						}
-						
-						if(e.getKeyCode() == 69)
-						{
-							gameinfo.currentyear = gameinfo.gameyearpresent;
-						}*/
-						
-						if(e.getKeyCode() == KeyEvent.VK_3)
-						{
-							screen.log.readDialogue(107);
-							screen.list.redkey = true;
-							screen.list.removeWallPanel = true;
-							screen.list.retrieveScrewdriver = true;
-							screen.list.meetAlva = true;
-							screen.list.night2 = true;
-							screen.list.nightofHorrors = true;
-
-						}
-						
+					//Arrow key system - movement
+					if (system.checkMove() == true && wait == false)
+					{	
 						if(e.getKeyCode() == KeyEvent.VK_LEFT)
 						{
 							if (screen.sprite.checkDirection() != 'W')
@@ -202,11 +106,9 @@ public class GameFrame extends JFrame {
 							
 							else if (screen.sprite.checkDirection() =='W') 
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].checkMoveAction()==true && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].checkMoveAction()==true && (screen.sprite.getY() == screen.sprite.getMonsterY() && screen.sprite.getX()-1 == screen.sprite.getMonsterX() && screen.sprite.checkPresentMonster() == true) != true)
 								{
 									screen.sprite.changeX(-1);
-									screen.changeX(-1);
-
 								}
 							}	
 						}
@@ -220,11 +122,9 @@ public class GameFrame extends JFrame {
 							
 							else if (screen.sprite.checkDirection() =='N') 
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].checkMoveAction()==true  && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()-1].checkMoveAction()==true  && (screen.sprite.getY()-1 == screen.sprite.getMonsterY() && screen.sprite.getX() == screen.sprite.getMonsterX() && screen.sprite.checkPresentMonster() == true) != true)
 								{
 									screen.sprite.changeY(-1);
-									screen.changeY(-1);
-
 								}
 							}
 						}
@@ -238,11 +138,9 @@ public class GameFrame extends JFrame {
 							
 							else if(screen.sprite.checkDirection() == 'S')
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].checkMoveAction() ==true  && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()][screen.sprite.getY()+1].checkMoveAction() ==true  && (screen.sprite.getY()+1 == screen.sprite.getMonsterY() && screen.sprite.getX() == screen.sprite.getMonsterX() && screen.sprite.checkPresentMonster() == true) != true)
 								{
-
 									screen.sprite.changeY(+1);
-									screen.changeY(+1);
 								}
 							}
 						}
@@ -256,20 +154,20 @@ public class GameFrame extends JFrame {
 							
 							else if (screen.sprite.checkDirection() == 'E')
 							{
-								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].checkMoveAction() == true  && (screen.sprite.getY() == screen.sprite.monsterY && screen.sprite.getX() == screen.sprite.monsterX && screen.sprite.presentMonster == true) != true)
+								if(screen.room[gameinfo.getRoom()][screen.sprite.getX()+1][screen.sprite.getY()].checkMoveAction() == true  && (screen.sprite.getY() == screen.sprite.getMonsterY() && screen.sprite.getX()+1 == screen.sprite.getMonsterX() && screen.sprite.checkPresentMonster() == true) != true)
 								{
 									screen.sprite.changeX(+1);
-									screen.changeX(+1);
-
 								}
 							}
 						}
 						
+						//Enter Key actions
 						if (e.getKeyCode() == KeyEvent.VK_ENTER)
-						{
-					    	if (system.checkDialogue()==false && wait == 1)
+						{	
+							//If in Move mode
+					    	if (system.checkMove()== true && wait == false)
 					    	{
-					 
+					    		//Grid selection of interactObjct() by direction of sprite
 						    	if(screen.sprite.checkDirection()== 'W')
 						    	{
 						    		screen.room[gameinfo.getRoom()][screen.sprite.getX()-1][screen.sprite.getY()].interactObject();
@@ -292,11 +190,9 @@ public class GameFrame extends JFrame {
 					    	}
 						}
 					}
-	
 					repaint();
 				}
 			};
 		});
 	}
 }
-

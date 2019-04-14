@@ -1,130 +1,130 @@
 package choice;
 import java.awt.*;
 
-
 public class YellowDoor extends GameObject {
-
-	List list;
-	GameSprite sprite;
-	Countdown clock;
 	
 	public YellowDoor(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
-		this.sprite = sprite;
 	}
-			
 
 	public void interactObject()
 	{
+		boolean wait = true;
+
+		// If player has yellow key
 		if(list.checkYellowKey() == true)
 		{
-			boolean onechoice = true;
-			if (gameinfo.getRoom() == 6 && onechoice == true)
+			
+			// If in Office Room
+			if (gameinfo.getRoom() == 6 && wait == true)
 			{	
 				gameinfo.changeRoom(0);
 				sprite.setGameSprite (7, 3, 'E');
-				onechoice = false;
+				wait = false;
 			}
-			if (gameinfo.getRoom() == 0 && onechoice == true)
+			
+			// If in North Hall 
+			if (gameinfo.getRoom() == 0 && wait == true)
 			{	
 				gameinfo.changeRoom(6);
-				sprite.setGameSprite (2, 2, 'N');
-				onechoice = false;
+				sprite.setGameSprite (2, 2, 'W');
+				wait = false;
 			}	
 			
-			if(gameinfo.getRoom() == 12 && onechoice == true)
+			// If in East Wing
+			if(gameinfo.getRoom() == 12 && wait == true)
 			{
+				// If Will is exploring and hasn't seen Alva
 				if(list.checkNight2() == true && list.checkRun() == false)
 				{
 					log.readDialogue(80);
 				}
 				
+				//  If in East Wing and has already seen Alva
 				else
 				{
-					if ((list.checkRun() == true && list.checkNightofHorrors() == true) || list.checkRun() == false)
+					// After Will has been captured
+					if ((list.checkRun() == true && list.checkNightofHorrors() == true))
 					{
 						gameinfo.changeRoom(14);	
-						sprite.setGameSprite (2, 2, 'N');
-						onechoice = false;
+						sprite.setGameSprite (1, 2, 'N');
+						wait = false;
 					}
 					
+					// Will is running away 
 					else
 						log.readDialogue(85);
 				}
 
 			}
-				
-			if(gameinfo.getRoom() == 8 && onechoice == true)
+			
+			// If in South Hall
+			if(gameinfo.getRoom() == 8 && wait == true)
 			{
 				gameinfo.changeRoom(15);	
 				sprite.setGameSprite (4, 1, 'S');
-				onechoice = false;
+				wait = false;
 			}
 			
-			if(gameinfo.getRoom() == 15 && onechoice == true)
+			// If in Dorm 
+			if(gameinfo.getRoom() == 15 && wait == true)
 			{
 				gameinfo.changeRoom(8);	
 				sprite.setGameSprite (4, 3, 'N');
-				onechoice = false;
+				wait = false;
 			}
 			
-			
-			if(gameinfo.getRoom() == 14 && onechoice == true && list.checkRetrieveFatherID() == false)
+			// If in Wreck Room for first time
+			if(gameinfo.getRoom() == 14 && list.checkRetrieveFatherID() == false && wait == true)
 			{
 				log.readDialogue(81);
 			}
 			
-			if(gameinfo.getRoom() == 14 && onechoice == true && list.checkRetrieveFatherID() == true && list.checkRun() == true)
+			// If in Wreck room and post Will being captured
+			if(gameinfo.getRoom() == 14 && list.checkRetrieveFatherID() == true && list.checkRun() == true && wait == true)
 			{
 				gameinfo.changeRoom(12);	
-				sprite.setGameSprite (1, 2, 'S');
-				onechoice = false;
+				sprite.setGameSprite (4, 1, 'S');
+				wait = false;
 			}
 			
-			if(gameinfo.getRoom() == 14 && onechoice == true && list.checkRetrieveFatherID() == true && list.checkRun() == false)
+			// Exiting Wreck Room for first time
+			if(gameinfo.getRoom() == 14 && list.checkRetrieveFatherID() == true && list.checkRun() == false && wait == true )
 			{
 				log.readDialogue(82);
-				onechoice = false;
-			}
-		
-
-	
-		
+				wait = false;
+			}	
 		}
 		
-		boolean onechoice = true;
-		
-		if(list.checkYellowKey() == false && gameinfo.checkMonsterMode() == false)
+		//If do not have yellow key - general
+		if(list.checkYellowKey() == false && gameinfo.getRoom() != 12 && gameinfo.getRoom() != 14 && wait == true)
+		{
 			log.readDialogue(12);
+		}
 		
-		if(list.checkYellowKey() == false && gameinfo.checkMonsterMode() == true && gameinfo.getRoom() != 12 && onechoice == true && gameinfo.getRoom() != 14)
-			log.readDialogue(12);
-		
-		
-		if(list.checkYellowKey() == false && gameinfo.checkMonsterMode() == true && gameinfo.getRoom() == 12 && onechoice == true)
+		// If in East Wing - do not need yellow key
+		if(gameinfo.getRoom() == 12 && gameinfo.getYear() == gameinfo.getPresent() &&  list.checkYellowKey() == false && gameinfo.checkMonsterMode() == true && wait == true)
 		{
 			gameinfo.changeRoom(14);	
 			sprite.setGameSprite (1, 2, 'N');
-			onechoice = false;
+			wait = false;
 		}
 		
-		if(list.checkYellowKey() == false && gameinfo.checkMonsterMode() == true && gameinfo.getRoom() == 14 && onechoice == true)
+		// If in Wreck room - don't need Yellow key
+		if(gameinfo.getRoom() == 14 && gameinfo.getYear() == gameinfo.getPresent() && list.checkYellowKey() == false && gameinfo.checkMonsterMode() == true && wait == true)
 		{
 			gameinfo.changeRoom(12);	
 			sprite.setGameSprite (4, 1, 'S');
-			onechoice = false;
+			wait = false;
 		}
-
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		
-		
+				
 		g.setColor(Color.gray);	
 		
 		g.fillRect(RelativeX, RelativeY, 10,50 );
@@ -141,8 +141,9 @@ public class YellowDoor extends GameObject {
 		
 		g.drawLine(RelativeX+10, RelativeY, RelativeX+10, RelativeY+49);
 		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
-		
-		if(gameinfo.returnYear() == gameinfo.gameyearpresent && gameinfo.getRoom() == 12)
+
+		// Present - Wreck Room or East Wing
+		if((gameinfo.getYear() == gameinfo.getPresent() && gameinfo.getRoom() == 12) || (gameinfo.getYear() == gameinfo.getPresent() && gameinfo.getRoom() == 14))
 		{
 			g.setColor(Color.gray);	
 			
@@ -163,12 +164,10 @@ public class YellowDoor extends GameObject {
 			g.drawLine(RelativeX+10, RelativeY, RelativeX+10, RelativeY+49);
 			g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
 			
-
 			g.setColor(Color.black);
 			g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
 			g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
 			g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
 		}
 	}
-
 }

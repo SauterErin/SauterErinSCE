@@ -1,92 +1,94 @@
 package choice;
 import java.awt.*;
 
-
 public class GreenDoor extends GameObject {
-
-	List list;
-	GameSprite sprite;
 	
 	public GreenDoor(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
-		this.sprite = sprite;
 	}
 			
 	public void interactObject()
-	{	if(list.checkGreenKey() == true)
+	{	
+		// If you have Green Key 
+		if(list.checkGreenKey() == true)
 		{
-			boolean onechoice = true;
+			boolean wait = true;
 			
-			if (gameinfo.getRoom() == 8 && onechoice == true)
+			// If in South Hall
+			if (gameinfo.getRoom() == 8 && wait == true)
 			{	
 				gameinfo.changeRoom(7);
 				sprite.setGameSprite (2, 10, 'N');
-				onechoice = false;
+				wait = false;
 			}
 			
-			if (gameinfo.getRoom() == 7 && onechoice == true)
+			// If in East Hall
+			if (gameinfo.getRoom() == 7 && wait == true)
 			{	
-				if(sprite.checkDirection() == 'W' && onechoice == true && sprite.getY() == 2)
-					{
-						gameinfo.changeRoom(0);
-						sprite.setGameSprite(15,7,'W');
-						onechoice = false;
-					}
-				
-				if(sprite.checkDirection() == 'W' && onechoice == true && sprite.getY() == 7)
+				// If looking to West Door 
+				if(sprite.checkDirection() == 'W' && sprite.getY() == 7 && wait == true)
 				{
 					gameinfo.changeRoom(9);
 					sprite.setGameSprite(15,12,'W');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.checkDirection() == 'S' && onechoice == true && sprite.getX() == 2)
+				// If looking to South Door 
+				if(sprite.checkDirection() == 'S' && sprite.getX() == 2 && wait == true )
 				{
 					gameinfo.changeRoom(8);
 					sprite.setGameSprite(6,1,'S');
-					onechoice = false;
+					wait = false;
 				}
 			}
 			
-			if (gameinfo.getRoom() == 9 && onechoice == true)
+			// If in Central Yard
+			if (gameinfo.getRoom() == 9 && wait == true)
 			{	
-				if(sprite.checkDirection() == 'N' && onechoice == true && sprite.getY() == 1)
-					{
-						gameinfo.changeRoom(0);
-						sprite.setGameSprite(8,8,'N');
-						onechoice = false;
-					}
+				// If facing North Door
+				if(sprite.checkDirection() == 'N' && sprite.getY() == 1 && wait == true)
+				{
+					gameinfo.changeRoom(0);
+					sprite.setGameSprite(8,8,'N');
+					wait = false;
+				}
 				
-				if(sprite.checkDirection() == 'E' && onechoice == true && sprite.getY() == 12)
+				// If facing Eastern Door
+				if(sprite.checkDirection() == 'E' && sprite.getY() == 12 && wait == true)
 				{
 					gameinfo.changeRoom(7);
 					sprite.setGameSprite(1,7,'E');
-					onechoice = false;
+					wait = false;
 				}
 			}
 			
-			if (gameinfo.getRoom() == 0 && onechoice == true)
+			// If in North Hall
+			if (gameinfo.getRoom() == 0 && wait == true)
 			{	
-				
-				if(sprite.checkDirection() == 'S' && onechoice == true && sprite.getY() == 8)
+				// Normal usage 
+				if(sprite.checkDirection() == 'S' && sprite.getY() == 8 && wait == true)
 				{
 					gameinfo.changeRoom(9);
 					sprite.setGameSprite(8,1,'S');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(list.checkRetrieveGreenKey() == true)
+				// If triggered Jackson captured flag - picking up green key 
+				if(list.checkRetrieveGreenKey() == true && gameinfo.getYear() == gameinfo.getPast())
 				{
 					log.readDialogue(91);
 				}
 			}
 			
-			}
+		}
+		
+		// If do not have Green Key 
 		else
+		{
 			log.readDialogue(12);
+		}
 
 	}
 

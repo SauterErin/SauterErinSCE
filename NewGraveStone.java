@@ -14,6 +14,7 @@ public class NewGraveStone extends GameObject{
 
 	public void interactObject()
 	{
+		// If after Father is burried
 		if(list.checkNightofFire() == true)
 			log.readDialogue(78);
 	}
@@ -22,12 +23,12 @@ public class NewGraveStone extends GameObject{
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		move = false;
+		move = true;
 
-		g.setColor(Color.green);	
+		g.setColor(new Color(12, 104, 40));
 		g.fillRect(RelativeX, RelativeY, 50, 50);
 
-		
+		// If Father is buried 
 		if(list.checkNightofFire() == true)
 		{
 			move = false;
@@ -43,10 +44,11 @@ public class NewGraveStone extends GameObject{
 			}
 		}
 		
-		if(gameinfo.currentyear == 2042){
+		// If in past 
+		if(gameinfo.getYear() == gameinfo.getPast())
+		{
 			move = true;
 			g.setColor(new Color(87, 106, 54));
-		
 			g.fillRect(RelativeX, RelativeY, 50,50 );}
 	}
 }

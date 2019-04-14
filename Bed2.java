@@ -1,32 +1,40 @@
 package choice;
 import java.awt.*;
 public class Bed2 extends GameObject{
-
-	List list;
 	
 	public Bed2 (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
-		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
+		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);		
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
 	{
-		if(list.checkYellowKey() == true && list.checkNight2() == false && gameinfo.currentyear == 2052)
-			log.readDialogue(14);
-		if(list.checkYellowKey() == false && gameinfo.currentyear == 2052 )
-			log.readDialogue(0);
-		if(list.checkNight2() == true && list.checkNightofFire() == false)
+		// If between releasing Alva and Start of Night 2 
+		if(list.checkYellowKey() == true && list.checkNight2() == false && gameinfo.getYear() == gameinfo.getPresent())
 		{
-			log.readDialogue(69);
+			log.readDialogue(14);
 		}
 		
+		// If before releasing Alva/powerswitch press
+		if(list.checkYellowKey() == false && gameinfo.getYear() == gameinfo.getPresent())
+		{
+			log.readDialogue(0);
+		}
+		
+		// If before Will is captured - Night 2 
+		if(list.checkNight2() == true && list.checkNightofFire() == false)
+		{
+			log.readDialogue(63);
+		}
+		
+		// If during first exit in present
 		if(list.checkNightofFire() == true && list.checkNightofFireRescue() == false)
 		{
 			log.readDialogue(70);
 		}
 		
+		// If during rescue of Alva in present 
 		if(list.checkNightofFireRescue() == true)
 		{
 			log.readDialogue(71);
@@ -36,11 +44,12 @@ public class Bed2 extends GameObject{
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-
-		if(gameinfo.currentyear == 2052)
+		
+		// If in present 
+		if(gameinfo.getYear() == gameinfo.getPresent())
 		{
 			move = false;
-			g.setColor(Color.blue);
+			g.setColor(new Color(12,196,221));	
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 	
 			g.setColor(Color.white);
@@ -50,26 +59,23 @@ public class Bed2 extends GameObject{
 			g.fillRect(RelativeX+40, RelativeY+40, 10, 10);
 		}
 		
-		if(gameinfo.currentyear == 2042)
-
+		// If in past
+		else
 		{
 			move = true;
-			g.setColor(new Color(121,94, 32));
+			// Color Instructions - Past 
+			g.setColor(new Color(96,45, 6));	
 				
-			
-			
 			g.fillRect(RelativeX, RelativeY+1, 50,16 );
 			g.fillRect(RelativeX, RelativeY+18, 50,16 );
 			g.fillRect(RelativeX, RelativeY+34, 50,16 );
 			
-
 			g.setColor(Color.black);
 			g.drawLine(RelativeX, RelativeY, RelativeX+50, RelativeY);
 			g.drawLine(RelativeX, RelativeY+50, RelativeX+50, RelativeY+50);
 			
 			g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
-			g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
-			
+			g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);			
 		}
 	}
 }

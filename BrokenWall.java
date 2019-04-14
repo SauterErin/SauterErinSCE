@@ -3,218 +3,190 @@ import java.awt.*;
 
 public class BrokenWall extends GameObject{
 	
-	List list;
-
 	public BrokenWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 
 	public void interactObject()
 	{
-		boolean onechoice = true;
+		boolean wait = true;
 		
-		if(gameinfo.currentyear == gameinfo.gameyearpresent)
+		// If in present 
+		if(gameinfo.getYear() == gameinfo.getPresent())
 		{
-			if(gameinfo.getRoom() == 0 && onechoice == true)
+			// If in North Hallway
+			if(gameinfo.getRoom() == 0 && wait == true)
 			{
-				if(sprite.getX() == 7 && sprite.getY() == 8 && list.checkNight2() == true)
+				// If Facing Broken Wall in Southern Wall and Night 2 
+				if(sprite.getX() == 7 && sprite.getY() == 8 && list.checkNight2() == true && wait == true)
 				{
 					gameinfo.changeRoom(9);
 					sprite.setGameSprite(7,1, 'S');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getX() == 15 && list.checkBreakWallNorthEastPassage() == true && onechoice == true)
+				// If facing Broken Wall in East Wall and Wall has been broken
+				if(sprite.getX() == 15 && list.checkBreakWallNorthEastPassage() == true && wait == true)
 				{
 					gameinfo.changeRoom(7);
 					sprite.setGameSprite(1,3,'E');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getX() == 1 && list.checkBreakWallNorthWestPassage() == true && onechoice == true)
+				// If facing Broken Wall in West Wall and Wall has been broken
+				if(sprite.getX() == 1 && list.checkBreakWallNorthWestPassage() == true && wait == true)
 				{
 					gameinfo.changeRoom(17);
 					sprite.setGameSprite(3,1,'W');
-					onechoice = false;
+					wait = false;
 				}
 			}
 			
-			if(gameinfo.getRoom() == 9 && onechoice == true)
+			// If in Central Yard
+			if(gameinfo.getRoom() == 9 && wait == true)
 			{
-				if(sprite.getX() == 7 && list.checkNight2() == true && onechoice == true)
+				// Facing Northern Wall and Night 2
+				if(sprite.getX() == 7 && list.checkNight2() == true && wait == true)
 				{
 					gameinfo.changeRoom(0);
 					sprite.setGameSprite(7,8,'N');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getX() == 15 && list.checkNight2() == true && onechoice == true)
+				// If facing Eastern Wall and Night 2
+				if(sprite.getX() == 15 && list.checkNight2() == true && wait == true)
 				{
 					gameinfo.changeRoom(7);
 					sprite.setGameSprite(1,6,'E');
-					onechoice = false;
+					wait = false;
 				}
 			}
 			
-			if(gameinfo.getRoom() == 7 && onechoice == true)
+			// If in Eastern Hall 
+			if(gameinfo.getRoom() == 7 && wait == true)
 			{	
-				if(sprite.getY() == 3 && list.checkBreakWallNorthEastPassage() == true && onechoice == true)
+				// Facing upper West Wall and Wall has been broken
+				if(sprite.getY() == 3 && list.checkBreakWallNorthEastPassage() == true && wait == true)
 				{
 					gameinfo.changeRoom(0);
 					sprite.setGameSprite(15,8,'W');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getY() == 6 && list.checkNight2() == true && onechoice == true)
+				// Facing lower West Wall and Wall has been broken 
+				if(sprite.getY() == 6 && list.checkNight2() == true && wait == true)
 				{
 					gameinfo.changeRoom(9);
 					sprite.setGameSprite(15,11,'W');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getY() == 8 && list.checkNightMonster() == true && onechoice == true && list.checkBreakEastPassage())
+				// Facing East Wall and wall has been broken 
+				if(sprite.getY() == 8 && wait == true && list.checkBreakWallEastPassage())
 				{
 					gameinfo.changeRoom(12);
 					sprite.setGameSprite(1,4,'E');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getY() == 10 && list.checkNight2() == true && onechoice == true)
+				// Facing Southern Wall and wall has been broken
+				if(sprite.getY() == 10 && list.checkNight2() == true && wait == true)
 				{
 					gameinfo.changeRoom(8);
 					sprite.setGameSprite(5,1,'S');
-					onechoice = false;
+					wait = false;
 				}
-				
-				
 			}
 			
-			if(gameinfo.getRoom() == 8 && onechoice == true)
+			// If in Southern Hall
+			if(gameinfo.getRoom() == 8 && wait == true)
 			{
-				if(sprite.getX() == 1 && list.checkBreakWallSouthWestPassage() == true && onechoice == true)
+				// Facing West Wall and wall has been broken
+				if(sprite.getX() == 1 && list.checkBreakWallSouthWestPassage() == true && wait == true)
 				{
 					gameinfo.changeRoom(17);
 					sprite.setGameSprite(3,9,'W');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getX() == 5 && list.checkNight2() == true && onechoice == true)
+				// Facing North Wall and its Night 2 or later
+				if(sprite.getX() == 5 && list.checkNight2() == true && wait == true)
 				{
 					gameinfo.changeRoom(7);
 					sprite.setGameSprite(1,10,'N');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if(sprite.getX() == 3 && list.checkAlvaRampage() == true && onechoice == true)
+				// Facing South and Will has been captured or later
+				if(sprite.getX() == 3 && list.checkNightMonster() == true && wait == true)
 				{
 					gameinfo.changeRoom(15);
 					sprite.setGameSprite(3,1,'S');
-					onechoice = false;
+					wait = false;
 				}
 			}
 			
-			if(gameinfo.getRoom() == 15 && onechoice == true)
-			{
+			// If in Dorm room 
+			if(gameinfo.getRoom() == 15 && wait == true)
+			{	
+				// And Alva has retrieved her backpack - thereby Will has been captured 
 				if(list.checkRetrieveBackpack() == true)
 				{
 					gameinfo.changeRoom(8);
 					sprite.setGameSprite(3,3,'N');
-					onechoice = false;
+					wait = false;
 				}
-				else
-					log.readDialogue(99);
 				
-			}
-			
-			if(gameinfo.getRoom() == 15 && onechoice == true)
-			{
-				if(list.checkRetrieveBackpack() == true)
+				// If not turned back
+				else
 				{
-					gameinfo.changeRoom(8);
-					sprite.setGameSprite(3,3,'N');
-					onechoice = false;
-				}
-				else
 					log.readDialogue(99);
-				
+				}
 			}
 			
-			if(gameinfo.getRoom() == 15 && onechoice == true)
+			// If in West Hall 
+			if(gameinfo.getRoom() == 17)
 			{
-				if(list.checkRetrieveBackpack() == true)
-				{
-					gameinfo.changeRoom(8);
-					sprite.setGameSprite(3,3,'N');
-					onechoice = false;
-				}
-				else
-					log.readDialogue(99);
-				
-			}
-			
-			if(gameinfo.getRoom() == 15 && onechoice == true)
-			{
-				if(list.checkRetrieveBackpack() == true)
-				{
-					gameinfo.changeRoom(8);
-					sprite.setGameSprite(3,3,'N');
-					onechoice = false;
-				}
-				else
-					log.readDialogue(99);
-				
-			}
-			
-			if(gameinfo.getRoom() == 17 && onechoice == true && sprite.getY() == 1 && sprite.getX() == 3)
-			{
-				if(list.checkBreakWallNorthWestPassage() == true)
+				// Facing upper right wall and wall is broken
+				if(sprite.getX() == 3 && sprite.getY() == 1 && list.checkBreakWallNorthWestPassage() == true && wait == true)
 				{
 					gameinfo.changeRoom(0);
 					sprite.setGameSprite(1,6,'E');
-					onechoice = false;
+					wait = false;
 				}
-			}
-			
-			if(gameinfo.getRoom() == 17 && onechoice == true && sprite.getY() == 9 && sprite.getX() == 3)
-			{
-				if(list.checkBreakWallSouthWestPassage() == true)
+				
+				// Facing lower right wall and wall is broken
+				if(sprite.getX() == 3 && sprite.getY() == 9 && list.checkBreakWallSouthWestPassage() == true && wait == true)
 				{
 					gameinfo.changeRoom(8);
 					sprite.setGameSprite(1,3,'E');
-					onechoice = false;
+					wait = false;
 				}
-			}
-			
-			if(gameinfo.getRoom() == 17 && onechoice == true && sprite.getY() == 9 && sprite.getX() == 1)
-			{
-				if(list.checkBreakWallRescue() == true)
-				{
+				
+				// Facing lower left wall and the wall has been broken
+				if(sprite.getX() == 1 && sprite.getY() == 9 && list.checkBreakWallRescue() == true && wait == true)
+				{			
 					gameinfo.changeRoom(18);
 					sprite.setGameSprite(3,3,'W');
-					onechoice = false;
+					wait = false;
 				}
-			}
-			
-			if(gameinfo.getRoom() == 17 && onechoice == true && sprite.getY() == 1 && sprite.getX() == 1)
-			{
-				if(list.checkBreakWallBurial() == true)
+				
+				if(sprite.getX() == 1 && sprite.getY() == 1 && list.checkBreakWallBurial() == true && wait == true)
 				{
 					gameinfo.changeRoom(16);
 					sprite.setGameSprite(3,1,'W');
-					onechoice = false;
+					wait = false;
 				}
 			}
-			
-			if(gameinfo.getRoom() == 18 && onechoice == true)
+			if(gameinfo.getRoom() == 18 && wait == true)
 			{
 				if(list.checkRescueComplete() == true && list.checkBurial() == true)
 				{
 					gameinfo.changeRoom(17);
 					sprite.setGameSprite(1,9,'E');
-					onechoice = false;
+					wait = false;
 				}
 				
 				if(list.checkRescueComplete() == true && list.checkBurial() == false)
@@ -227,18 +199,18 @@ public class BrokenWall extends GameObject{
 					log.readDialogue(109);
 				}
 			}
-			if(gameinfo.getRoom() == 16 && onechoice == true)
+			if(gameinfo.getRoom() == 16 && wait == true)
 			{
 				if(list.checkBurial() == true)
 				{
 					gameinfo.changeRoom(17);
 					sprite.setGameSprite(1,1,'E');
-					onechoice = false;
+					wait = false;
 				}
 				
 				if(list.checkRescueComplete() == true && list.checkBurial() == false)
 				{
-					log.readDialogue(107);
+					log.readDialogue(119);
 				}
 				
 				if(list.checkRescueComplete() == false)
@@ -247,134 +219,139 @@ public class BrokenWall extends GameObject{
 				}
 			}
 			
-			if(gameinfo.getRoom() == 12 && list.checkBreakEastPassage() == true && onechoice == true)
+			if(gameinfo.getRoom() == 12 && list.checkBreakWallEastPassage() == true && wait == true)
 			{
 				gameinfo.changeRoom(7);
 				sprite.setGameSprite(3,8,'W');
-				onechoice = false;
+				wait = false;
 			}
 		}
 		if(gameinfo.checkMonsterMode() == true)
 		{
-			if(gameinfo.getRoom() == 0 && onechoice == true)
+			// if North Hall
+			if(gameinfo.getRoom() == 0 && wait == true)
 			{
-				if(sprite.getX() == 15 && list.checkBreakWallNorthEastPassage() == false && onechoice == true)
+				// And East Wall hasn't been broken 
+				if(sprite.getX() == 15 && list.checkBreakWallNorthEastPassage() == false && wait == true)
 				{
 					list.actBreakWallNorthEastPassage();
 					log.readDialogue(60);
 					interactObject();
-					onechoice = false;
-
+					wait = false;
 				}
 				
-				if(sprite.getX() == 1 && list.checkBreakWallNorthWestPassage() == false && onechoice == true)
+				// And West Wall hasn't been broken yet
+				if(sprite.getX() == 1 && list.checkBreakWallNorthWestPassage() == false && wait == true)
 				{
 					list.actBreakWallNorthWestPassage();
 					log.readDialogue(60);
 					interactObject();
-					onechoice = false;
+					wait = false;
 				}
 				
+				// North Wall
 				if(sprite.getX() == 7 && sprite.getY() == 1)
 				{
 					log.readDialogue(109);
 				}
 			}
 			
-			if(gameinfo.getRoom() == 7 && onechoice == true)
+			// If in East Wing 
+			if(gameinfo.getRoom() == 7 && wait == true)
 			{
-				if(sprite.getY() == 3 && list.checkBreakWallNorthWestPassage() == false && onechoice == true)
+				// And upper left passage hasn't been broken 
+				if(sprite.getY() == 3 && list.checkBreakWallNorthEastPassage() == false && wait == true)
 				{
 					list.actBreakWallNorthEastPassage();
 					log.readDialogue(60);
-					onechoice = false;
+					wait = false;
+					interactObject();
+				}
+				
+				// And East Wall and Wall hasn't been broken
+				if(sprite.getY() == 8 && list.checkBreakWallEastPassage() == false && wait == true)
+				{
+					list.actBreakWallEastPassage();
+					log.readDialogue(60);
+					wait = false;
 					interactObject();
 				}
 			}
 			
-			if(gameinfo.getRoom() == 17 && onechoice == true)
+			// If in West Hall 
+			if(gameinfo.getRoom() == 17 && wait == true)
 			{
-				if(sprite.getY() == 9 && sprite.getX() == 1 && onechoice == true)
+				// And South Western Wall hasn't been broken 
+				if(sprite.getY() == 9 && sprite.getX() == 1 && wait == true)
 				{
 					list.actBreakWallRescue();
 					log.readDialogue(60);
-					onechoice = false;
+					wait = false;
 					interactObject();
 				}
 			}
 			
-			if(gameinfo.getRoom() == 8 && onechoice == true)
+			// If in South Hall
+			if(gameinfo.getRoom() == 8 && wait == true)
 			{
-				if(sprite.getX() == 1 && list.checkBreakWallSouthWestPassage() == false && onechoice == true)
+				// And Western Wall hasn't been broken
+				if(sprite.getX() == 1 && list.checkBreakWallSouthWestPassage() == false && wait == true)
 				{
 					list.actBreakWallSouthWestPassage();
 					log.readDialogue(60);
-					onechoice = false;
+					wait = false;
 					interactObject();
 				}
 			}
 			
-			if(gameinfo.getRoom() == 17 && onechoice == true)
+			// If in West Hall
+			if(gameinfo.getRoom() == 17 && wait == true)
 			{
-				if(sprite.getX() == 3 && sprite.getY() == 1 && list.checkBreakWallNorthWestPassage() == false && onechoice == true)
+				// Upper North Wall - and wall hasn't been broken 
+				if(sprite.getX() == 3 && sprite.getY() == 1 && list.checkBreakWallNorthWestPassage() == false && wait == true)
 				{
 					list.actBreakWallNorthWestPassage();
 					log.readDialogue(60);
-					onechoice = false;
+					wait = false;
 					interactObject();
 				}
-			}
-			
-			if(gameinfo.getRoom() == 17 && onechoice == true)
-			{
-				if(sprite.getX() == 3 && list.checkBreakWallSouthWestPassage() == false && sprite.getY() ==9 && onechoice == true)
+				
+				// If in West Hall - southern west wall and hasn't been broken 
+				if(sprite.getX() == 3 && sprite.getY() == 9 && list.checkBreakWallSouthWestPassage() == false  && wait == true)
 				{
 					list.actBreakWallSouthWestPassage();
 					log.readDialogue(60);
-					onechoice = false;
+					wait = false;
 					interactObject();
 				}
 			}
 			
-			if(gameinfo.getRoom() == 12 && onechoice == true)
+			// If East Wing 
+			if(gameinfo.getRoom() == 12 && wait == true)
 			{
-				if(list.checkBreakEastPassage() == false && onechoice == true)
+				// And Wall hasn't been broken 
+				if(list.checkBreakWallEastPassage() == false && wait == true)
 				{
-					list.actBreakEastPassage();
+					list.actBreakWallEastPassage();
 					log.readDialogue(60);
-					onechoice = false;
+					wait = false;
 					interactObject();
 				}
 			}
 			
-			if(gameinfo.getRoom() == 17 && onechoice == true && sprite.getX()  == 1 && sprite.getY() == 1)
+			// If in West Hall and Upper West Wall
+			if(gameinfo.getRoom() == 17 && wait == true && sprite.getX() == 1 && sprite.getY() == 1)
 			{
-				if(list.checkBurial() == false && onechoice == true)
+				// If Father hasn't been buried
+				if(list.checkBurial() == false && wait == true)
 				{
 					log.readDialogue(108);
-					onechoice = false;
+					wait = false;
 				}
 			}
-			
-			if(gameinfo.getRoom() == 7 && onechoice == true)
-			{
-				if(sprite.getY() == 8 && list.checkBreakEastPassage() == false && onechoice == true)
-				{
-					list.actBreakEastPassage();
-					log.readDialogue(60);
-					onechoice = false;
-					interactObject();
-				}
-			}
-			
-		}
-			
+		}			
 	}
-	
-				
 
-		
-	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -398,23 +375,42 @@ public class BrokenWall extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.getHSBColor(245, 140, 133));	
-		if(gameinfo.getRed() == true)
-			g.setColor(Color.getHSBColor(87, 89, 70));
-		if(gameinfo.checkMonsterMode() == true)
-			g.setColor(Color.getHSBColor(31,80,87));
+		// Paint instructions past
+		g.setColor(new Color(250, 44, 0));
 		
-		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
-		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
-		g.fillRect(RelativeX+1, RelativeY+41, 14,9 );
+		// Paint instructions present
+		if(gameinfo.getYear() == gameinfo.getPresent())
+		{
+			g.setColor(new Color(250, 156, 155));
+		}
+		
+		// Paint instructions for building on fire
+		if(list.checkNightofFire() == true)
+		{
+			g.setColor(new Color(247, 87, 85));
+		}
+		
+		// Paint instructions for building on fire continuing 
+		if(list.checkNightofFireRescue() == true)
+		{	
+			g.setColor(new Color(244, 51, 27));
+		}
+		
+		if(gameinfo.checkMonsterMode() == true)
+		{
+			g.setColor(Color.getHSBColor(31,80,87));
+		}
+		g.fillRect(RelativeX+1, RelativeY+1, 14,9);
+		g.fillRect(RelativeX+1, RelativeY+21, 14,9);
+		g.fillRect(RelativeX+1, RelativeY+41, 14,9);
 		
 		g.fillRect(RelativeX+16, RelativeY+1, 14,9);
 		g.fillRect(RelativeX+16, RelativeY+21, 14,9);
 		g.fillRect(RelativeX+16, RelativeY+41, 14,9);
 		
-		g.fillRect(RelativeX+31, RelativeY+1, 19, 9 );
-		g.fillRect(RelativeX+31, RelativeY+21, 19,9 );
-		g.fillRect(RelativeX+31, RelativeY+41, 19,9 );
+		g.fillRect(RelativeX+31, RelativeY+1, 19, 9);
+		g.fillRect(RelativeX+31, RelativeY+21, 19,9);
+		g.fillRect(RelativeX+31, RelativeY+41, 19,9);
 
 		g.fillRect(RelativeX+1, RelativeY+11, 19,9);
 		g.fillRect(RelativeX+1, RelativeY+31, 19,9);
@@ -425,176 +421,199 @@ public class BrokenWall extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		if(gameinfo.getRoom() == 0 && x == 7 && y == 9)
+		//If in present 
+		if(gameinfo.getYear() == gameinfo.getPresent())
 		{
-			if(list.checkNight2() == true && gameinfo.currentyear == gameinfo.gameyearpresent)
+			// If in North Hall
+			if(gameinfo.getRoom() == 0)
+			{
+				// If at Southern Wall and at or past Night 2 
+				if(x == 7 && y == 9 && list.checkNight2() == true)
+				{
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+				
+				// If in North Hall and Western Wall is broken
+				if(x == 0 && list.checkBreakWallNorthWestPassage() == true)
+				{
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+				
+				// If in North Hall and Northern Wall is broken
+				if(y == 0 && list.checkSacrifice() == true)
+				{
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+			}
+			
+			// If in North Hall and Eastern Wall or if in East Hall and Western Wall
+			if((gameinfo.getRoom() == 0 && x == 16) || (gameinfo.getRoom() == 7 && y == 3))
+			{
+				// If Alva has broken through wall
+				if(list.checkBreakWallNorthEastPassage() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+			}			
+			
+			// If in Central Yard and Night 2
+			if(gameinfo.getRoom() == 9 && list.checkNight2() == true)
+			{	
+				g.setColor(Color.black);
+				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+			}
+			
+			// If in Dorm and if Alva is or has rescued Will 
+			if(gameinfo.getRoom() == 15 && list.checkNightMonster() == true)
 			{
 				g.setColor(Color.black);
 				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
 				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
 				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
 			}
-		}
-		
-		if((gameinfo.getRoom() == 0 && x == 16) || (gameinfo.getRoom() == 7 && y == 3))
-		{
-			if(list.checkBreakWallNorthEastPassage() == true)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 0 && x == 0)
-		{
-			if(list.checkBreakWallNorthWestPassage() == true)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 9)
-		{
-			if(list.checkNight2() == true  && gameinfo.currentyear == gameinfo.gameyearpresent)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 15)
-		{
-			if(list.checkAlvaRampage() == true)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if((gameinfo.getRoom() == 7 && x == 1) || gameinfo.getRoom() == 7 && y == 6)
-		{
-			if(list.checkNight2() == true  && gameinfo.currentyear == gameinfo.gameyearpresent)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 8 && y == 0)
-		{
-			if(list.checkNight2() == true  && gameinfo.currentyear == gameinfo.gameyearpresent)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 8 && y == 4)
-		{
-			if(list.checkAlvaRampage() == true)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 8 && x == 0)
-		{
-			if(list.checkBreakWallSouthWestPassage() == true)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 7 && y == 8)
-		{
-			if(list.checkBreakEastPassage() == true)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 12)
-		{
-			if(list.checkBreakEastPassage() == true)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
-			}
-		}
-		
-		if(gameinfo.getRoom() == 17)
-		{
-			if(list.checkBreakWallSouthWestPassage() == true && x == 4 && y == 9)
-			{	
+			
+			// If in Eastern Hall and Either lower Western Wall or Southern Wall and if in Present and Will has pressed the power button/gone back to sleep 	
+			if(gameinfo.getRoom() == 7 &&(x == 1 || y == 6) == true && list.checkNight2() == true)
+			{
 				g.setColor(Color.black);
 				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
 				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
 				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
 			}
 			
-			if(list.checkBreakWallNorthWestPassage() == true && x == 4 && y == 1)
+			// If in Southern Hall 
+			if(gameinfo.getRoom() == 8)
+			{
+				// Facing Northern Wall  Will has pressed the power button/gone back to sleep 
+				if(y == 0 && list.checkNight2() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+				
+				// If facing South Wall and Alva is rescuing Will or has 
+				if(y == 4 && list.checkNightMonster() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+				
+				// If Alva has broken through Western Wall
+				if(x == 0 && list.checkBreakWallSouthWestPassage() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+			}
+			
+			// If in East Hall and Eastern Wall
+			if(gameinfo.getRoom() == 7 && y == 8)
 			{	
+				//If Alva has broken through said wall
+				if(list.checkBreakWallEastPassage() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+			}
+			
+			// If in East Wing and Alva has broken through Wall 
+			if(gameinfo.getRoom() == 12 && list.checkBreakWallEastPassage() == true)
+			{
 				g.setColor(Color.black);
 				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
 				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
 				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
 			}
 			
-			if(list.checkBreakWallBurial() == true && x == 0 && y == 1)
-			{	
-				g.setColor(Color.black);
-				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+			// If in West Hallway 
+			if(gameinfo.getRoom() == 17)
+			{
+				// Alva has broken through South West wall passage 
+				if(x == 4 && y == 9 && list.checkBreakWallSouthWestPassage() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+				
+				// If Alva has broken through North West wall passage 
+				if(x == 4 && y == 1 && list.checkBreakWallNorthWestPassage() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+				
+				// If Father has been buried
+				if(x == 0 && y == 1 && list.checkBreakWallBurial() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
+				
+				// If Will has been rescued 
+				if(x == 0 && y == 9 && list.checkBreakWallRescue() == true)
+				{	
+					g.setColor(Color.black);
+					g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+					g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+					g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				}
 			}
 			
-			if(list.checkBreakWallRescue() == true && x == 0 && y == 9)
-			{	
+			// If in Holding Room B and Alva has broken in 
+			if(gameinfo.getRoom() == 18 && list.checkBreakWallRescue() == true)
+			{
 				g.setColor(Color.black);
 				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
 				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);
+				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);			
 			}
-		}
-		
-		if(gameinfo.getRoom() == 18 && list.checkBreakWallRescue() == true)
-		{
-			g.setColor(Color.black);
-			g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-			g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-			g.fillRect(RelativeX+9, RelativeY+32, 25, 15);			
-		}
-		
-		if(gameinfo.getRoom() == 16 && list.checkBreakWallBurial() == true)
-		{
-			g.setColor(Color.black);
-			g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
-			g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
-			g.fillRect(RelativeX+9, RelativeY+32, 25, 15);			
+			
+			// If in Holding Room A and Alva has broken in 
+			if(gameinfo.getRoom() == 16 && list.checkBreakWallBurial() == true)
+			{
+				g.setColor(Color.black);
+				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);			
+			}
+			
+			// If in Exit Hall and Alva has entered room
+			if(gameinfo.getRoom() == 19 && list.checkSacrifice() == true)
+			{
+				g.setColor(Color.black);
+				g.fillRect(RelativeX+9, RelativeY+2, 25, 15);
+				g.fillRect(RelativeX+4, RelativeY+17, 35, 15);
+				g.fillRect(RelativeX+9, RelativeY+32, 25, 15);			
+			}		
 		}
 	}
 }

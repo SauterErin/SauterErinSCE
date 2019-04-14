@@ -13,19 +13,23 @@ public class JacksonBed1 extends GameObject{
 	
 	public void interactObject()
 	{
-		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		// In Past
+		if(gameinfo.getYear() == gameinfo.getPast())
 		{
+			// Go to Bed - Transtion to Night 2
 			if(list.checkNightofHorrors() == false)
 			{
 				log.readDialogue(51);
 			}
 			
+			// Jackson and Alva escaping 
 			else
 			{
 				log.readDialogue(52);
 			}
 		}
 		
+		// In present 
 		else
 		{
 			log.readDialogue(50);
@@ -36,21 +40,17 @@ public class JacksonBed1 extends GameObject{
 	{
 		super.paintComponent(g);
 
-		if(gameinfo.currentyear == 2052)
+		if(gameinfo.getYear() == gameinfo.getPresent())
 		{
 			move = false;
 			g.setColor(Color.white);
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 		}
-
 		
-		
-		if(gameinfo.currentyear == 2042)
-
+		if(gameinfo.getYear() == gameinfo.getPast())
 		{
 			g.setColor(Color.red);
 			g.fillRect(RelativeX, RelativeY, 50, 50);
 		}
 	}
 }
-	

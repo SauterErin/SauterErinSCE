@@ -1,31 +1,32 @@
 package choice;
 import java.awt.*;
 public class JacksonBed2 extends GameObject{
-
-	List list;
 	
 	public JacksonBed2 (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
 	{
-		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		// In Past
+		if(gameinfo.getYear() == gameinfo.getPast())
 		{
+			// - Going to Bed - transition to Night2 
 			if(list.checkNightofHorrors() == false)
 			{
 				log.readDialogue(51);
 			}
 			
+			// - Jackson and Alva Escape 
 			else
 			{
 				log.readDialogue(52);
 			}
 		}
 		
+		// In Present 
 		else
 		{
 			log.readDialogue(50);
@@ -36,7 +37,8 @@ public class JacksonBed2 extends GameObject{
 	{
 		super.paintComponent(g);
 
-		if(gameinfo.currentyear == 2052)
+		// Present paint instructions 
+		if(gameinfo.getYear() == gameinfo.getPresent())
 		{
 			move = false;
 			g.setColor(Color.white);
@@ -49,10 +51,8 @@ public class JacksonBed2 extends GameObject{
 			g.fillRect(RelativeX+40, RelativeY+40, 10, 10);
 		}
 
-		
-		
-		if(gameinfo.currentyear == 2042)
-
+		// Past paint instructions 
+		if(gameinfo.getYear() == gameinfo.getPast())
 		{
 			g.setColor(Color.red);
 			g.fillRect(RelativeX, RelativeY, 50, 50);

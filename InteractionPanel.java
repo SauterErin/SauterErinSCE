@@ -1,48 +1,94 @@
 package choice;
 import java.awt.*;
-
 import javax.swing.*;
 
 public class InteractionPanel extends JPanel {
 	
-	String dialogue;
-	boolean endscript;
 	boolean monster;
-
+	String dialogue;
 	
-	public InteractionPanel ()
+	GameMode gameinfo;
+	
+	public InteractionPanel (GameMode gameinfo)
 	{
+		this.gameinfo = gameinfo;
+
 		dialogue = "";
-		endscript = false;
-	}
+		monster = false;
+	}	
 	
+	//Change Dialogue 
 	public void changeDialogue (String wantedDialogue)
 	{
 		dialogue = wantedDialogue;
 	}
 	
-	public void beginEndScript ()
+	//Ends Monster Dialogue
+	public void endMonsterDialogue ()
 	{
-		endscript = true;
+		monster = false;
+	}
+	
+	//Start Monster Dialogue
+	public void startMonsterDialogue ()
+	{
+		monster = true;
 	}
 	
 	public void paintComponent(Graphics g)
 	{	
-		if (endscript == false)
-		{
-			super.paintComponent(g);
+		super.paintComponent(g);
 		
-		g.setColor(Color.gray);
-		if(monster == true)
-			g.setColor(Color.black);
-		g.fillRect(000,500,700,400);
-		g.setColor(Color.white);
+		if(gameinfo.getEnding() == 0)
+		{	
+			g.setColor(Color.gray);
+			if(monster == true)
+			{	
+				g.setColor(Color.black);
+			}
+			g.fillRect(000,500,700,400);
+			
+			if(monster == true)
+			{
+				g.setColor(Color.red);
+			}
+			
+			else 
+			{
+				g.setColor(Color.white);
+			}
+			g.drawString(dialogue, 140, 550);
 		}
 		
-		else 
+		// Transition to Ending Titles
+		if (gameinfo.getEnding()== -1)
+		{
 			g.setColor(Color.white);
-		if(monster == true)
+			g.drawString(dialogue, 140, 550);
+		}
+				
+		// Bad Ending 
+		if (gameinfo.getEnding() == 3)
+		{
 			g.setColor(Color.red);
-		g.drawString(dialogue, 140, 550);
+			g.drawString("You were never found.", 250, 250-15);
+			g.drawString("Game Over", 250, 250);
+		}
+			
+		// Alva left Behind Ending 
+		if (gameinfo.getEnding()== 1)
+		{
+			g.setColor(Color.blue);
+			g.drawString("You survived.", 250, 250-15);
+			g.drawString("Sole Survivor Ending", 250, 250);
+		}
+			
+		// Both survive Ending 
+		if(gameinfo.getEnding() == 2)
+		{
+			g.setColor(Color.white);
+			g.drawString("What a beautiful day.", 250, 250-15);
+			g.drawString("Through the Fire Ending", 250, 250);
+		}
 	}
 }

@@ -1,8 +1,8 @@
 package choice;
 import java.awt.*;
-public class WoodFloorGreenKey extends GameObject{
+public class WoodFloorSacrificeTrigger extends GameObject{
 	
-	public WoodFloorGreenKey (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public WoodFloorSacrificeTrigger (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = true;
@@ -10,10 +10,10 @@ public class WoodFloorGreenKey extends GameObject{
 	
 	public void interactObject()
 	{
-		// Triggers Jackson capture
-		if(list.checkRetrieveGreenKey() == false && list.checkNightofHorrors() == true)
+		// If Alva sacrificed herself 
+		if(list.checkSacrifice() == true)
 		{
-			log.readDialogue(93);
+			log.readDialogue(125);
 		}
 	}
 	
@@ -21,8 +21,6 @@ public class WoodFloorGreenKey extends GameObject{
 	{
 		super.paintComponent(g);
 
-		move = true;
-		
 		// Color Instructions - Past 
 		g.setColor(new Color(96,45, 6));	
 		
@@ -38,8 +36,14 @@ public class WoodFloorGreenKey extends GameObject{
 		
 		g.setColor(Color.black);
 		
-		// Fire backlit Stage 2 
+		// Fire backlit Stage 1
 		if(list.checkNightofFire() == true)
+		{
+			g.setColor(new Color(227, 111, 25));
+		}
+		
+		// Fire backlit Stage 2 
+		if(list.checkNightofFireRescue() == true)
 		{
 			g.setColor(new Color(227, 86, 25));
 		}
@@ -50,13 +54,43 @@ public class WoodFloorGreenKey extends GameObject{
 		g.drawLine(RelativeX, RelativeY+17, RelativeX+50, RelativeY+17);
 		g.drawLine(RelativeX, RelativeY+33, RelativeX+50, RelativeY+33);
 		
-		// If Jackson hasn't picked up green key yet and is during oringal escape attempt
-		if(list.checkNightofHorrors() == true && list.checkRetrieveGreenKey() == false)
+		// 
+		if(gameinfo.getRoom() == 19 && sprite.getX() == x && y == sprite.getY() && list.checkStartTrigger() == false)
 		{
-			move = false;
-			g.setColor(Color.green);
-			g.fillRect(RelativeX+10, RelativeY+10, 5, 5);
-		}	
+			list.actStartTrigger();
+			log.readDialogue(129);
+		}
+		
+		//
+		if(gameinfo.getRoom() == 19 && sprite.getY() < 5  && list.checkSacrifice() == true)
+		{
+			sprite.changeMonsterDirection('N');
+		}
+		
+		if(gameinfo.getRoom() == 19 && sprite.getY() > 9 && list.checkSacrifice() == true)
+		{
+			sprite.changeMonsterDirection('S');			
+		}
+		
+		if(gameinfo.getRoom() == 19 && sprite.getX() > 3 && (sprite.getY() > 3 && sprite.getY() < 11) == true && list.checkSacrifice() == true)
+		{
+			sprite.changeMonsterDirection('E');
+		}
+		
+		if(gameinfo.getRoom() == 19 && sprite.getX() < 3 && (sprite.getY() > 3 && sprite.getY() < 11) == true && list.checkSacrifice() == true)
+		{
+			sprite.changeMonsterDirection('W');
+		}
+		
+		if(gameinfo.getRoom() == 19 && sprite.getX() ==  3 && sprite.getY() > 7  && list.checkSacrifice() == true)
+		{
+			sprite.changeMonsterDirection('S');
+		}
+		
+		if(gameinfo.getRoom() == 19 && sprite.getX() ==  3 && sprite.getY() < 7  && list.checkSacrifice() == true)
+		{
+			sprite.changeMonsterDirection('N');
+		}
 		
 		// Raging Fire emphasis 
 		if(list.checkNightofFire() == true)
@@ -66,24 +100,17 @@ public class WoodFloorGreenKey extends GameObject{
 			g.drawLine(RelativeX+34, RelativeY +5, RelativeX+49, RelativeY+5);
 			g.drawLine(RelativeX+5, RelativeY +22, RelativeX+35, RelativeY+22);
 			g.drawLine(RelativeX+22, RelativeY +42, RelativeX+25, RelativeY+45);
+		}
+		
+		// Fire worsening visual emphasis 
+		if(list.checkNightofFireRescue() == true)
+		{	
 			g.setColor(new Color(227, 118, 25));
 			g.drawLine(RelativeX+18, RelativeY +28, RelativeX+48, RelativeY+28);
 			
 			g.setColor(new Color(227, 50, 25));
 			g.drawLine(RelativeX+30, RelativeY +12, RelativeX+33, RelativeY+15);
 			g.drawLine(RelativeX+6, RelativeY +28, RelativeX+9, RelativeY+31);	
-		}
-		
-		// Fire Spreading on Rescue 
-		if(list.checkNightofFireRescue() == true)
-		{
-			move = false;
-			g.setColor(Color.orange);
-			g.fillRect(RelativeX, RelativeY, 50, 50);
-			g.setColor(Color.red);
-			g.fillRect(RelativeX+10, RelativeY+10, 30,30);
-			g.setColor(Color.yellow);
-			g.fillRect(RelativeX+20, RelativeY+20, 10,10);
 		}
 	}
 }

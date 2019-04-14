@@ -1,43 +1,51 @@
 package choice;
 import java.awt.*;
 public class ClimbingWall extends GameObject{
-
-	List list;
 	
 	public ClimbingWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
 	{
-		if(gameinfo.returnYear() == gameinfo.gameyearpast && list.checkMeetAlva() == false)
+		if(gameinfo.getYear() == gameinfo.getPast())
 		{
-			log.readDialogue(17);
-		}
-		
-		if(gameinfo.returnYear() == gameinfo.gameyearpast && list.checkMeetAlva() == true)
-		{
-			log.readDialogue(19);
-		}
-		
-		if(gameinfo.returnYear() == gameinfo.gameyearpresent & list.checkNightofFire() == false &list.checkAlvaRampage() == false)
-		{
-			log.readDialogue(62);
-		}
-		
-		if(gameinfo.returnYear() == gameinfo.gameyearpresent & list.checkNightofFire() == false &list.checkAlvaRampage() == true)
-		{
-			log.readDialogue(63);
-		}
-		
-		if(gameinfo.returnYear() == gameinfo.gameyearpresent & list.checkNightofFire() == true &list.checkAlvaRampage() == true)
-		{
+			// Haven't met Alva yet
+			if(list.checkMeetAlva() == false)
+			{
+				log.readDialogue(17);
+			}
 			
+			// Have met Alva
+			if(list.checkMeetAlva() == true)
+			{
+				log.readDialogue(19);
+			}
 		}
-		
+		// If in present
+		else
+		{
+			// Before Alva rescues Will
+			if( list.checkNightMonster() == false)
+			{
+				log.readDialogue(62);
+			}
+			
+			// If in present and after Alva rescues Will
+			if( list.checkNightMonster() == true && list.checkNightofFireRescue() == false)
+			{
+				log.readDialogue(63);
+			}
+			
+			// If in Present and during the attempt to rescue Alva
+			if(list.checkNightofFireRescue() == true )
+			{
+				gameinfo.changeRoom(10);
+				sprite.setGameSprite(1,1,'S');
+			}
+		}
 	}
 	
 	public void paintComponent(Graphics g)
@@ -63,10 +71,26 @@ public class ClimbingWall extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.getHSBColor(245, 34, 133));	
-		if(gameinfo.getRed() == true)
-			g.setColor(Color.getHSBColor(87, 34, 70));
-			
+		// Past
+		g.setColor(new Color(218, 106, 16)); 
+		
+		// Present
+		if(gameinfo.getYear() == gameinfo.getPresent())
+		{
+			g.setColor(new Color(244, 169, 108));
+		}
+		
+		// Burning building
+		if(list.checkNightofFireRescue() == true)
+		{
+			g.setColor(new Color(244, 144, 108));
+		}
+		
+		// If returned to burning building
+		if(list.checkNightofFireRescue() == true)
+		{
+			g.setColor(new Color(244, 119, 108));
+		}
 		
 		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
 		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
@@ -89,15 +113,15 @@ public class ClimbingWall extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
 		
-		if (gameinfo.returnYear() == gameinfo.gameyearpast || list.checkAlvaRampage() == true)
-		{	g.setColor(Color.getHSBColor(169, 104, 54));
+		// If in past - or post Rescue draw Rope 
+		if (gameinfo.getYear() == gameinfo.getPast() || list.checkRescueComplete() == true)
+		{	
+			g.setColor(new Color(50, 31, 16));
 
 			g.drawLine(RelativeX+20, RelativeY, RelativeX+20, RelativeY+49);
 			g.drawLine(RelativeX+21, RelativeY, RelativeX+21, RelativeY+49);
 			g.drawLine(RelativeX+22, RelativeY, RelativeX+22, RelativeY+49);
 			g.drawLine(RelativeX+23, RelativeY, RelativeX+23, RelativeY+49);
 		}
-
 	}
-
 }

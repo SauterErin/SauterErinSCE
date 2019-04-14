@@ -1,100 +1,121 @@
 package choice;
 import java.awt.*;
 
-
 public class RedDoor extends GameObject {
 
-	List list;
-	GameSprite sprite;
-	
 	public RedDoor(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
-		this.sprite = sprite;
 	}
 			
 	public void interactObject()
 	{
-		if(list.checkRedKey() == true){
-			boolean onechoice = true;
-			if(gameinfo.returnYear() == gameinfo.gameyearpresent)
+		boolean wait = true;
+			
+		// If in present 
+		if(gameinfo.getYear() == gameinfo.getPresent())
+		{
+			// If player has red key 
+			if(list.checkRedKey() == true)
 			{
-				if (gameinfo.getRoom() == 4 && onechoice == true)
+				// If in Music Room 
+				if (gameinfo.getRoom() == 4 && wait == true)
 				{	
 					gameinfo.changeRoom(0);
 					sprite.setGameSprite (13, 6, 'S');
-					onechoice = false;
+					wait = false;
+					
+					// If haven't entered North Hallway before
 					if(list.checkEnterNorthHallway() == false)
 					{
 						log.readDialogue(21);
 					}
 				}
 				
-				if (gameinfo.getRoom() == 1 && onechoice == true)
+				// If in Power room 
+				if (gameinfo.getRoom() == 1 && wait == true)
 				{	
 					gameinfo.changeRoom(0);
 					sprite.setGameSprite (3, 6, 'S');
-					onechoice = false;
+					wait = false;
 				}
 				
-				if (gameinfo.getRoom() == 0 && onechoice == true)
+				// If in North Hall
+				if (gameinfo.getRoom() == 0 && wait == true)
 				{	
-					if(sprite.checkDirection() == 'N' && onechoice == true && sprite.getX() == 13)
-						{
-							gameinfo.changeRoom(4);
-							sprite.setGameSprite(5,7,'N');
-							onechoice = false;
-						}
+					// If entering music room & Will has gifted his card.
+					if(sprite.checkDirection() == 'N' && sprite.getX() == 13 && list.checkGiftCard() == true && wait == true)
+					{
+						gameinfo.changeRoom(4);
+						sprite.setGameSprite(5,7,'N');
+						wait = false;
+					}
 					
-					if(sprite.checkDirection() == 'N' && onechoice == true && sprite.getX() == 3)
+					// If entering music room & Will hasn't gifted his card
+					if(sprite.checkDirection() == 'N' && sprite.getX() == 13 && list.checkGiftCard() == false && wait == true)
+					{
+						log.readDialogue(150);
+						sprite.changeDirection('S');
+						wait = false;
+					}
+					
+					// If Entering Power room 
+					if(sprite.checkDirection() == 'N' && sprite.getX() == 3 && wait == true)
 					{
 						gameinfo.changeRoom(1);
 						sprite.setGameSprite(2,2,'N');
-						onechoice = false;
+						wait = false;
 					}
 				}
 			}
 			
 			else
 			{
-				if(gameinfo.getRoom() == 4)
-				{
-					if(list.checkHideRedKey() == false && sprite.checkAlvaFollow() == true)
-					{
-						log.readDialogue(24);
-					}
-					
-					if(list.checkHideRedKey() == false && sprite.checkAlvaFollow() == false)
-					{
-						log.readDialogue(64);
-					}	
-					
-					if(list.checkHideRedKey() == true)
-					{
-						gameinfo.changeRoom(0);
-						sprite.setGameSprite (13, 6, 'S');
-						list.switchDoorHold1();
-						sprite.switchAlvaFollow();	
-					}
-				}
-				
-				else
-				{
-					log.readDialogue(12);
-				}
+				log.readDialogue(12);
 			}
 		}
-		
+			
+		// If in past
 		else
-			log.readDialogue(12);
+		{
+			// If in music room 
+			if(gameinfo.getRoom() == 4)
+			{
+				// If Alva is following and haven't hidden key - Alva holds door
+				if(sprite.checkAlvaFollow() == true && list.checkHideRedKey() == false)
+				{
+					log.readDialogue(24);
+				}
+					
+				// - Alva holding door and haven't hidden key
+				if(sprite.checkAlvaFollow() == false && list.checkHideRedKey() == false)
+				{
+					log.readDialogue(64);
+				}	
+				
+				// - Hidden key
+				if(list.checkHideRedKey() == true)
+				{
+					gameinfo.changeRoom(0);
+					sprite.setGameSprite (13, 6, 'S');
+					list.endDoorHold1();
+					sprite.startAlvaFollow();	
+				}
+			}
+				
+			else
+			{
+				log.readDialogue(12);
+			}
+		}
 	}
+		
+
 
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		
 		
 		g.setColor(Color.gray);	
 		
@@ -113,6 +134,7 @@ public class RedDoor extends GameObject {
 		g.drawLine(RelativeX+10, RelativeY, RelativeX+10, RelativeY+49);
 		g.drawLine(RelativeX+49, RelativeY, RelativeX+49, RelativeY+49);
 		
+		// If Alva is holding Door 
 		if(list.checkDoorHold1() == true)
 		{
 			g.setColor(Color.green);

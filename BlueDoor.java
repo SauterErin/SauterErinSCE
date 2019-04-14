@@ -1,31 +1,22 @@
 package choice;
 import java.awt.*;
 
-
 public class BlueDoor extends GameObject {
-
-	List list;
-	GameSprite sprite;
 	
 	public BlueDoor(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
-		this.sprite = sprite;
 	}
 			
 	public void interactObject()
 	{	
-		log.readDialogue(12);
-		
+		log.readDialogue(12);	
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		
-		
 		g.setColor(Color.gray);	
 		
 		g.fillRect(RelativeX, RelativeY, 10,50 );

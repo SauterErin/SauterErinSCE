@@ -1,14 +1,11 @@
 package choice;
 import java.awt.*;
 public class AtticWall extends GameObject{
-
-	List list;
 	
 	public AtticWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
@@ -39,9 +36,12 @@ public class AtticWall extends GameObject{
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
 		g.setColor(Color.black);	
-		if(gameinfo.getRed() == true)
+		
+		// If ran back into burning building color change
+		if(list.checkNightofFireRescue() == true)
+		{
 			g.setColor(Color.getHSBColor(87, 89, 70));
-			
+		}
 		
 		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
 		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
@@ -63,6 +63,5 @@ public class AtticWall extends GameObject{
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
-
 	}
 }

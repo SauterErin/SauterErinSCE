@@ -1,46 +1,56 @@
 package choice;
 import java.awt.*;
 public class WireBox extends GameObject{
-
-	List list;
 	
 	public WireBox (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
 	{
-		if(gameinfo.returnYear() == gameinfo.gameyearpast)
+		// If Past
+		if(gameinfo.getYear() == gameinfo.getPast())
 		{
-			if(list.checkBrokenWireBox() == false && list.checkBrokenSimpleDoor() == false)
+			// If both Wire Box and Door aren't broken
+			if(list.checkBrokenSimpleDoor() == false && list.checkBrokenWireBox() == false)
 			{
 				log.readDialogue(31);
 			}
 			
+			// If Wire box is broken 
 			if(list.checkBrokenWireBox() == true)
 			{
 				log.readDialogue(33);
 			}
 			
+			// If door is broken
 			if(list.checkBrokenSimpleDoor() == true)
 			{
 				log.readDialogue(35);
 			}
 		}
 		
+		// Present 
 		else
 		{
-			if(list.checkSearWireBox() == true)
+			// Welded wire box
+			if(list.checkWeldWireBox() == true)
 			{
 				log.readDialogue(36);
 			}
 			
-			else
+			// Break Wire Box
+			if(list.checkBrokenWireBox() == false)
 			{	
 				log.readDialogue(37);
+			}
+			
+			// If wire box is broken but not welded
+			if(list.checkBrokenWireBox() == true && list.checkWeldWireBox() == false)
+			{
+				log.readDialogue(120);
 			}
 		}
 	}
@@ -68,10 +78,26 @@ public class WireBox extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.getHSBColor(245, 140, 133));	
-		if(gameinfo.getRed() == true)
-			g.setColor(Color.getHSBColor(87, 89, 70));
-			
+		// Paint instructions past
+		g.setColor(new Color(250, 44, 0));
+		
+		// Paint instructions present
+		if(gameinfo.getYear() == gameinfo.getPresent())
+		{
+			g.setColor(new Color(250, 156, 155));
+		}
+				
+		// Paint instructions for building on fire
+		if(list.checkNightofFire() == true)
+		{
+			g.setColor(new Color(247, 87, 85));
+		}
+				
+		// Paint instructions for building on fire continuing 
+		if(list.checkNightofFireRescue() == true)
+		{	
+			g.setColor(new Color(244, 51, 27));
+		}
 		
 		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
 		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
@@ -94,13 +120,15 @@ public class WireBox extends GameObject{
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);	
 		
+		// If wire box is not broken
 		if(list.checkBrokenWireBox() == false)
 		{
 			g.setColor(Color.gray);
 			g.fillRect(RelativeX+5, RelativeY+2, 40, 46);
 		}
 		
-		if(list.checkBrokenWireBox() == true && list.checkSearWireBox() == false)
+		// If Wire box has been broken
+		if(list.checkBrokenWireBox() == true && list.checkWeldWireBox() == false)
 		{
 			g.setColor(Color.gray);
 			g.fillRect(RelativeX+5, RelativeY+2, 40, 46);
@@ -108,13 +136,10 @@ public class WireBox extends GameObject{
 			g.drawLine(RelativeX+5, RelativeY+10, RelativeX+9, RelativeY+15);
 			g.drawLine(RelativeX+5, RelativeY+15, RelativeX+11, RelativeY+23);
 			g.drawLine(RelativeX+5, RelativeY+18, RelativeX+15, RelativeY+35);
-
-			
-
 		}
 
-		
-		if(list.checkSearWireBox() == true)
+		// If Wire Box has been welded
+		if(list.checkWeldWireBox() == true)
 		{	
 			g.setColor(Color.gray);
 			g.fillRect(RelativeX+5, RelativeY+2, 40, 46);
@@ -124,8 +149,6 @@ public class WireBox extends GameObject{
 			g.drawRect(RelativeX+6, RelativeY+3,39,45);
 			g.drawRect(RelativeX+7, RelativeY+4,38,44);
 			g.drawRect(RelativeX+8, RelativeY+5,37,43);
-
 		}
-
 	}
 }

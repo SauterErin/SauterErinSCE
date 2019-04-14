@@ -1,8 +1,8 @@
 package choice;
 import java.awt.*;
-public class PastBrokenWall extends GameObject{
+public class FinalSwitch extends GameObject{
 	
-	public PastBrokenWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
+	public FinalSwitch (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
@@ -10,16 +10,11 @@ public class PastBrokenWall extends GameObject{
 	
 	public void interactObject()
 	{
-		// If Jackson has broken wall
-		if (list.checkPastBreakWall() == true)
-		{
-			gameinfo.changeRoom(11);
-			sprite.setGameSprite(1,8,'N');
-		}
+		log.readDialogue(143);
 	}
 	
 	public void paintComponent(Graphics g)
-	{
+	{		
 		super.paintComponent(g);
 		g.setColor(Color.black);
 		g.drawLine(RelativeX, RelativeY+49, RelativeX+49, RelativeY+49);
@@ -43,7 +38,7 @@ public class PastBrokenWall extends GameObject{
 
 		// Paint instructions past
 		g.setColor(new Color(250, 44, 0));
-				
+		
 		// Paint instructions present
 		if(gameinfo.getYear() == gameinfo.getPresent())
 		{
@@ -81,13 +76,26 @@ public class PastBrokenWall extends GameObject{
 		g.fillRect(RelativeX+21, RelativeY+31, 19,9);
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
-		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
+		g.fillRect(RelativeX+41, RelativeY+31, 9,9);	
 		
-		// If Jackson has broken wall
-		if(list.checkPastBreakWall() == true)
+		g.setColor(Color.black);
+		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+25, RelativeY+20);
+		g.drawLine(RelativeX+20, RelativeY+25, RelativeX+25, RelativeY+25);
+		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+20, RelativeY+25);
+		g.drawLine(RelativeX+25, RelativeY+20, RelativeX+25, RelativeY+25);
+		
+		// If final power switch is on
+		if (list.checkFinalSwitch() == true)
+		{
+			g.setColor(Color.white);
+		}
+		
+		// If final power switch is off 
+		else
 		{
 			g.setColor(Color.black);
-			g.fillRect(RelativeX+20, RelativeY + 15, 20, 35);
 		}
+		
+		g.fillRect(RelativeX+21,RelativeY+21, 4,4);
 	}
 }

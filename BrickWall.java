@@ -2,13 +2,10 @@ package choice;
 import java.awt.*;
 public class BrickWall extends GameObject{
 
-	List list;
-	
 	public BrickWall (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
@@ -38,10 +35,26 @@ public class BrickWall extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.getHSBColor(245, 140, 133));	
-		if(gameinfo.getRed() == true)
-			g.setColor(Color.getHSBColor(87, 89, 70));
-			
+		// Paint instructions past
+		g.setColor(new Color(250, 44, 0));
+		
+		// Paint instructions present
+		if(gameinfo.getYear() == gameinfo.getPresent())
+		{
+			g.setColor(new Color(250, 156, 155));
+		}
+		
+		// Paint instructions for building on fire
+		if(list.checkNightofFire() == true)
+		{
+			g.setColor(new Color(247, 87, 85));
+		}
+		
+		// Paint instructions for building on fire continuing 
+		if(list.checkNightofFireRescue() == true)
+		{	
+			g.setColor(new Color(244, 51, 27));
+		}
 		
 		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
 		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
@@ -63,6 +76,5 @@ public class BrickWall extends GameObject{
 
 		g.fillRect(RelativeX+41, RelativeY+11, 9,9);
 		g.fillRect(RelativeX+41, RelativeY+31, 9,9);		
-
 	}
 }

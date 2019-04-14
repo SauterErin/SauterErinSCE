@@ -3,65 +3,34 @@ import java.awt.*;
 
 import javax.swing.*;
 public class Select extends JPanel{
-String [][] select = new String [99][10];
+
+private boolean choice;
+private int selectionnumber;
+private String dialogue;
+private String [][] select = new String [99][10];
+
+Dialogue2nd log2; 
 GameMode gameinfo;
-SystemMode system;
+GameSprite sprite;
 InteractionPanel inter;
 List list;
-int selectionnumber;
-boolean choice;
-String dialogue;
-Dialogue2nd log2; 
+SystemMode system;
 
-	public Select (GameMode gameinfo, SystemMode system, InteractionPanel inter, List list)
+	public Select (GameMode gameinfo, SystemMode system, InteractionPanel inter, List list, GameSprite sprite)
 	{
-		
 		this.gameinfo = gameinfo;
-		this.system = system;
 		this.inter = inter;
 		this.list = list;
-		 boolean choice = true;
-		int selectionnumber  = 0;
-		String dialogue = "Testing";
-		log2 = new Dialogue2nd(gameinfo, system, inter);
-	
+		this.system = system;
+		this.sprite = sprite;
+		
+		choice = true;
+		dialogue = "";
+		log2 = new Dialogue2nd(gameinfo, system, inter, sprite, list);
+		selectionnumber  = 0;		
 	}
 	
-	public void changeSelectionNumber (int change)
-	{
-		dialogue = "error";
-		selectionnumber = change;
-		if(change ==0)
-		{
-			dialogue = "Do you want to go back to bed?";
-		}
-		
-		if(change == 2)
-		{
-			dialogue = "There's a note here, do you take it?";
-		}
-		
-		if(change == 8)
-		{
-			dialogue = "The paneling is stuck on the power switch, move it?";
-		}
-		
-		if(change == 31)
-		{
-			dialogue = "Do you pull the wires?";
-		}
-		
-		if(change == 32 || change == 38)
-		{
-			dialogue = "Do you pop the door?";
-		}
-		
-		if(change == 37)
-		{
-			dialogue = "Do you pull the wires?";
-		}
-	}
-	
+	// Used for switching between Yes/No
 	public void changeChoice(){
 
 		if (choice == true)
@@ -72,34 +41,113 @@ Dialogue2nd log2;
 			choice = true;
 	}
 	
-	public void optionSelect()
-	
+	public void changeSelectionNumber (int change)
 	{
-		if (selectionnumber == 0)
-				{
-					if (choice == true)
-					{
-						system.endSelect();
-						gameinfo.startBadEnd1();
-						log2.readDialogue(98);
-					}
-					
-					else
-					{
-						system.endSelect();
-						system.startMove();
-					}
-				}
+		//Invalid entry 
+		dialogue = "error";
 		
-		if (selectionnumber == 2)
+		// - Go back to bed early
+		if(change == 0)
+		{
+			dialogue = "Do you want to go back to bed?";
+		}
+		
+		// - Open Trap Door
+		if(change == 2)
+		{
+			change = 1;
+			dialogue = "There's a note here, do you take it?";
+		}
+		
+		// - Power Switch
+		if(change == 8)
+		{
+			change = 2;
+			dialogue = "The paneling is stuck on the power switch, move it?";
+		}
+		
+		// - Jackson Pull Wires 
+		if(change == 31)
+		{
+			change = 3;
+			dialogue = "Do you pull the wires?";
+		}
+		
+		// - Force door open 
+		if(change == 32 || change == 38)
+		{
+			change = 4;
+			dialogue = "Do you pop the door?";
+		}
+		
+		// - Will Pull Wires
+		if(change == 37)
+		{
+			change = 5;
+			dialogue = "Do you pull the wires?";
+		}
+		
+		// Leave Purple Door - Exit Hall x1
+		if(change == 131)
+		{
+			change = 6;
+			dialogue = "Do you leave?";
+		}
+		
+		// Lock in Ending 1
+		if(change == 701)
+		{
+			change = 7;
+			dialogue = "She'll burn. She'll die. Is this your choice?";
+		}
+		
+		// Leave via Vent - Exit Hall x1
+		if(change == 137)
+		{
+			change = 8;
+			dialogue = "Do you pry open the vent?";
+		}
+		
+		// Lock in Ending 2
+		if(change == 702)
+		{
+			change = 9;
+			dialogue = "You might die. Is this your choice?";
+		}
+		
+		selectionnumber = change;
+	}
+	
+	// Acts upon user chice
+	public void optionSelect()
+	{		
+		boolean wait = true;
+		
+		// Go back to bed Early
+		if (selectionnumber == 0)
 		{
 			if (choice == true)
 			{
 				system.endSelect();
-				
+				gameinfo.changeEnding(-1);
+				log2.readDialogue(4);
+			}
+					
+			else
+			{
+				system.endSelect();
+				system.startMove();
+			}
+		}
+		
+		// Read Jackson's Note
+		if (selectionnumber == 1)
+		{
+			if (choice == true)
+			{
+				system.endSelect();
 				list.actNote1();
-				
-				log2.readDialogue(3);
+				log2.readDialogue(0);
 			}
 			
 			else
@@ -109,49 +157,126 @@ Dialogue2nd log2;
 			}
 		}
 		
-		if (selectionnumber == 8)
+		// Press Power switch
+		if (selectionnumber == 2)
+		{
 			if (choice == true)
-				{
-					system.endSelect();
-					system.startMove();
-					list.switchPowerSwitch();
-					list.Escape();
-					log2.readDialogue(8);
-				}
+			{
+				system.endSelect();
+				system.startMove();
+				list.endPowerSwitch();
+				list.actEscape();
+				log2.readDialogue(1);
+			}
+		
 			else
 			{
 				system.endSelect();
 				system.startMove();
 			}
+		}
 		
-		if (selectionnumber == 31 ||  selectionnumber == 37)
+		// Pull Wires
+		if (selectionnumber == 3 ||  selectionnumber == 5)
+		{
+			if (choice == true)
 			{
-				if (choice == true)
-					{
-						system.endSelect();
-						system.startMove();
-						list.actBrokenWireBox();
-					}
-				else
+				system.endSelect();
+				system.startMove();
+				list.actBrokenWireBox();
+			}
+			
+			else
+			{
+				system.endSelect();
+				system.startMove();
+			}
+		}	
+		
+		// Pop Door 
+		if (selectionnumber == 4)
+		{
+			if (choice == true)
+			{
+				system.endSelect();
+				system.startMove();
+				list.actBrokenSimpleDoor();
+			}
+			
+			else
+			{
+				system.endSelect();
+				system.startMove();
+			}
+		}
+		
+		// Ending 1 x1
+		if (selectionnumber == 6 && wait == true)
+		{
+			wait = false;
+			if (choice == true)
+			{				
+				changeSelectionNumber(701);	
+			}
+
+			else
+			{
+				system.endSelect();
+				system.startMove();
+			}
+		}
+		
+		// Ending 1 confirmed
+		if (selectionnumber == 7 && wait == true)
+		{	
+			wait = false;
+			if (choice == true)
 				{
 					system.endSelect();
-					system.startMove();
+					system.startDialogue2();
+					log2.readDialogue(2);
 				}
-			}
-		if (selectionnumber == 32 ||  selectionnumber == 38)
+			
+			else
 			{
-				if (choice == true)
-					{
-						system.endSelect();
-						system.startMove();
-						list.actBrokenSimpleDoor();
-					}
-				else
-				{
-					system.endSelect();
-					system.startMove();
-				}
+				system.endSelect();
+				system.startMove();
 			}
+		}
+		
+		// Ending 2 x1 
+		if (selectionnumber == 8 && wait == true)
+		{
+			wait = false;
+			if (choice == true)
+			{				
+				changeSelectionNumber(702);	
+			}
+			
+			else
+			{
+				system.endSelect();
+				system.startMove();
+			}
+		}
+		
+		// Ending 2 Confirmed
+		if (selectionnumber == 9 && wait == true)
+		{	
+			wait = false;
+			if (choice == true)
+			{
+				system.endSelect();
+				system.startDialogue2();
+				log2.readDialogue(3);
+			}
+			
+			else
+			{
+				system.endSelect();
+				system.startMove();
+			}
+		}
 		choice = true;
 	}
 	
@@ -164,10 +289,17 @@ Dialogue2nd log2;
 		g.drawString(dialogue, 140, 450);
 		g.drawString("Yes", 140, 500);
 		g.drawString("No", 140, 550);
+
+		// Pointer shows that user is pointed at yes
 		if(choice == true)
+		{
 			g.fillRect(100,500,10,10);
+		}
+		
+		// Pointer shows that user is point at no
 		else
+		{
 			g.fillRect(100,550,10,10);
+		}
 	}
-	
 }

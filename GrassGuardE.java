@@ -3,34 +3,36 @@ import java.awt.*;
 
 
 public class GrassGuardE extends GameObject {
-
-	List list;
-	GameSprite sprite;
 	
 	public GrassGuardE(int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = true;
-		this.list = list;
-		this.sprite = sprite;
 	}
 			
 	public void interactObject()
-	{	
-		
+	{			
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		
-		if(gameinfo.returnYear() == gameinfo.gameyearpresent)
-			g.setColor(Color.green);	
+		//Present Grass colors 
+		if(gameinfo.getYear() == gameinfo.getPresent())
+		{
+			g.setColor(new Color(12, 104, 40));
+		}
+		
+		//Past Grass Colors
 		else
+		{
 			g.setColor(new Color(87, 106, 54));
+		}
 		g.fillRect(RelativeX, RelativeY, 50,50 );
 		
-		if(list.checkRetrieveGreenKey() == true && list.checkAlvaRampage() == false)
+		// IE - Capture Jackson Flag 
+		if(list.checkRetrieveGreenKey() == true && list.checkNightMonster() == false)
 		{
 			g.setColor(Color.white);
 			g.fillRect(RelativeX+18, RelativeY+8, 24, 34);

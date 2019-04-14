@@ -1,33 +1,40 @@
 package choice;
 import java.awt.*;
 public class PowerSwitch extends GameObject{
-
-	List list;
 	
 	public PowerSwitch (int AbsoluteX, int AbsoluteY, GameMode gameinfo, List list, Dialogue log, GameSprite sprite)
 	{
 		super(AbsoluteX, AbsoluteY, gameinfo, log, list, sprite);
 		move = false;
-		this.list = list;
 	}
 	
 	public void interactObject()
 	{
-		if(list.checkNight2() == false && list.checkPowerSwitch() == true)
+		// Haven't pressed power button 
+		if(list.checkEscape() == false && list.checkPowerSwitch() == true)
 			log.readDialogue(8);
-		if(list.checkNight2() == false && list.checkPowerSwitch() == false)
+		
+		// Pressed Power Button
+		if(list.checkEscape() == true && list.checkPowerSwitch() == false)
 			log.readDialogue(65);
 		
+		// Prior to Night of Fire Rescue - and After initial press
 		if(list.checkNight2() == true && list.checkNightofFireRescue() == false)
 		{
 			log.readDialogue(67);
 		}
 		
-		if(list.checkNightofFireRescue() == true)
+		// Haven't tried turning off power switch during rescue
+		if(list.checkNightofFireRescue() == true && list.checkPowerSwitch() == true)
 		{
 			log.readDialogue(66);
 		}
-
+		
+		// Already tried turning off power switch during rescue 
+		if(list.checkNightofFireRescue() == true && list.checkPowerSwitch() == false)
+		{
+			log.readDialogue(139);
+		}
 	}
 	
 	public void paintComponent(Graphics g)
@@ -53,10 +60,26 @@ public class PowerSwitch extends GameObject{
 		g.drawLine(RelativeX+15, RelativeY+40, RelativeX+15, RelativeY+49);
 		g.drawLine(RelativeX+30, RelativeY+40, RelativeX+30, RelativeY+49);
 
-		g.setColor(Color.getHSBColor(245, 140, 133));	
-		if(gameinfo.getRed() == true)
-			g.setColor(Color.getHSBColor(87, 89, 70));
-			
+		// Paint instructions past
+		g.setColor(new Color(250, 44, 0));
+		
+		// Paint instructions present
+		if(gameinfo.getYear() == gameinfo.getPresent())
+		{
+			g.setColor(new Color(250, 156, 155));
+		}
+				
+		// Paint instructions for building on fire
+		if(list.checkNightofFire() == true)
+		{
+			g.setColor(new Color(247, 87, 85));
+		}
+				
+		// Paint instructions for building on fire continuing 
+		if(list.checkNightofFireRescue() == true)
+		{	
+			g.setColor(new Color(244, 51, 27));
+		}
 		
 		g.fillRect(RelativeX+1, RelativeY+1, 14,9 );
 		g.fillRect(RelativeX+1, RelativeY+21, 14,9 );
@@ -85,12 +108,17 @@ public class PowerSwitch extends GameObject{
 		g.drawLine(RelativeX+20, RelativeY+20, RelativeX+20, RelativeY+25);
 		g.drawLine(RelativeX+25, RelativeY+20, RelativeX+25, RelativeY+25);
 		
+		// Power is active
 		if (list.checkPowerSwitch() == true)
+		{
 			g.setColor(Color.blue);
+		}
+		
+		// Power is off
 		else
-			g.setColor(Color.red);
+		{
+			g.setColor(new Color(93, 12, 55));
+		}
 		g.fillRect(RelativeX+21,RelativeY+21, 4,4);
-
-
 	}
 }
